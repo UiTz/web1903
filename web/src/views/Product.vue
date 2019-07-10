@@ -16,7 +16,6 @@
                     <span>产品系列</span>
                     <!--产品系列下边的下划线-->
                     <div>
-                        <path class="path"></path>
                     </div>
                 </div>
             </div>
@@ -107,8 +106,5 @@ export default {
         width:1160px;
         height:21px;
         background-color:tan;
-    }
-    .path{
-        border:1px solid #b16939;
     }
 </style>
