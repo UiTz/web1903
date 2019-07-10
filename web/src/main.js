@@ -5,8 +5,18 @@ import store from './store'
 // 引入页面顶部加载进度条插件
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import ElementUI from 'element-ui' 
+import axios from "axios"
+Vue.prototype.axios=axios
+import 'element-ui/lib/theme-chalk/index.css'
+import myheader from './components/myheader'
+import myfooter from './components/myfooter'
+
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
+Vue.component("my-header",myheader);
+Vue.component("my-footer",myfooter);
 
 // 配置NProgress进度条选项  —— 动画效果
 NProgress.configure({ ease: 'ease', speed: 500 })
