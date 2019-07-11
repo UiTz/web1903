@@ -21,16 +21,16 @@
             </div>
         </div>
         <!--indexImg></indexImg-->
-        <div class="item text-center">
-      <div class="text-center">
+    <div class="item1 text-center">
+      <div class="my-style">
         <h3>未漂白 · 面粉</h3>
         <p>精选优质小麦面粉，经过缓慢的自然氧化过程烘烤后，使面包更加蓬松、柔软、健康</p>
       </div>
-      <div>
+      <div class="my-style">
         <h3>纯 · 乳脂奶油</h3>
         <p>100%纯天然新西兰牛奶被自然搅拌、均匀降温制成纯乳脂奶油清甜、散发淡淡奶香</p>
       </div>
-      <div>
+      <div class="my-style">
         <h3>尚选 · 咖啡豆</h3>
         <p>尚选4款100%阿拉比卡咖啡豆拼配而成采用小作坊精品咖啡豆烘培坊中深度烘焙</p>
       </div>
@@ -117,5 +117,20 @@ button{
     background-color:#fff;
 }
 /*设置背景样式*/
-
+.item1{
+    position: relative;
+    width:100%;height:500px;
+    background:url("../../public/img/index/index-3.png") no-repeat center center;
+    background-size:100% 100%;
+    display:flex;
+}
+/*三个div的样式*/
+.my-style{
+    position: absolute;
+    background-color:rgba(255, 255, 255, 0.75);
+    border:0 solid rgb(246, 246, 246);
+    width:200px;height:150px;
+    position: absolute;
+    top:20%;left:30%;
+    text-align: center;}
 </style>
