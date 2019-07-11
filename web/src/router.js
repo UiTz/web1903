@@ -6,6 +6,7 @@ import Home from './views/Home.vue'
 import Product from "./views/Product.vue"
 
 import index from './views/index.vue'
+import company from './views/company.vue'
 
 
 Vue.use(Router)
@@ -20,6 +21,8 @@ export default new Router({
     {path:'/product',component:Product},
 
       {path: '/index',
-      component:index}
+      component:index},
+      {path: '/company',
+      component:company}
   ]
 })
