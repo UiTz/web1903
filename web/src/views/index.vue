@@ -39,38 +39,38 @@
     <div class="text-white my-font2">产品系列</div>
     <div class="w-100"></div>
   </div>
-  <div class="row m-0 my-t mb-5">
-      <div class="col-sm-6 my-item2 text-right">
+  <div class="my-t mb-5 d-flex justify-content-center">
+      <div class="my-item2 text-right">
           <h2>BREAD</h2>
           <h5>面包系列</h5>
           <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
           <button>了解更多</button>
       </div>
-      <div class="col-sm-6">
-          <div class="my-picture1"></div>
+          <div class="my-picture1 mt-5">
+              <img class="w-100" src="../../public/img/index/index-4.png" alt="">
+          </div>
+  </div>
+  <div class="d-flex justify-content-center">
+          <div class="my-picture2">
+              <img class="w-100" src="../../public/img/index/index-5.png" alt="">
+          </div>
+      <div class="my-item2 text-left">
+          <h2 style="margin-top:-70px">BREAD</h2>
+          <h5>面包系列</h5>
+          <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
+          <button>了解更多</button>
       </div>
   </div>
-  <div class="row m-0 my-t mb-5 mt-5">
-      <div class="col-sm-6">
-          <div class="my-picture2"></div>
-      </div>
-      <div class="col-sm-6  my-item2 text-left">
-          <h2>BREAD</h2>
+  <div class="my-t mb-5 d-flex justify-content-center">
+      <div class="my-item2 text-right">
+          <h2 class="mt-2">BREAD</h2>
           <h5>面包系列</h5>
           <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
           <button>了解更多</button>
       </div>
-  </div>
-  <div class="row m-0 my-t mb-5 mt-5">
-      <div class="col-sm-6 my-item2 text-right">
-          <h2>BREAD</h2>
-          <h5>面包系列</h5>
-          <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-          <button>了解更多</button>
-      </div>
-      <div class="col-sm-6">
-          <div class="my-picture3"></div>
-      </div>
+          <div class="my-picture1 mt-5">
+              <img class="w-100" src="../../public/img/index/index-6.png" alt="">
+          </div>
   </div>
   </div>
 </template>
@@ -99,9 +99,14 @@ div.container{
 .my-item{
     background-color:rgba(255, 255, 255, 0.75);
     border:0 solid rgb(246, 246, 246);
-    width:400px;height:250px;
+    width:400px;height:300px;
     position: absolute;
+<<<<<<< HEAD
     top:20%;left:25%;
+=======
+    top:50%;left:50%;
+    margin-top:-150px;margin-left:-200px;
+>>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
     text-align: center;
 }
 /*设置字体样式*/
@@ -138,12 +143,21 @@ div.container{
    .my-img1{
        margin-top:80px;
    }
+<<<<<<< HEAD
    .my-picture1,.my-picture2,.my-picture3{
        width:100%;height:85%;
     background-size:100% 100%;
     margin-left:50px;
    }
 
+=======
+  .my-picture1,.my-picture3{
+       margin-left:100px;
+   }
+  .my-picture2{
+      margin-right:100px;
+  }
+>>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 }
 @media screen and (max-width:992px) and (min-width:768px){
    .my-img1,.my-img2{ margin-top:80px;
@@ -153,10 +167,18 @@ div.container{
    margin-left:30px;
 }
 .my-picture1,.my-picture2,.my-picture3{
+<<<<<<< HEAD
        width:80%;height:50%;
     background-size:100% 100%;
     margin-left:50px;
    }
+=======
+    margin-left:50px;
+   }
+   .my-item2{
+     margin-left:50px;
+   }
+>>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 }
 @media screen and (max-width:768px){
    .my-img1,.my-img2{margin-top:80px;
@@ -165,10 +187,19 @@ div.container{
         margin-top:-520px;
         margin-left:30px;
     }
+<<<<<<< HEAD
     .my-picture1,.my-picture2,.my-picture3{
     width:100%;height:200%;
     background-size:30% 30%;
     margin-left:50px;
+=======
+    .my-picture1{
+     margin-bottom:50px;
+     margin-left:20px;
+   }
+   .my-item2{
+       text-align: center;
+>>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
    }
 }
 .my-img1,.my-img2{
@@ -225,14 +256,20 @@ button{
 }
 /*设置产品的样式*/
 .my-t{
+<<<<<<< HEAD
     height:600px;width:100%;
     margin-top:30px;
     margin-bottom: 50px;
+=======
+    margin-top:30px;
+    margin-bottom: 100px;
+>>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 }
 .my-item2{
     margin-top:10%;
     color:rgb(177, 105, 57);
 }
+<<<<<<< HEAD
 .my-picture1,.my-picture2,.my-picture3{
     background:url("../../public/img/index/index-4.png") no-repeat;
 }
@@ -242,4 +279,6 @@ button{
 .my-picture3{
     background:url("../../public/img/index/index-6.png") no-repeat;
 }
+=======
+>>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 </style>
