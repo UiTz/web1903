@@ -17,7 +17,7 @@ Vue.prototype.axios=axios
 import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader'
 import myfooter from './components/myfooter'
-//没有用的编译 ，不用理会
+
 Vue.use(ElementUI);
 =======
 import ElementUI from 'element-ui'
@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 })*/
-
+//没有用在注释 不用理会
 new Vue({
   router,
   store,
