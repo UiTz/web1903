@@ -38,7 +38,6 @@
   </div>
 </template>
 <script>
-import index1 from '../components/index1'
 export default {
   data() {
       return {}
