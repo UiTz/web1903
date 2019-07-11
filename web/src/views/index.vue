@@ -101,12 +101,8 @@ div.container{
     border:0 solid rgb(246, 246, 246);
     width:400px;height:300px;
     position: absolute;
-<<<<<<< HEAD
-    top:20%;left:25%;
-=======
     top:50%;left:50%;
     margin-top:-150px;margin-left:-200px;
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
     text-align: center;
 }
 /*设置字体样式*/
@@ -143,21 +139,12 @@ div.container{
    .my-img1{
        margin-top:80px;
    }
-<<<<<<< HEAD
-   .my-picture1,.my-picture2,.my-picture3{
-       width:100%;height:85%;
-    background-size:100% 100%;
-    margin-left:50px;
-   }
-
-=======
   .my-picture1,.my-picture3{
        margin-left:100px;
    }
   .my-picture2{
       margin-right:100px;
   }
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 }
 @media screen and (max-width:992px) and (min-width:768px){
    .my-img1,.my-img2{ margin-top:80px;
@@ -167,18 +154,11 @@ div.container{
    margin-left:30px;
 }
 .my-picture1,.my-picture2,.my-picture3{
-<<<<<<< HEAD
-       width:80%;height:50%;
-    background-size:100% 100%;
-    margin-left:50px;
-   }
-=======
     margin-left:50px;
    }
    .my-item2{
      margin-left:50px;
    }
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 }
 @media screen and (max-width:768px){
    .my-img1,.my-img2{margin-top:80px;
@@ -187,19 +167,12 @@ div.container{
         margin-top:-520px;
         margin-left:30px;
     }
-<<<<<<< HEAD
-    .my-picture1,.my-picture2,.my-picture3{
-    width:100%;height:200%;
-    background-size:30% 30%;
-    margin-left:50px;
-=======
     .my-picture1{
      margin-bottom:50px;
      margin-left:20px;
    }
    .my-item2{
        text-align: center;
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
    }
 }
 .my-img1,.my-img2{
@@ -256,29 +229,11 @@ button{
 }
 /*设置产品的样式*/
 .my-t{
-<<<<<<< HEAD
-    height:600px;width:100%;
-    margin-top:30px;
-    margin-bottom: 50px;
-=======
     margin-top:30px;
     margin-bottom: 100px;
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 }
 .my-item2{
     margin-top:10%;
     color:rgb(177, 105, 57);
 }
-<<<<<<< HEAD
-.my-picture1,.my-picture2,.my-picture3{
-    background:url("../../public/img/index/index-4.png") no-repeat;
-}
-.my-picture2{
-    background:url("../../public/img/index/index-5.png") no-repeat;
-}
-.my-picture3{
-    background:url("../../public/img/index/index-6.png") no-repeat;
-}
-=======
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 </style>
