@@ -80,19 +80,11 @@ display:flex;
 }
 /*设置图片大小*/
 .my-img1{
-<<<<<<< HEAD
-width:35%;height:35%;
-margin:50px 50px 0 50px;
-}
-.my-img2{
-width:35%;height:35%;
-=======
 width:40%;height:35%;
 margin:50px 50px 0 50px;
 }
 .my-img2{
 width:40%;height:35%;
->>>>>>> 1bef08f7e899cdd42322b784a352ff96c1fccf8b
 margin:50px 50px 0 50px;
 }
 /*设置字体样式*/
