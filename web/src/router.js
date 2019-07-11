@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+
 //引入product组件
 import Product from "./views/Product.vue"
+
 import index from './views/index.vue'
+
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -12,8 +16,10 @@ export default new Router({
       name:'home',
       component: Home
     },
+    
     {path:'/product',component:Product},
+
       {path: '/index',
-      component: index}
+      component:index}
   ]
 })

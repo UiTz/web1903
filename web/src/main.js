@@ -2,19 +2,24 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// 引入页面顶部加载进度条插件
 /*import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'*/
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import ElementUI from 'element-ui'
 import axios from "axios"
-Vue.prototype.axios=axios
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://127.0.0.1:8080';
+Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader'
 import myfooter from './components/myfooter'
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 Vue.use(ElementUI)
+
 Vue.config.productionTip = false;
 Vue.component("my-header",myheader);
 Vue.component("my-footer",myfooter);

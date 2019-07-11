@@ -40,7 +40,7 @@ export default {
 <style scoped>
 /*设置背景图片*/
 .container{
-margin-top:30px;
+margin-top:80px;
 background-image:url("../../public/img/footer/footer-1.png")
 }
 /*列表样式*/
@@ -80,11 +80,11 @@ display:flex;
 }
 /*设置图片大小*/
 .my-img1{
-width:100px;height:100px;
+width:35%;height:35%;
 margin:50px 50px 0 50px;
 }
 .my-img2{
-width:100px;height:100px;
+width:35%;height:35%;
 margin:50px 50px 0 50px;
 }
 /*设置字体样式*/
