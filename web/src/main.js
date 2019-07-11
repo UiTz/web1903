@@ -1,30 +1,24 @@
 import Vue from 'vue'
-import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 // 引入页面顶部加载进度条插件
-<<<<<<< HEAD
 /*import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'*/
-=======
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-<<<<<<< HEAD
-import ElementUI from 'element-ui' 
 import axios from "axios"
-Vue.prototype.axios=axios
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = 'http://127.0.0.1:8080';
+Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader'
 import myfooter from './components/myfooter'
 
-Vue.use(ElementUI);
-=======
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
->>>>>>> d3898cfd93292cd5b7ac9bb00606a832eac9cf43
 
 Vue.config.productionTip = false;
 Vue.component("my-header",myheader);
@@ -41,7 +35,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 })*/
-
+//没有用在注释 不用理会
 new Vue({
   router,
   store,
