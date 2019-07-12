@@ -102,7 +102,7 @@
     <!--页脚。1625*320，使用文件引入-->
     <div id="footer1"></div>
     <!--最后的页脚，1625*80，使用文件引入-->
-    <div id="footer2"></div>   
+    <]div id="footer2"></div]>   
 </div>
 </template>
 <script>

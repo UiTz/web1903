@@ -14,20 +14,14 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/product',
-    name:'product',
     component:Product},
-
       {path: '/index',
-      name:'index',
       component:index},
       {path: '/join',
-      name:'join',
       component:Join},
       {path: '/company',
-      name:'company',
       component:company},
       {path: '/login',
-      name:'login',
       component:login}
   ]
 })

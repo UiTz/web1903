@@ -5,11 +5,15 @@
     <img class="my-style" src="https://image.zuma.com/image/1132100791935149067.png" alt="">
 	 </div>
 		<h1 class="my-font text-center">Tasty bread</h1>
-   <el-menu background-color="orange" text-color="rgb(177, 105, 57)" :default-active="this.$router.path" class="el-menu-demo" router mode="horizontal">
-		<el-menu-item v-for="(item,i) of navList" :key="i" :index="item.name">
+   <el-menu background-color="orange" text-color="rgb(177, 105, 57)" 
+   @select="handleSelect" :default-active="this.$route.path" class="el-menu-demo" router mode="horizontal">
+		<el-menu-item v-for="(item,i) of navList" :key="i" :index="item.path">
 			{{item.navItem}}
 		</el-menu-item>
 	</el-menu>
+   <div class="app-content">
+        <router-view v-if="routerAlive"></router-view>
+    </div>
 	</div>
 </header>
 </template>
@@ -18,14 +22,18 @@ export default {
 			data() {
       return {
         navList:[
-			{name:'/index',navItem:'首页'},
-			{name:'/product',navItem:'产品专区'},
-			{name:'/join',navItem:'加盟代理'},
-			{name:'/company',navItem:'企业资讯'}
+			{path:'/index',navItem:'首页'},
+			{path:'/product',navItem:'产品专区'},
+			{path:'/join',navItem:'加盟代理'},
+			{path:'/company',navItem:'企业资讯'}
 		]
       }
-    }
-    
+    },
+	computed:{
+		key(){
+			return this.$route.path+Math.random();
+		}
+	}
   }
 </script>
 <style scoped>
