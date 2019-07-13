@@ -1,6 +1,7 @@
 <template>
-<div class="container">
+<div>
     <div class="item"></div>
+    <div class="container">
     <!-- 第一部分 -->
     <div>
         <div class="text-white my-font2">品牌介绍</div>
@@ -21,12 +22,12 @@
         <div class="text-white my-font2">品牌特色</div>
         <div class="w-100"></div>
     </div>
-    <div class="row m-0">
+    <div class="row m-0 mt-5">
         <div class="col-md-9 col-sm-12 p-0">
-             <p class="two-font1">来自欧洲  新鲜烘焙专家</p>
-             <p class="two-font2">烘焙 · 快乐 · 设计 · 生活</p>
-             <p class="two-font3">Baking / Happy / Design / Life</p> 
-             <div class="two-style d-inline-flex">
+             <p class="two-font1 ml-5">来自欧洲  新鲜烘焙专家</p>
+             <p class="two-font2 ml-5 ">烘焙 · 快乐 · 设计 · 生活</p>
+             <p class="two-font3 ml-5">Baking / Happy / Design / Life</p> 
+             <div class="two-style d-flex mt-5">
                  <div>
                      <p>极丰富的</p>
                      <p>高品质产品</p>
@@ -47,18 +48,18 @@
 
         </div>
         <div class="col-md-3 col-sm-12 p-0">
-            <img style="width:300px;height:390px;" src="../../public/img/join/join-3.png" alt="">
+            <img class="my-img3" style="width:300px;height:390px;" src="../../public/img/join/join-3.png" alt="">
         </div>
     </div>
 
     <!-- 第三部分 -->
-    <div row m-0 class="col-md-6 col-sm-12 p-0 d-inline-flex">
-        <div class="left">
+    <div row m-0 class="last  d-flex flex-flow-wrap">
+        <div class="left col-md-6 col-sm-12 p-0">
            <div>
               <div class="text-white my-font2">品牌介绍</div>
-              <div class="w-50"></div>
+              <div class="w-100"></div>
            </div>
-           <div>
+           <div class="mt-5 ml-5">
                <p>·选择核心商圈位置,稳健有节奏的扩张</p>
                <p>· 面包+西点+蛋糕+素轻餐+健康饮品+庆典礼品(翻糖及礼盒)</p>
                <p>· 无漂白面粉全面使用,纯天然自制酵母</p>
@@ -66,20 +67,18 @@
                <p>· 通过Online的推广Campaign与整体运营</p>
                <p>· 为线下门店引导成倍的人流</p>
                <p>· 借Online平台的优势,进行全员维护,有力保障门店生意稳定</p>
-               <p>· 借门店地段优势,进行落地接触活动,激活会员消费</p>
            </div>
-           
            <div>
                <img style="width:500px;height:300px" src="../../public/img/join/join-4.png" alt="">
            </div>
         </div>
 
-        <div class="right">
+        <div class="right col-md-6 col-sm-12 p-0">
             <div>
-              <div class="text-white my-font2">品牌介绍</div>
-              <div class="w-50"></div>
+              <div class="text-white my-font2 ml-5">门店要求</div>
+              <div class="w-100 ml-5"></div>
            </div>
-           <div>
+           <div class="mt-5 ml-5">
                <p>位置选择：一类商圈A级铺面</p>
                <p>SHOPPING MALL 、大型卖场、商业中心等客流量充足的繁华地段</p>
                <p>十字路口大展示面</p>
@@ -88,15 +87,12 @@
                <p>有适合大型烘焙店的排污、排水、排气系统。水电气等能源能满足营</p>
                <p>运需要。</p>
            </div>
-           <div>
-               <img style="width:500px;height:300px" src="../../public/img/join/join-4.png" alt="">
+           <div class="ml-5">
+               <img style="width:500px;height:300px" src="../../public/img/join/join-5.png" alt="">
            </div>
         </div>
-    </div>
-
-
-
-         
+    </div>        
+</div>
 </div>
 </template>
 <script>
@@ -193,12 +189,12 @@ div.container{
     width:150px;height:150px;
     background-color: rgb(234, 212, 193);
     border: 4px solid rgb(177, 105, 57);
-    border-radius: 120px;
+    border-radius: 50%;
     box-shadow: none;
 }
 .two-style>div>p{
     color: rgb(177, 105, 57);
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-weight: bold;
     font-size: 20px;
     font-family: 微软雅黑;
@@ -215,5 +211,4 @@ div.container{
     line-height: 2.2em;
     font-size: 16px;
 }
-
 </style>

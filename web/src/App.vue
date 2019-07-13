@@ -4,7 +4,6 @@
     <router-view></router-view>
     <my-footer></my-footer>
   </div>
-  </div>
 </template>
 <script>
 export default {

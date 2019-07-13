@@ -8,6 +8,8 @@ import index from './views/index.vue'
 import company from './views/company.vue'
 import Join from './views/Join.vue'
 import login from './components/login.vue'
+import About from './views/About.vue'
+
 
 
 Vue.use(Router)
@@ -22,6 +24,8 @@ export default new Router({
       {path: '/company',
       component:company},
       {path: '/login',
-      component:login}
+      component:login},
+      {path: '/About',
+      component:About},
   ]
 })
