@@ -75,6 +75,7 @@ display:flex;
 /*设置图片大小*/
 .my-img1,.my-img2{
 width:100px;height:100px;
+border:0;
 }
 @media screen and (min-width:992px) {
 	.my-img1,.my-img2{margin:50px 50px 0 60px;}

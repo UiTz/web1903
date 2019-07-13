@@ -4,7 +4,7 @@
         <div class="my-item">
             <h1 class="my-font">Tasty bread</h1>
             <p class="text-muted mb-4">口感深香有回味,吃在口中香软诱人</p>
-            <span class="my-font1">立刻订购？</span>
+            <router-link to='product' class="my-font1">立刻订购？</router-link>
         </div>
         </div>
         <div>
@@ -12,13 +12,13 @@
         <div class="w-100"></div></div>
         <div class="row m-0">
             <div class="col-md-6 col-sm-12 p-0">
-                <div class="my-img1 mb-3"></div>
+                <div class="my-img1 mb-3" style="border:0"></div>
                 <img class="my-img2" src="../../public/img/index/index-2.png" alt="">
             </div>
             <div class="col-md-6 col-sm-12 p-0 my-font3">
                 <p>所有产品都在店内现做、现烘、现卖，提供新鲜即食的食品，大玻璃透视的作业空间，完全展现在顾客眼前，使店员、顾客、商品三者之间作最人性化的直接交流。</p>
                 <p>所有产品都在店内现做、现烘、现卖，提供新鲜即食的食品，大玻璃透视的作业空间，完全展现在顾客眼前，使店员、顾客、商品三者之间作最人性化的直接交流。</p>
-            <button>了解更多</button>
+            <router-link class='router-link1' to='product'>了解更多</router-link>
             </div>
         </div>  
     <div class="item1 text-center">
@@ -44,7 +44,7 @@
           <h2>BREAD</h2>
           <h5>面包系列</h5>
           <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-          <button>了解更多</button>
+          <router-link class='router-link2' to='product'>了解更多</router-link>
       </div>
           <div class="my-picture1 mt-5">
               <img class="w-100" src="../../public/img/index/index-4.png" alt="">
@@ -58,7 +58,7 @@
           <h2 style="margin-top:-70px">BREAD</h2>
           <h5>面包系列</h5>
           <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-          <button>了解更多</button>
+          <router-link class='router-link3' to='product'>了解更多</router-link>
       </div>
   </div>
   <div class="my-t mb-5 d-flex justify-content-center">
@@ -66,7 +66,7 @@
           <h2 class="mt-2">BREAD</h2>
           <h5>面包系列</h5>
           <p>甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-          <button>了解更多</button>
+          <router-link class='router-link2' to='product'>了解更多</router-link>
       </div>
           <div class="my-picture1 mt-5">
               <img class="w-100" src="../../public/img/index/index-6.png" alt="">
@@ -186,11 +186,20 @@ div.container{
     text-indent:35px;
     padding:10px;
 }
-button{
+.router-link1,.router-link2,.router-link3{
     width:150px;height:50px;
+    display: block;
     border:3px solid rgb(177, 105, 57);
     color:rgb(177, 105, 57);
     background-color:#fff;
+    text-align: center;
+    line-height: 40px;
+}
+.router-link1{
+    text-align: left;
+}
+.router-link2{
+    float:right;
 }
 /*设置背景样式*/
 .item1{

@@ -5,15 +5,12 @@
     <img class="my-style" src="https://image.zuma.com/image/1132100791935149067.png" alt="">
 	 </div>
 		<h1 class="my-font text-center">Tasty bread</h1>
-   <el-menu background-color="orange" text-color="rgb(177, 105, 57)" 
-   @select="handleSelect" :default-active="this.$route.path" class="el-menu-demo" router mode="horizontal">
+   <el-menu background-color="orange" text-color="rgb(177, 105, 57)" @select="handleSelect" 
+   :default-active="activeIndex" class="el-menu-demo" router mode="horizontal">
 		<el-menu-item v-for="(item,i) of navList" :key="i" :index="item.path">
 			{{item.navItem}}
 		</el-menu-item>
 	</el-menu>
-   <div class="app-content">
-        <router-view v-if="routerAlive"></router-view>
-    </div>
 	</div>
 </header>
 </template>
@@ -21,20 +18,23 @@
 export default {
 			data() {
       return {
-        navList:[
-			{path:'/index',navItem:'首页'},
-			{path:'/product',navItem:'产品专区'},
-			{path:'/join',navItem:'加盟代理'},
-			{path:'/company',navItem:'企业资讯'}
+		  activeIndex:'',
+		navList:[
+			{path:'/',navItem:"首页"},
+			{path:'/product',navItem:"产品专区"},
+			{path:'/join',navItem:"加盟代理"},
+			{path:'/company',navItem:"企业资讯"},
+			{path:'/login',navItem:"登录"},
+			{path:'/register',navItem:"注册"}
 		]
       }
     },
-	computed:{
-		key(){
-			return this.$route.path+Math.random();
-		}
+	methods:{
+		handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
 	}
-  }
+	}
 </script>
 <style scoped>
 .container{
@@ -62,8 +62,8 @@ font:32px solid orange;
 	color:#EEE1cf;
 }
 .el-menu--horizontal>.el-menu-item{
-	width:120px;height:70px;
-	font-size:16px;
+	width:10%;height:70px;
+	font-family:'15% 微软雅黑' !important;
 	text-align:center;
 	line-height: 70px;
 }
