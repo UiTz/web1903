@@ -1,10 +1,12 @@
 <template>
   <div class="container">
     <div class="row m-0">
-        <div class="col-md-6 col-sm-12 p-0">
-                <img class="my-img" src="../../public/img/productDetails/product-details-1.png" />
-                <div><img class="my-img1" src="../../public/img/productDetails/product-details-2.png" /></div>
-        </div>
+        <div class="col-md-6 col-sm-12 p-0 mt-5">
+            <div> 
+        <img class="w-75" src="../../public/img/productDetails/product-details-1.png" id="smallimg">  
+      </div>
+            <div><img class="my-img1" src="../../public/img/productDetails/product-details-2.png" /></div>
+            </div>
         <div class="col-md-6 col-sm-12 p-0 mt-5">
             <h5>奶酥核桃吐司</h5>
             <ul class="stars">
@@ -42,12 +44,12 @@
     <el-dropdown-item>微信好友/朋友圈</el-dropdown-item>
     <el-dropdown-item>新浪微博</el-dropdown-item>
     <el-dropdown-item>复制链接</el-dropdown-item>
-  </el-dropdown-menu>
-</el-dropdown>
+   </el-dropdown-menu>
+  </el-dropdown>
         <el-button clas="item1" icon="el-icon-user-solid">联系商家</el-button>
         <el-button clas="item1" icon="el-icon-phone">联系我们</el-button>
         </div>
- <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+   <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
     <el-tab-pane label="产品详情" name="first">
         <div class="w-100 my-style0">
         <p class="my-style1">
@@ -74,11 +76,11 @@
     <el-tab-pane label='好评(0)'><img  src="../../public/img/productDetails/product-details-3.png" alt=""></el-tab-pane>
     <el-tab-pane label='中评(0)'><img  src="../../public/img/productDetails/product-details-3.png" alt=""></el-tab-pane>
     <el-tab-pane label='差评(0)'><img  src="../../public/img/productDetails/product-details-3.png" alt=""></el-tab-pane>
-</el-tabs>
+   </el-tabs>
     </el-tab-pane>
-    <el-tab-pane label="累计评价" name="second">
-    <el-tabs type="border-card">
-  <el-tab-pane>
+        <el-tab-pane label="累计评价" name="second">
+        <el-tabs type="border-card">
+    <el-tab-pane>
     <span slot="label"><i class="el-icon-date"></i> 全部评价(0)</span>
     <img  src="../../public/img/productDetails/product-details-3.png" alt="">
   </el-tab-pane>
@@ -96,23 +98,23 @@
 export default {
   data(){
       return{
-          activeName:'first'
+          activeName:'first',
       }
   },
-  methods:{
-  handleClick(tab,event){
-      console.log(tab,event)
-  },
-
-  }
-}
+    methods:{
+        handleClick(tab,event){
+       console.log(tab,event)}
+    }
+    }
 </script>
-<style>
+<style scoped>
 /*设置全局的间距*/
 .container{
     padding:0;margin:0;
     margin:0 auto;
 }
+/*放大镜*/
+
 /*设置左边图片的样式*/
 .my-img{
     border:1px solid #ddd;
@@ -121,7 +123,7 @@ export default {
 }
 .my-img1{
     margin-top:30px;
-    width:15%;
+    width:15%;height:50px;
     border:1px solid red;
 }
 /*设置右边星星的样式*/
@@ -156,10 +158,11 @@ div>.el-button:hover{
 }
 /*商品详情的背景样式*/
 .el-tabs--card>.el-tabs__header .el-tabs__item:hover{
-    color:#000;
+    color:#000 !important;
 }
 .el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
-    background:red;color:#fff;
+    background:red !important;color:#fff !important;
+    border-bottom-color:red !important;
 }
 /*全部评价的字体样式*/
 .el-tabs--border-card>.el-tabs__header .el-tabs__item:hover{

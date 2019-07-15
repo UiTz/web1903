@@ -1,6 +1,5 @@
 <template>
-  <footer>
-      <div class="container">
+  <footer id="footer">
    <div class="row m-0">
 		 <div class="col-md-6 text-white p-0 col-sm-12">
 		 <div class="item  text-center mt-3">
@@ -16,8 +15,8 @@
 					<li class="item6">徐州</li>
 				</ul>
 		 </div>
-		 <div class="col-md-6 col-sm-12 p-0 item2 text-white text-center">
-		 <div>
+		 <div class="col-md-6 col-sm-12 p-0 item2">
+		 <div class="mr-5">
 			<img class="my-img1" src="../../public/img/footer/footer-2.png" alt="">
 			<p class="my-font">微信公众号</p></div>
 			<div>
@@ -26,7 +25,6 @@
 			</div>
 		 </div>
    </div>
-</div>
   </footer>
 </template>
 <script>
@@ -38,7 +36,7 @@ export default {
 </script>
 <style scoped>
 /*设置背景图片*/
-.container{
+#footer{
 margin-top:80px;
 background-image:url("../../public/img/footer/footer-1.png")
 }
@@ -47,6 +45,7 @@ ul.items{
 letter-spacing:5px;
  list-style:none;
  display:flex;
+ justify-content: center;
 }
 .item1+.item2::before{
 content:"|";
@@ -71,6 +70,9 @@ color:#fff;
 /*设置布局方式*/
 .item2{
 display:flex;
+text-align: center;
+color:white;
+justify-content: center;
 }
 /*设置图片大小*/
 .my-img1,.my-img2{
@@ -80,23 +82,10 @@ border:0;
 @media screen and (min-width:992px) {
 	.my-img1,.my-img2{margin:50px 50px 0 60px;}
 	.my-font{margin-left:10px;}
-	.items{
-		margin-left:120px;
-	}
 }
 @media screen and (max-width:992px) and (min-width:768px) {
-	.my-img1,.my-img2{margin:60px 50px 0 20px;}
-	.my-font{margin-right:30px;}
-	.items{
-		margin-left:60px;
-	}
-}
-@media screen and (max-width:768px) {
-	.my-img1,.my-img2{margin:50px 50px 0 80px;}
-	.my-font{margin-left:30px;}
-	.items{
-		margin-left:100px;
-	}
+	.my-img1,.my-img2{margin:50px 30px 0 20px;}
+	.my-font{margin-right:10px;}
 }
 /*设置字体样式*/
 .my-font{

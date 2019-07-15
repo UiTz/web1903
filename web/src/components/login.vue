@@ -1,7 +1,7 @@
 <template>
  <div class="main">
      <div class="d1 w-100"></div>
-<el-dialog title="用户登录" @click="cancel" :visible.sync="dialogFormVisible">
+<el-dialog title="用户登录" :before-close="handleclose" @click="cancel" :visible.sync="dialogFormVisible">
   <el-form :model="form">
     <el-form-item label="用户名" :label-width="formLabelWidth">
       <el-input v-model="uname" autofocus :placeholder="unameHolder"></el-input>
@@ -21,6 +21,7 @@
   export default {
     data() {
        return{
+        orderId:1,
         unameHolder:"请输入用户名",
        upwdHolder:"请输入密码",
        uname:"",
@@ -52,17 +53,21 @@
         var obj={uname:u,upwd:p};
         this.axios.get(url,{params:obj}).then(result=>{
             if(result.data.code>0){
+                confirm('提示','登录成功');
                 this.$router.push('/');
             }else{
-                this.$messagebox("提示","用户名或者密码不正确");
+                confirm("用户名或者密码不正确");
             }
         })
     },
     cancel(){
         this.$router.push('/');
-    }
-    }
-  }
+    }, 
+    handleclose(){
+        this.$router.push('/');
+}
+}
+}
 </script>
 <style scoped>
 /*设置图片样式*/

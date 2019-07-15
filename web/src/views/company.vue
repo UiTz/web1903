@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
+    <div>
         <div class="item"></div>
+        <div class="container">
         <div class="text-white my-font2">品牌资讯</div>
         <div class="w-100"></div>
         <div class="media mt-5">
@@ -89,6 +90,7 @@
             <div class="btn">现在阅读</div>
             </div>
         </div>
+        </div>
     </div>
 </template>
 <script>
@@ -106,7 +108,7 @@
 .item{
     background:url("../../public/img/company/company-1.png") no-repeat;
     background-size:100% 100%;
-    width:100%;height:400px;
+    width:100%;height:600px;
 }
 /*设置标题的样式*/
 .my-font2{

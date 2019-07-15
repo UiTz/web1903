@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="d1 w-100"></div>
-  <el-dialog title="用户注册" @click="cancel" :visible.sync="dialogFormVisible">
+  <el-dialog :before-close="handleclose" title="用户注册" @click="cancel" :visible.sync="dialogFormVisible">
   <el-form :model="form">
     <el-form-item label="用户名" :label-width="formLabelWidth">
       <el-input v-model="uname" autofocus placeholder="请输入用户名"></el-input>
@@ -24,18 +24,16 @@
 </div>
 </template>
 <script>
-import register from '../assets/register.js'
 export default {
-    props:{
-        uname:{default:''},
-        upwd:{default:''},
-        email:{default:''},
-        tel:{default:''}
-    },
   data(){
       return{
+          activeIndex:1,
         dialogFormVisible:true,
-        form: {
+       uname:'',
+          upwd: '',
+          email: '',
+          tel: '',
+        form:{
           uname: '',
           upwd: '',
           email: '',
@@ -47,28 +45,48 @@ export default {
         },
         formLabelWidth: '120px'
       }
+         
   },
 methods:{
     register(){
         var url='register';
-        var u=uname;
-        var p=upwd;
-        var e=email;
-        var t=tel;
+        var u=this.uname;
+        var p=this.upwd;
+        var e=this.email;
+        var t=this.tel;
+        var reg=/^[a-z0-9_]{3,12}$/i;
+        var reg1=/^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
+        var reg2=/^1[3456789]\d{9}$/;
+        if(!reg.test(u)){
+            confirm("用户名格式不正确");return;
+        }
+        if(!reg.test(p)){
+            confirm("密码格式不正确");return;
+        }
+        if(!reg1.test(e)){
+            confirm("邮箱格式不正确");return;
+        }
+        if(!reg2.test(t)){
+            confirm("电话格式不正确");return;
+        }
         var obj={uname:u,upwd:p,email:e,tel:t};
         this.axios.get(url,{params:obj}).then(result=>{
             if(result.data.code>0){
-                this.$messagebox('提交成功');
+                confirm('提示','提交成功');
                 this.$router.push('/');
             }else{
-                this.$messagebox('提交失败');
+                confirm('提示','提交失败');
             }
         })
     },
     cancel(){
         this.$router.push('/');
     },
-}
+    handleclose(){
+        this.$router.push('/');
+  }
+    }
+    
 }
 </script>
 <style>

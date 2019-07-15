@@ -7,7 +7,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import axios from "axios"
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://127.0.0.1:8080';
+axios.defaults.baseURL = 'http://127.0.0.1:3000/';
 Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader'
@@ -15,6 +15,7 @@ import myfooter from './components/myfooter'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+
 
 Vue.use(ElementUI)
 
