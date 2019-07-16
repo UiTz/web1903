@@ -4,13 +4,12 @@
     <router-view></router-view>
     <my-footer></my-footer>
   </div>
-  </div>
 </template>
 <script>
-import index from './views/index.vue'
 export default {
   data() {
-    return {}
+    return {
+    }
   }
 }
 </script>
