@@ -72,10 +72,9 @@ methods:{
         var obj={uname:u,upwd:p,email:e,tel:t};
         this.axios.get(url,{params:obj}).then(result=>{
             if(result.data.code>0){
-                confirm('提示','提交成功');
-                this.$router.push('/');
+               this.$alert('提交成功',{callback:action=>{this.$router.push('/');}});
             }else{
-                confirm('提示','提交失败');
+                this.$alert("提交失败",{confirmButtonText:'确定'});
             }
         })
     },

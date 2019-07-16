@@ -11,7 +11,7 @@
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary"  @click="login">登录</el-button>
+    <el-button  type="primary"  @click="login">登录</el-button>
     <el-button @click="cancel">取 消</el-button>
   </div>
 </el-dialog>
@@ -21,7 +21,6 @@
   export default {
     data() {
        return{
-        orderId:1,
         unameHolder:"请输入用户名",
        upwdHolder:"请输入密码",
        uname:"",
@@ -53,10 +52,10 @@
         var obj={uname:u,upwd:p};
         this.axios.get(url,{params:obj}).then(result=>{
             if(result.data.code>0){
-                confirm('提示','登录成功');
-                this.$router.push('/');
+                 this.$alert('登录成功',{callback:action=>{this.$router.push('/');}});
+                
             }else{
-                confirm("用户名或者密码不正确");
+                this.$alert("用户名或者密码不正确",{confirmButtonText:'确定'});
             }
         })
     },
