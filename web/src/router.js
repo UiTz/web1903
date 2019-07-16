@@ -7,13 +7,17 @@ import company from './views/company.vue'
 import Join from './views/Join.vue'
 import login from './components/login.vue'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import register from './components/register.vue'
 import productDetails from './components/productDetails.vue'
 import About from './views/About.vue'
 import elflex from './views/elflex.vue'
 import Carousel from './views/Carousel.vue'
 =======
+>>>>>>> 016c38641ed3b3cdf2024d8b1425437b194fa657
+=======
 
+>>>>>>> 62898037480335433e7bae177a19e0359b554a93
 import register from './components/register.vue'
 import productDetails from './components/productDetails.vue'
 import About from './views/About.vue'
