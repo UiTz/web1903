@@ -4,54 +4,57 @@
             v-loading='load'
             ref="multipleTable"
             @selection-change="handleSelectionChange"
-            :data="tableData"
+            :data="userData"
             border
             tooltip-effect="dark"
             style="width: 100%">
       <el-table-column
               type="selection">
       </el-table-column>
-      
+  
       <el-table-column
-              prop="name"
-              label="商品名">
+              prop="uid"
+              label="UID">
       </el-table-column>
       
       <el-table-column
-              width="160"
-              label="添加日期">
-        <template scope="scope">
-          <el-icon name="time"></el-icon>
-          <span style="margin-left: 10px">{{ scope.row.create_time }}</span>
-        </template>
+              prop="uname"
+              label="用户名">
       </el-table-column>
       
       <el-table-column
-              label="价格">
-        <template scope="scope">
-          {{ scope.row.price }}元
-        </template>
+              prop="upwd"
+              label="密码">
       </el-table-column>
       
+      <el-table-column
+              prop="email"
+              label="邮箱">
+      </el-table-column>
+  
+      <el-table-column
+              prop="phone"
+              label="电话">
+      </el-table-column>
       
       <el-table-column label="操作">
         <template scope="scope">
           <el-button
                   size="small"
-                  @click="editGoods(scope.row)">修改商品
+                  @click="editGoods(scope.row)">修改
           </el-button>
           <el-button
                   size="small"
                   type="danger"
-                  @click="handleDelete(scope.row)">删除商品
+                  @click="handleDelete(scope.row)">删除
           </el-button>
         </template>
       </el-table-column>
     
     </el-table>
     <div class="btns">
-      <el-button type="success">批量上架</el-button>
-      <el-button type="danger" @click="deleteMulti">批量删除</el-button>
+      <el-button type="success">添加用户</el-button>
+      <el-button type="danger" @click="deleteUser">删除用户</el-button>
     </div>
   </div>
 </template>
@@ -61,8 +64,8 @@
     name: 'List',
     data() {
       return {
-        tableData: [],
-        multipleSelection: [],
+        userData: [],
+        userSelected: [],
         load: false, // loading
       }
     },
@@ -81,30 +84,58 @@
       editGoods (row) {
         this.$router.push({path: '/admin/goods-form', query: {id: row.id}});
       },
-      deleteMulti () {
-        let multi = this.multipleSelection;
-        let id = multi.map(el => {
-          return el.id;
-        });
-        this.func.ajaxPost(this.api.deleteMulti, {id}, res => {
-          if (res.data.code === 200) {
-            this.$message.success('删除成功');
-            multi.forEach(el => {
-              let i = this.tableData.indexOf(el);
-              this.tableData.splice(i, 1);
+      deleteUser () {
+        let multi = this.userSelected;
+        // 判断是否选择用户
+        if (multi.length === 0) {
+          this.$message({
+          message: '警告！请选择要操作的用户',
+          type: 'warning'
+          })
+        } else {
+          this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+          }).then(() => {
+            let uid = multi.map(el => {
+              return el.uid;
             });
-          }
-        });
+            uid = String(uid);
+            console.log(uid);
+            this.axios.get('deluser',{params:{uid}}).then(res => {
+              console.log(res);
+              if (res.data.code === 200) {
+                this.$message.success('删除成功');
+                multi.forEach(el => {
+                  let i = this.userData.indexOf(el);
+                  this.userData.splice(i, 1);
+                });
+              }
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });
+        }
       },
       handleSelectionChange(val) {
-        this.multipleSelection = val;
+        this.userSelected = val;
       }
     },
     created () {
+      // 启动懒加载
       this.load = true;
-      this.func.ajaxGet(this.api.goodsList, res => {
-        this.tableData = res.data.goods;
-        this.load = false;
+      // 请求用户数据
+      this.axios.get('user').then((res)=> {
+        if (res.status === 200) {
+          console.log(res);
+          this.userData = res.data;
+          // 请求到数据后关闭懒加载
+          this.load = false;
+        }
       });
     },
   }
