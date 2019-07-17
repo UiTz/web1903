@@ -38,7 +38,7 @@
       </el-table-column>
       
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-button
                   size="small"
                   @click="editGoods(scope.row)">修改
@@ -129,14 +129,24 @@
       // 启动懒加载
       this.load = true;
       // 请求用户数据
-      this.axios.get('user').then((res)=> {
-        if (res.status === 200) {
-          console.log(res);
-          this.userData = res.data;
+      let Base64 = require('js-base64').Base64;
+      let admin_uname = 'liujiaxin';
+      let admin_upwd = Base64.encode("liujiaxin8");
+      //console.log(admin_upwd);
+      this.axios.post('user',this.$qs.stringify({
+        admin_uname,admin_upwd
+      })).then((res)=> {
+        if (res.data.code === 200) {
+          this.userData = res.data.data;
           // 请求到数据后关闭懒加载
           this.load = false;
+        } else {
+          console.log(res);
+          this.$message.warning('请稍后再试!')
         }
-      });
+      }).catch(err=> {
+        console.log(err);
+      })
     },
   }
 </script>
