@@ -15,6 +15,8 @@ import myfooter from './components/myfooter'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import Mint from 'mint-ui';
+Vue.use(Mint);
 
 
 Vue.use(ElementUI)
@@ -34,6 +36,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 })
+
 //没有用在注释 不用理会
 new Vue({
   router,

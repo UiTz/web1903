@@ -12,6 +12,7 @@
     "core-js": "^2.6.5",
     "element-ui": "^2.3.6",
     "jquery": "^3.4.1",
+    "mint-ui": "^2.2.13",
     "nprogress": "^0.2.0",
     "vue": "^2.6.10",
     "vue-piczoom": "^1.0.6",
