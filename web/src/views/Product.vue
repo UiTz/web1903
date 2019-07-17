@@ -35,7 +35,7 @@
                 </div>
             </div>
             <!--w:1200 h:220.8面包系列下面-->
-            <div class="carousel">
+            <!--<div class="carousel">
                 <div class="leftjt">
                 <i class="iconfont icon-zuofanye-xue"></i>
                 </div>
@@ -91,7 +91,17 @@
                 <div class="rightjt">
                 <i class="iconfont icon-youfanye"></i>
                 </div>
-            </div>
+            </div>-->
+            <!--轮播-->
+            <el-carousel :interval="2000" type="card" height="300px">
+    <!--<el-carousel-item v-for="item in 6" :key="item">
+      <h3 class="medium">{{item}}</h3>
+    </el-carousel-item>-->
+    <el-carousel-item v-for="item in images" :key="item.id">
+      <img :src="images.idimg" alt="">
+    </el-carousel-item>
+  </el-carousel>
+<!--轮播结束-->
             <div class="cake">
                 <!--四个div，其中三个包含三个span-->
                 <div class="cake1div">
@@ -255,14 +265,82 @@
 </template>
 <script>
 import iconfont from "../../public/css/font_gyt5hrnasow/iconfont.css"
+
 export default {
-    
+    data(){
+        return {
+            images:[
+                {id:0,idimg:require("../../public/img/product/product-2.png")},
+                {id:1,idimg:require("../../public/img/product/product-3.png")},
+                {id:2,idimg:require("../../public/img/product/product-4.png")},
+                {id:3,idimg:require("../../public/img/product/product-5.png")},
+                {id:4,idimg:require("../../public/img/product/product-6.png")}
+                ]
+        }
+    },
+    methods:{},
+    mounted(){}
 }
 </script>
 <style scoped>
     *{margin:0;padding:0}
         /*媒体查询大屏*/
 @media screen and (min-width:1200px){
+/*轮播*/
+.el-carousel__item h3{
+    color:#475669;
+    font-size:14px;
+    opacity: 0.75;
+    line-height:200px;
+    margin: 0;
+  }
+  /*2n*/
+  /*  .el-carousel__item:nth-child(1){
+    background-image:url("../../public/img/product/product-5.png");
+  }*/
+  /*2n+1*/
+  /*.el-carousel__item:nth-child(2) {
+   background-image:url("../../public/img/product/product-6.png");
+  }*/
+  .el-carousel__item:nth-child(3) {
+   /* background-color: #d3dce6;*/
+   background:url("../../public/img/product/product-2.png") no-repeat;
+      /*margin:80px 0 0 300px;*/
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-40% 50% !important;
+  }
+    .el-carousel__item:nth-child(4) {
+   /* background-color: #d3dce6;*/
+   background:url("../../public/img/product/product-3.png") no-repeat;
+      /*margin:80px 0 0 300px;*/
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-40% 50% !important;
+  }
+    .el-carousel__item:nth-child(5) {
+    background:url("../../public/img/product/product-4.png") no-repeat;
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-40% 50% !important;
+
+      }
+    .el-carousel__item:nth-child(6) {
+    background:url("../../public/img/product/product-5.png") no-repeat;
+      background-size:60% 80%;
+           /* margin:30px 150px 0 150px;*/
+            background-position:-40% 50% !important;
+      }
+    .el-carousel__item:nth-child(7) {
+    background:url("../../public/img/product/product-6.png") no-repeat;
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-40% 50% !important;
+      }
+     /* .el-carousel__mask{
+          width:50% !important;
+      }*/
+/*轮播结束*/
     .container{
         width:100%;
         margin:0 auto;
@@ -322,13 +400,15 @@ export default {
     }
     /*面包系列1*/
     .breadSeries{
-        margin:0 auto;
+        /*margin:0 auto;*/
+        margin:0 0 100px 0;
         display:flex;
         display:-webkit-flex;
         -webkit-flex-flow: row wrap;
         flex-flow:row wrap;
         /*justify-content:space-between;*/
         width:100%;
+
     }
     /*面包系列包含三个div的div*/
     .breadSeries3div{
@@ -824,13 +904,15 @@ export default {
     }
     }
     /*媒体查询中屏代码*/
-    @media screen and (min-width:963px) and (max-width:1199px){
+    @media screen and (min-width:963px) and 
+    (max-width:1199px){
          .container{
         width:100%;
         min-width:963px;
         /*父元素设置绝对定位*/
         margin:0 auto;
     }
+    
     .footer1{
         width:100%;
         height:2850px;
@@ -1405,6 +1487,43 @@ export default {
         max-width:962px;
         margin:0 auto;
     }
+    /*轮播*/
+    .el-carousel__item:nth-child(3) {
+   /* background-color: #d3dce6;*/
+   background:url("../../public/img/product/product-2.png") no-repeat;
+      /*margin:80px 0 0 300px;*/
+      background-size:30% 50%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-10% 50% !important;
+  }
+    .el-carousel__item:nth-child(4) {
+   /* background-color: #d3dce6;*/
+   background:url("../../public/img/product/product-3.png") no-repeat;
+      /*margin:80px 0 0 300px;*/
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-10% 50% !important;
+  }
+    .el-carousel__item:nth-child(5) {
+    background:url("../../public/img/product/product-4.png") no-repeat;
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-10% 50% !important;
+
+      }
+    .el-carousel__item:nth-child(6) {
+    background:url("../../public/img/product/product-5.png") no-repeat;
+      background-size:60% 80%;
+           /* margin:30px 150px 0 150px;*/
+            background-position:-10% 50% !important;
+      }
+    .el-carousel__item:nth-child(7) {
+    background:url("../../public/img/product/product-6.png") no-repeat;
+      background-size:60% 80%;
+            /*margin:30px 150px 0 150px;*/
+            background-position:-10% 50% !important;
+      }
+      /*轮播结束*/
     .footer1{
         width:100%;
         height:2850px;
@@ -1964,11 +2083,11 @@ export default {
 
         }
         /*超小屏代码*/
-        @media screen and (min-width:498px) and (max-width:767px){
+        @media screen and (max-width:767px){
         .container{
         width:100%;
         /*min-width:963px;*/
-        min-width:498px;
+       /* min-width:498px;*/
         max-width:767px;
         margin:0 auto;
     }
