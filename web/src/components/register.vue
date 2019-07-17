@@ -29,7 +29,7 @@ export default {
       return{
           activeIndex:1,
         dialogFormVisible:true,
-       uname:'',
+        uname:'',
           upwd: '',
           email: '',
           tel: '',
