@@ -11,15 +11,13 @@ import productDetails from './components/productDetails.vue'
 import About from './views/About.vue'
 import elflex from './views/elflex.vue'
 import Carousel from './views/Carousel.vue';
-import register from './components/register.vue'
-import productDetails from './components/productDetails.vue'
-import About from './views/About.vue'
 import CompanyOne from './components/CompanyOne.vue'
 import CompanyTwo from './components/CompanyTwo.vue'
 import CompanyThree from './components/CompanyThree.vue'
 import CompanyFour from './components/CompanyFour.vue'
 import CompanyFive from './components/CompanyFive.vue'
 import CompanySix from './components/CompanySix.vue'
+import mproduct from './views/moble/mproduct.vue'
 
 
 Vue.use(Router)
@@ -57,5 +55,7 @@ export default new Router({
       component:CompanyFive},
       {path:'/CompanySix',
       component:CompanySix},
+      {path:'/mproduct',
+      component:mproduct},
   ]
 })
