@@ -77,6 +77,53 @@ app.get('/admin/api/queryuser',(req,res)=>{
   }
 });
 
+//用户注册
+app.get('/admin/api/user_name',(req,res)=>{
+  //  获取数据
+   var uname=req.body.uname;
+   var upwd=req.body.upwd;
+   var email=req.body.email;
+   var phone=req.body.phone;
+  //  用户名验证
+   if(!uname){
+     res.send("用户名验证通过");
+      return;
+   }else{
+     document.innHTML("#")="用户名不能为空"
+   }
+  //  密码验证
+   if(!upwd){
+    res.send("密码验证通过");
+     return;
+  }else{
+    document.innHTML("#")="密码不能为空"
+  }
+  // 邮箱验证
+  if(!email){
+    res.send("邮箱验证通过");
+     return;
+  }else{
+    document.innHTML("#")="邮箱不能为空"
+  }
+  // 手机号验证
+  if(!phone){
+    res.send("手机验证通过");
+     return;
+  }else{
+    document.innHTML("#")="手机号不能为空"
+  }
+  //  sql 
+  var sql='INSERT INTO pj_user SET ?';
+  pool.query(sql,[req.body],function(err,result){
+    if(err) throw err;
+    if(result.affectedRows>0){
+    res.send(alert("注册成功"));
+    }
+   });
+     
+});
+   
+
 // 开启端口监听
 app.listen(3000,() => {
   console.log('服务器开启成功!');
