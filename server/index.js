@@ -93,12 +93,34 @@ app.get('/user/api/login',(req,res)=> {
 
 // 商品查询
 app.get('/product/api/querytype',(req,res)=> {
-  let r = req.query;
-  let ptype = r.product_type;
-  let sql = 'SELECT * FROM product WHERE product_type = ?';
-  
+  // let r = req.query;
+  // let ptype = r.product_type;
+  let sql = 'SELECT * FROM product';
+  query(sql,[],(err,result)=> {
+    if (err) throw err;
+    // console.log(result);
+    if (result.length === 0) {
+      res.send({code:201,msg:'请求失败'})
+    } else {
+      res.send({code:200,result})
+    }
+  })
 });
 
+// 根据商品ID查询详情
+app.get('product/api/queryid',(req,res)=> {
+  let r = req.body;
+  let uid = r.uid;
+  let sql = 'SELECT * FROM product WHERE uid = ?';
+  query(sql,[uid],(err,result)=> {
+    if (err) throw err;
+    console.log(result);
+    res.send('1111');
+  })
+});
+
+// 用户留言板
+app.get('user/api/message_board');
 
 /*******************以下为后台接口****************/
 
