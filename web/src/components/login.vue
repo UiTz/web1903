@@ -39,7 +39,7 @@
     },
     methods:{
         login(){
-            var url="login";
+          var url="login";
         var u=this.uname;
         var p=this.upwd;
         var reg=/^[a-z0-9A-Z_]{3,12}$/;
@@ -51,7 +51,7 @@
         }
         var obj={uname:u,upwd:p};
         this.axios.get(url,{params:obj}).then(result=>{
-            if(result.data.code==200){
+            if(result.data.code===200){
                  this.$alert('登录成功',{callback:action=>{this.$router.push('/');}});
                 
             }else{
@@ -61,7 +61,7 @@
         },
     cancel(){
         this.$router.push('/');
-    }, 
+    },
     handleclose(){
         this.$router.push('/');
   }

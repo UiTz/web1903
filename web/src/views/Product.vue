@@ -93,15 +93,17 @@
                 </div>
             </div>-->
             <!--轮播-->
-            <el-carousel :interval="2000" type="card" height="300px">
-    <!--<el-carousel-item v-for="item in 6" :key="item">
-      <h3 class="medium">{{item}}</h3>
-    </el-carousel-item>-->
-    <el-carousel-item v-for="item in images" :key="item.id">
-      <img :src="images.idimg" alt="">
-    </el-carousel-item>
-  </el-carousel>
-<!--轮播结束-->
+        
+        
+        <el-carousel :interval="2000" type="card" height="300px">
+        <!--<el-carousel-item v-for="item in 6" :key="item">
+          <h3 class="medium">{{item}}</h3>
+        </el-carousel-item>-->
+        <el-carousel-item v-for="item in breadarr" :key="item.id" @click="gotodetail(item)">
+            <img :src="item.img_url" alt="">
+        </el-carousel-item>
+        </el-carousel>
+            <!--轮播结束-->
             <div class="cake">
                 <!--四个div，其中三个包含三个span-->
                 <div class="cake1div">
@@ -129,57 +131,23 @@
                 <i class="iconfont icon-zuofanye-xue"></i>
                 </div>
                 <div class="carousel-div-2">
-                    <ul class="carouse-ul-2">
-                        <li class="carouse-ul-li1-2">
-                            <div class="carouse-ul-li1-div11-2"></div>
-                            <router-link to="/productdetails">
-                                <div class="carouse-ul-li1-a-div-2">冰雪奇缘</div>
+                    <ul class="carouse-ul-2" :style="">
+                        <li class="carouse-ul-li1-2" v-for="(item,index) in cakearr" :key="index" @click="gotodetail(item)" >
+                            <div class="carouse-ul-li1-div11-2">
+                                <img :src="item.img_url">
+                            </div>
+                            <router-link :to="'/productdetails?id=' + item.id">
+                                <div class="carouse-ul-li1-a-div-2">{{item.title}}</div>
                             </router-link>
                             <div class="carouse-ul-li1-div2-2">
-                                <span class="carouse-span-2">￥198.00</span>
-                            </div>
-                        </li>
-                        <li class="carouse-ul-li2-2">
-                            <div class="carouse-ul-li1-div12-2"></div>
-                            <a href="javascript:;">
-                                <div class="carouse-ul-li1-a-div-2">小公主</div>
-                            </a>
-                            <div class="carouse-ul-li1-div2-2">
-                                <span class="carouse-span-2">￥258.00</span>
-                            </div>
-                        </li>
-                        <li class="carouse-ul-li3-2">
-                            <div class="carouse-ul-li1-div13-2"></div>
-                            <a href="javascript:;">
-                                <div class="carouse-ul-li1-a-div-2">雪域牛乳芝士</div>
-                            </a>
-                            <div class="carouse-ul-li1-div2-2">
-                                <span class="carouse-span-2">￥258.00</span>
-                            </div>
-                        </li>
-                        <li class="carouse-ul-li4-2">
-                            <div class="carouse-ul-li1-div14-2"></div>
-                            <a href="javascript:;">
-                                <div class="carouse-ul-li1-a-div-2">萌萌兔</div>
-                            </a>
-                            <div class="carouse-ul-li1-div2-2">
-                                <span class="carouse-span-2">￥258.00</span>
-                            </div>
-                        </li>
-                        <li class="carouse-ul-li5-2">
-                            <div class="carouse-ul-li1-div15-2"></div>
-                            <a href="javascript:;">
-                                <div class="carouse-ul-li1-a-div-2">百分百恋人</div>
-                            </a>
-                            <div class="carouse-ul-li1-div2-2">
-                                <span class="carouse-span-2">￥198.00</span>
+                                <span class="carouse-span-2">￥{{item.price.toFixed(2)}}</span>
                             </div>
                         </li>
                     </ul>
-                </div> 
+                </div>
                 <div class="rightjt">
                 <i class="iconfont icon-youfanye"></i>
-                </div>   
+                </div>
             </div>
             <div class="dessert">
                 <!--四个div，其中三个包含三个span-->
@@ -267,10 +235,10 @@
                             </div>
                         </li>
                     </ul>
-                </div> 
+                </div>
                 <div class="rightjt">
                 <i class="iconfont icon-youfanye"></i>
-                </div>   
+                </div>
             </div>
     </div>
 </div>
@@ -287,15 +255,54 @@ export default {
                 {id:2,idimg:require("../../public/img/product/product-4.png")},
                 {id:3,idimg:require("../../public/img/product/product-5.png")},
                 {id:4,idimg:require("../../public/img/product/product-6.png")}
-                ]
+            ],
+            cakearr: [],
+            dessertarr: [],
+            breadarr: []
         }
     },
-    methods:{},
-    mounted(){}
+    mounted () {
+        this.getsplicedata();
+    },
+    methods:{
+        // 获取轮播图信息
+        getsplicedata () {
+            const that = this;
+            const url = '/product/api/querytype';
+            let obj = 'cake';
+            let cakearr = [];
+            let dessertarr = [];
+            let breadarr = [];
+            this.axios.get(url,'').then(res=>{
+                if(res.data.code===200){
+                    let imagesdata = res.data.result;
+                    imagesdata.forEach((item) =>{
+                        if(item.product_type === 'dessert') {
+                            dessertarr.push(item)
+                        }else if (item.product_type === 'bread'){
+                            breadarr.push(item)
+                        }else{
+                            cakearr.push(item)
+                        }
+                    })
+                    console.log(cakearr)
+                    that.cakearr = cakearr;
+                    that.dessertarr = dessertarr;
+                    that.breadarr = breadarr;
+                    // this.$alert('登录成功',{callback:action=>{this.$router.push('/');}});
+                }else{
+                    this.$alert("获取数据失败，请重试",{confirmButtonText:'确定'});
+                }
+            })
+        },
+        gotodetail (item) {
+        
+        }
+    },
 }
 </script>
-<style scoped>
-    *{margin:0;padding:0}
+<style lang="scss" scoped>
+*{margin:0;padding:0}
         /*媒体查询大屏*/
 @media screen and (min-width:1200px){
 /*轮播*/
@@ -314,41 +321,14 @@ export default {
   /*.el-carousel__item:nth-child(2) {
    background-image:url("../../public/img/product/product-6.png");
   }*/
-  .el-carousel__item:nth-child(3) {
+  .el-carousel__item{
+      img{
+          width:473px;
+          height:250px;
+      }
    /* background-color: #d3dce6;*/
-   background:url("../../public/img/product/product-2.png") no-repeat;
-      /*margin:80px 0 0 300px;*/
-      background-size:75% 80%;
-            /*margin:30px 150px 0 150px;*/
-            background-position:52% 50% !important;
   }
-    .el-carousel__item:nth-child(4) {
-   /* background-color: #d3dce6;*/
-   background:url("../../public/img/product/product-3.png") no-repeat;
-      /*margin:80px 0 0 300px;*/
-      background-size:75% 80%;
-            /*margin:30px 150px 0 150px;*/
-               background-position:52% 50% !important;
-  }
-    .el-carousel__item:nth-child(5) {
-    background:url("../../public/img/product/product-4.png") no-repeat;
-      background-size:75% 80%;
-            /*margin:30px 150px 0 150px;*/
-               background-position:52% 50% !important;
-
-      }
-    .el-carousel__item:nth-child(6) {
-    background:url("../../public/img/product/product-5.png") no-repeat;
-      background-size:75% 80%;
-           /* margin:30px 150px 0 150px;*/
-            background-position:52% 50% !important;
-      }
-    .el-carousel__item:nth-child(7) {
-    background:url("../../public/img/product/product-6.png") no-repeat;
-      background-size:75% 80%;
-            /*margin:30px 150px 0 150px;*/
-            background-position:52% 50% !important;
-      }
+ 
      /* .el-carousel__mask{
           width:50% !important;
       }*/
@@ -561,7 +541,7 @@ export default {
     }
     .carouse-ul-li3{
         margin:0 0 0 10px;
-    } 
+    }
     .carouse-ul-li4{
         margin:0 0 0 10px;
     }
@@ -671,7 +651,7 @@ export default {
     }
     .carouse-ul-li3-1{
         margin:0 0 0 10px;
-    } 
+    }
     .carouse-ul-li4-1{
         margin:0 0 0 10px;
     }
@@ -819,19 +799,27 @@ export default {
         width:1020px;
         height:212px;
         margin:0 auto;
+        overflow-x: scroll;
+    }
+    .carousel-div-2::-webkit-scrollbar{
+        display: none;
     }
     .carouse-ul-2>li{
         display:block;
         width:195px;
         height:212px;
         float:left;
+        margin-right: 20px;
+    }
+    .carouse-ul-2>li:last-child{
+        margin-right: 0;
     }
     .carouse-ul-li2-2{
         margin:0 0 0 10px;
     }
     .carouse-ul-li3-2{
         margin:0 0 0 10px;
-    } 
+    }
     .carouse-ul-li4-2{
         margin:0 0 0 10px;
     }
@@ -841,8 +829,11 @@ export default {
     .carouse-ul-li1-div11-2{
         width:195px;
         height:146.25px;
-        background-image:url("../../public/img/product/product-8.png");
-        background-size:100% 100%;
+        img{
+            width:195px;
+            height:146.25px;
+            display: block;
+        }
     }
     .carouse-ul-li1-div12-2{
         width:195px;
@@ -916,7 +907,7 @@ export default {
     }
     }
     /*媒体查询中屏代码*/
-    @media screen and (min-width:963px) and 
+    @media screen and (min-width:963px) and
     (max-width:1199px){
          .container{
         width:100%;
@@ -1118,11 +1109,11 @@ export default {
     }
     .carouse-ul-li3{
         margin:0 0 0 8.4px;
-    } 
-    .carouse-ul-li4{     
+    }
+    .carouse-ul-li4{
         margin:0 0 0 8.4px;
     }
-    .carouse-ul-li5{     
+    .carouse-ul-li5{
         margin:0 0 0 8.4px;
     }
     .carouse-span{
@@ -1230,7 +1221,7 @@ export default {
     }
     .carouse-ul-li3-1{
         margin:0 0 0 8.4px;
-    } 
+    }
     .carouse-ul-li4-1{
         margin:0 0 0 8.4px;
     }
@@ -1404,7 +1395,7 @@ export default {
     }
     .carouse-ul-li3-2{
         margin:0 0 0 8.4px;
-    } 
+    }
     .carouse-ul-li4-2{
         margin:0 0 0 8.4px;
     }
@@ -1727,7 +1718,7 @@ export default {
     }
     .carouse-ul-li3{
         margin:0 0 0 6.69px;
-    } 
+    }
     .carouse-ul-li4{
         margin:0 0 0 6.69px;
     }
@@ -1845,7 +1836,7 @@ export default {
     }
     .carouse-ul-li3-1{
         margin:0 0 0 6.69px;
-    } 
+    }
     .carouse-ul-li4-1{
         margin:0 0 0 6.69px;
     }
@@ -2006,7 +1997,7 @@ export default {
     }
     .carouse-ul-li3-2{
         margin:0 0 0 6.69px;
-    } 
+    }
     .carouse-ul-li4-2{
         margin:0 0 0 6.69px;
     }
@@ -2413,15 +2404,15 @@ export default {
         /*margin:0 0 0 8.4px;*/
         /*margin:0 0 0 6.69px;*/
         margin:0 0 0 4.355px;
-    } 
+    }
     .carouse-ul-li4{
-        /*margin:0 0 0 10px;*/        
+        /*margin:0 0 0 10px;*/
         /*margin:0 0 0 8.4px;*/
         /*margin:0 0 0 6.69px;*/
         margin:0 0 0 4.355px;
     }
     .carouse-ul-li5{
-        /*margin:0 0 0 10px;*/        
+        /*margin:0 0 0 10px;*/
         /*margin:0 0 0 8.4px;*/
         /*margin:0 0 0 6.69px;*/
         margin:0 0 0 4.355px;
@@ -2595,7 +2586,7 @@ export default {
         /*margin:0 0 0 8.4px;*/
         /*margin:0 0 0 6.69px;*/
         margin:0 0 0 4.355px;
-    } 
+    }
     .carouse-ul-li4-1{
         /*margin:0 0 0 10px;*/
         /*margin:0 0 0 8.4px;*/
@@ -2813,7 +2804,7 @@ export default {
     }
     .carouse-ul-li3-2{
         margin:0 0 0 4.355px;
-    } 
+    }
     .carouse-ul-li4-2{
         margin:0 0 0 4.355px;
     }
