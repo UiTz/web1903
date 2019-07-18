@@ -1,29 +1,45 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <my-header v-if="header_show"></my-header>
+    <router-view v-on:header="header" v-on:footer="footer"></router-view>
+    <my-footer v-if="footer_show"></my-footer>
   </div>
 </template>
+<script>
+import myheader from './components/myheader'
+import myfooter from './components/myfooter'
+export default {
+  data() {
+    return {
+      header_show:true,
+      footer_show:true
+    } 
+  },
+  components:{
+      "my-header":myheader,
+      "my-footer":myfooter,
+    },
+  mounted() {
+    if (this._isMobile()) {
+      this.$router.push('/mindex');
+      this.header_show=false;
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+    } else {
+      this.$router.push('/');
     }
-  }
+  },
+  methods:{
+  _isMobile() {
+      let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+      return flag;},
+      header:function(bool){
+        this.header_show=bool;
+      },
+      footer(bool){
+        this.footer_show=bool;
+      }
+    }
 }
+</script>
+<style>
 </style>
