@@ -17,7 +17,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Mint from 'mint-ui';
 Vue.use(Mint);
+<<<<<<< HEAD
+=======
 
+>>>>>>> 54e211ca16a294ccbb9712ead84d1716d6ed962b
 
 Vue.use(ElementUI)
 
