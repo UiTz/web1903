@@ -1,5 +1,6 @@
 <template>
     <div>
+        <mmyheader></mmyheader>
         <div class="item"></div>
         <div class="container">
         <div class="text-white my-font2">品牌资讯</div>
@@ -62,9 +63,13 @@
     </div>
 </template>
 <script>
+import mmyheader from '../../components/moble/mmyheader'
     export default {
       data() {
           return {}
+  },
+  components:{
+      mmyheader
   }
 }
 </script>

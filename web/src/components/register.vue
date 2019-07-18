@@ -13,7 +13,7 @@
       <el-input v-model="email" placeholder="请输入邮箱"></el-input>
     </el-form-item>
     <el-form-item label="电话"  :label-width="formLabelWidth">
-      <el-input v-model="tel" placeholder="请输入电话"></el-input>
+      <el-input v-model="phone" placeholder="请输入电话"></el-input>
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
@@ -32,12 +32,12 @@ export default {
         uname:'',
           upwd: '',
           email: '',
-          tel: '',
+         phone: '',
         form:{
           uname: '',
           upwd: '',
           email: '',
-          tel: '',
+          phone: '',
           delivery: false,
           type: [],
           resource: '',
@@ -53,10 +53,10 @@ methods:{
         var u=this.uname;
         var p=this.upwd;
         var e=this.email;
-        var t=this.tel;
+        var t=this.phone;
         var reg=/^[a-z0-9_]{3,12}$/i;
         var reg1=/^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
-        var reg2=/^1[3456789]\d{9}$/;
+        var reg2=/^[1][3456789]\d{9}$/;
         if(!reg.test(u)){
             confirm("用户名格式不正确");return;
         }
@@ -66,12 +66,12 @@ methods:{
         if(!reg1.test(e)){
             confirm("邮箱格式不正确");return;
         }
-        if(!reg2.test(t)){
+        if(!(reg2.test(t))){
             confirm("电话格式不正确");return;
         }
         var obj={uname:u,upwd:p,email:e,tel:t};
         this.axios.get(url,{params:obj}).then(result=>{
-            if(result.data.code>0){
+            if(result.data.code==200){
                this.$alert('提交成功',{callback:action=>{this.$router.push('/');}});
             }else{
                 this.$alert("提交失败",{confirmButtonText:'确定'});

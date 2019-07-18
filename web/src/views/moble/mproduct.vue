@@ -1,5 +1,6 @@
 <template>
 <div>
+    <mmyheader></mmyheader>
         <!--图片-->
     <div class="breadImage"></div>
     <div>
@@ -34,8 +35,8 @@
                         <!--图片-->
                         <div class="hetaoimg"></div>
                         <div class="carousel-1div">
-                            <a href="javascript:;" class="carousel-a1">奶酥核桃吐司
-                            </a>
+                            <router-link to="/mproductdetails" class="carousel-a1">奶酥核桃吐司
+                            </router-link>
                         </div>
                         <div class="carousel-2div">
                             <a href="javascript:;" class="carousel-a2">￥15.00
@@ -329,6 +330,7 @@
 </div>
 </template>    
 <script>
+import mmyheader from '../../components/moble/mmyheader'
 export default {
     data(){
         return{
@@ -345,6 +347,9 @@ export default {
          itemTab3(){
             this.active="tab3"
         }
+    },
+    components:{
+        mmyheader
     }
 }
 </script>

@@ -132,9 +132,9 @@
                     <ul class="carouse-ul-2">
                         <li class="carouse-ul-li1-2">
                             <div class="carouse-ul-li1-div11-2"></div>
-                            <a href="javascript:;">
+                            <router-link to="/productdetails">
                                 <div class="carouse-ul-li1-a-div-2">冰雪奇缘</div>
-                            </a>
+                            </router-link>
                             <div class="carouse-ul-li1-div2-2">
                                 <span class="carouse-span-2">￥198.00</span>
                             </div>

@@ -39,6 +39,7 @@
     },
     methods:{
         login(){
+            var url="login";
         var u=this.uname;
         var p=this.upwd;
         var reg=/^[a-z0-9A-Z_]{3,12}$/;
@@ -48,25 +49,24 @@
         if(!reg.test(p)){
             this.$toast("密码格式不正确");return;
         }
-        var url='login';
         var obj={uname:u,upwd:p};
         this.axios.get(url,{params:obj}).then(result=>{
-            if(result.data.code>0){
+            if(result.data.code==200){
                  this.$alert('登录成功',{callback:action=>{this.$router.push('/');}});
                 
             }else{
                 this.$alert("用户名或者密码不正确",{confirmButtonText:'确定'});
             }
         })
-    },
+        },
     cancel(){
         this.$router.push('/');
     }, 
     handleclose(){
         this.$router.push('/');
-}
-}
-}
+  }
+        }
+  }
 </script>
 <style scoped>
 /*设置图片样式*/
