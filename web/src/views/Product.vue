@@ -209,20 +209,32 @@
                 </div>
                 <div class="carousel-div-1">
                     <ul class="carouse-ul-1">
+
                         <li class="carouse-ul-li1-1">
+                            <router-link to="/productdetails14">
                             <div class="carouse-ul-li1-div11-1"></div>
                             <a href="javascript:;">
-                                <div class="carouse-ul-li1-a-div-1">草莓马卡龙</div>
+                                <div class="carouse-ul-li1-a-div-1">
+                                草莓马卡龙
+                                    </div>
+                                    
                             </a>
+                            </router-link>
+                           
                             <div class="carouse-ul-li1-div2-1">
                                 <span class="carouse-span-1">￥12.00</span>
                             </div>
                         </li>
+                        
                         <li class="carouse-ul-li2-1">
+                            <router-link to="productDetails13">
                             <div class="carouse-ul-li1-div12-1"></div>
+                            
                             <a href="javascript:;">
+                                
                                 <div class="carouse-ul-li1-a-div-1">芒果盒子</div>
                             </a>
+                            </router-link>
                             <div class="carouse-ul-li1-div2-1">
                                 <span class="carouse-span-1">￥20.00</span>
                             </div>

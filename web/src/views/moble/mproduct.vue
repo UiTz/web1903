@@ -105,12 +105,12 @@
             <div class="mtbutton">
             <!--上一页和下一页-->
             <mt-button type="danger" size="small"
-            @click.prevent="itemTab1">
+            @click.prevent="itemTab1" class="lastPage">
               <!--@click.prevent="itemTab2"-->  
                     上一页
             </mt-button>  
             <mt-button type="danger" size="small"
-            @click.prevent="itemTab2">
+            @click.prevent="itemTab2" class="nextPage">
               <!--@click.prevent="itemTab2"-->  
                     下一页
             </mt-button>  
@@ -132,9 +132,9 @@
         </div>
         <!--冰雪奇缘--百分百恋人-->
         <div>
-            <mt-tab-container v-model="active">
+            <mt-tab-container v-model="active1">
             <!--子面板1-->
-            <mt-tab-container-item id="tab1" class="carousel-bingxue">
+            <mt-tab-container-item id="tab3" class="carousel-bingxue">
                 <div class="carousel-hetao-1">
                     <div class="hetao">
                         <!--图片-->
@@ -189,7 +189,7 @@
                  </div>
             </mt-tab-container-item>
             <!--子面板2-->
-            <mt-tab-container-item id="tab2">
+            <mt-tab-container-item id="tab4">
             <div class="carousel-hetao-1">
                     <div class="hetao">
                         <!--图片-->
@@ -210,14 +210,14 @@
             <div class="mtbutton">
             <!--换一批-->
             <mt-button type="danger" size="small"
-            @click.prevent="itemTab1">
+            @click.prevent="itemTab3" class="lastPage">
               <!--@click.prevent="itemTab2"-->  
                     上一页
             </mt-button>  
-            <mt-button type="danger" size="small"
-            @click.prevent="itemTab2">
+            <mt-button type="danger" size="small" class="nextPage"
+            @click.prevent="itemTab4">
               <!--@click.prevent="itemTab2"-->  
-                    下一页
+                    <span class="nextspan">下一页</span>
             </mt-button>  
             </div>
         </div>
@@ -237,9 +237,9 @@
         </div>
         <!--草莓马卡龙-->
         <div>
-            <mt-tab-container v-model="active">
+            <mt-tab-container v-model="active2">
             <!--子面板1-->
-            <mt-tab-container-item id="tab1" class="carousel-caomei">
+            <mt-tab-container-item id="tab5" class="carousel-caomei">
                 <div class="carousel-hetao-1">
                     <div class="hetao">
                         <!--图片-->
@@ -294,7 +294,7 @@
                  </div>
             </mt-tab-container-item>
             <!--子面板2-->
-            <mt-tab-container-item id="tab2">
+            <mt-tab-container-item id="tab6">
             <div class="carousel-hetao-1">
                     <div class="hetao">
                         <!--图片-->
@@ -315,12 +315,12 @@
             <div class="mtbutton">
             <!--上一页和下一页-->
             <mt-button type="danger" size="small"
-            @click.prevent="itemTab1">
+            @click.prevent="itemTab5" class="lastPage">
               <!--@click.prevent="itemTab2"-->  
                     上一页
             </mt-button>  
-            <mt-button type="danger" size="small"
-            @click.prevent="itemTab2">
+            <mt-button type="default" size="small"
+            @click.prevent="itemTab6" class="nextPage" plain>
               <!--@click.prevent="itemTab2"-->  
                     下一页
             </mt-button>  
@@ -334,7 +334,9 @@ import mmyheader from '../../components/moble/mmyheader'
 export default {
     data(){
         return{
-                active:"tab1"
+                active:"tab1",
+                active1:"tab3",
+                active2:"tab5"
         }
     },
     methods:{
@@ -342,10 +344,19 @@ export default {
             this.active="tab1"
         },
          itemTab2(){
-             this.active="tab1"?this.active="tab2":this.active=="tab1"       
+             this.active="tab2"       
         },
-         itemTab3(){
-            this.active="tab3"
+        itemTab3(){
+            this.active1="tab3"
+        },
+         itemTab4(){
+             this.active1="tab4"       
+        },
+         itemTab5(){
+            this.active2="tab5"
+        },
+        itemTab6(){
+            this.active2="tab6"
         }
     },
     components:{
@@ -559,10 +570,28 @@ export default {
     .mtbutton{
         width:280px;
         height:20px;
-        margin:0 0 0 200px;
+        margin:0 0 0 220px;
         line-height:20px;
-        border-radius:0 0 0 0;
-
+        border-radius:50px 0 0 0;
+        opacity:0.5;
+        cursor:pointer;
+    }
+    .lastPage{
+        color:blue;
+        text-align:center;
+        padding:0 0 0 0;
+        cursor:pointer;
+        padding:0 5px 0 5px;
+    }
+    .nextPage{
+        color:blue;
+        text-align:center;
+        padding:0 0 0 0;
+        cursor:pointer;
+        padding:0 5px 0 5px;
+    }
+    label{
+        text-align:center;
     }
     /*蛋糕系列*/
     .mcakeSeries{
