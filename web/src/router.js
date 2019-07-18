@@ -6,18 +6,15 @@ import index from './views/index.vue'
 import company from './views/company.vue'
 import Join from './views/Join.vue'
 import login from './components/login.vue'
-<<<<<<< HEAD
 
-=======
+
+
 import register from './components/register.vue'
 import productDetails from './components/productDetails.vue'
 import About from './views/About.vue'
 import elflex from './views/elflex.vue'
 import Carousel from './views/Carousel.vue';
->>>>>>> c7d285a9b28ddecff07cfc450a3410da4ff348e4
-import register from './components/register.vue'
-import productDetails from './components/productDetails.vue'
-import About from './views/About.vue'
+
 import CompanyOne from './components/CompanyOne.vue'
 import CompanyTwo from './components/CompanyTwo.vue'
 import CompanyThree from './components/CompanyThree.vue'
@@ -31,7 +28,6 @@ import mcompany from './views/moble/mcompany.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
-<<<<<<< HEAD
     {path:'/product',component:Product},
     {path: '/',component:index},
     {path: '/join',component:Join},
@@ -49,40 +45,4 @@ export default new Router({
     {path:'/mindex',component:mindex},
     {path:'/mcompany',component:mcompany},
   ],
-  
-=======
-    {path:'/product',
-    component:Product},
-      {path: '/',
-      component:index},
-      {path: '/join',
-      component:Join},
-      {path: '/company',
-      component:company},
-      {path: '/login',
-      component:login},
-      {path: '/register',
-      component:register},
-     {path:'/productdetails',
-      component:productDetails},
-      {path:'/About',
-      component:About},
-      {path:'/Elflex',
-      component:elflex},
-      {path:'/Carousel',
-      component:Carousel},
-      {path:'/CompanyOne',
-      component:CompanyOne},
-      {path:'/CompanyTwo',
-      component:CompanyTwo},
-      {path:'/CompanyThree',
-      component:CompanyThree},
-      {path:'/CompanyFour',
-      component:CompanyFour},
-      {path:'/CompanyFive',
-      component:CompanyFive},
-      {path:'/CompanySix',
-      component:CompanySix},
-  ]
->>>>>>> c7d285a9b28ddecff07cfc450a3410da4ff348e4
 })
