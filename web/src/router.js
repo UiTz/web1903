@@ -6,17 +6,14 @@ import index from './views/index.vue'
 import company from './views/company.vue'
 import Join from './views/Join.vue'
 import login from './components/login.vue'
-<<<<<<< HEAD
 
-import elflex from './views/elflex.vue'
-import Carousel from './views/Carousel.vue';
+//import elflex from './views/elflex.vue'
+//import Carousel from './views/Carousel.vue'
 
 
-import register from './components/register.vue'
-import productDetails from './components/productDetails.vue'
-import About from './views/About.vue'
-
-=======
+//import register from './components/register.vue'
+//import productDetails from './components/productDetails.vue'
+//import About from './views/About.vue'
 import register from './components/register.vue'
 import productDetails from './components/productDetails.vue'
 import productDetails2 from './components/productDetails2.vue'
@@ -36,28 +33,25 @@ import productDetails15 from './components/productDetails15.vue'
 import About from './views/About.vue'
 import elflex from './views/elflex.vue'
 import Carousel from './views/Carousel.vue';
->>>>>>> 355a3e4574a9a9fd174acaa124a237b64a0aee56
 import CompanyOne from './components/CompanyOne.vue'
 import CompanyTwo from './components/CompanyTwo.vue'
 import CompanyThree from './components/CompanyThree.vue'
 import CompanyFour from './components/CompanyFour.vue'
 import CompanyFive from './components/CompanyFive.vue'
 import CompanySix from './components/CompanySix.vue'
-<<<<<<< HEAD
-
-import mproduct from './views/moble/mproduct.vue'
-
-import mindex from './views/moble/mindex.vue'
-import mcompany from './views/moble/mcompany.vue'
-import mmyheader from './components/moble/mmyheader.vue'
+//
+//import mproduct from './views/moble/mproduct.vue'
+//
+//import mindex from './views/moble/mindex.vue'
+//import mcompany from './views/moble/mcompany.vue'
+//import mmyheader from './components/moble/mmyheader.vue'
 import mproductdetails from './components/moble/mproductdetails.vue'
 
 
-=======
+
 import mproduct from './views/moble/mproduct.vue'
 import mindex from './views/moble/mindex.vue'
 import mcompany from './views/moble/mcompany.vue'
->>>>>>> 355a3e4574a9a9fd174acaa124a237b64a0aee56
 Vue.use(Router)
 export default new Router({
    mode: 'history',
@@ -69,10 +63,6 @@ export default new Router({
     {path: '/company',component:company},
     {path: '/login',component:login},
     {path: '/register',component:register},
-<<<<<<< HEAD
-=======
-
-
     {path:'/productdetails',component:productDetails},
     {path:'/productdetails2',component:productDetails2},
     {path:'/productdetails3',component:productDetails3},
@@ -88,11 +78,6 @@ export default new Router({
     {path:'/productdetails14',component:productDetails13},
     {path:'/productdetails14',component:productDetails14},
     {path:'/productdetails15',component:productDetails15},
-
-
-
-
->>>>>>> 355a3e4574a9a9fd174acaa124a237b64a0aee56
     {path:'/About',component:About},
     {path:'/productdetails',component:productDetails},
     {path:'/CompanyOne',component:CompanyOne},
@@ -103,11 +88,8 @@ export default new Router({
     {path:'/CompanySix',component:CompanySix},
     {path:'/mindex',component:mindex},
     {path:'/mcompany',component:mcompany},
-<<<<<<< HEAD
     {path:'/mproduct',component:mproduct},
-    {path:'/mproductdetails',component:mproductdetails}
-=======
+    {path:'/mproductdetails',component:mproductdetails},
     {path:'/mproduct',component:mproduct}
->>>>>>> 355a3e4574a9a9fd174acaa124a237b64a0aee56
   ],
 })

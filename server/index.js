@@ -61,6 +61,47 @@ app.get('/user/api/register',(req,res)=> {
   })
 });
 
+// 查询邮箱是否注册过
+app.post('/admin/api/queremail',(req,res)=>{
+  console.log('有查询邮箱请求');
+  let email = req.query.email;
+  let sql = "SELECT email FROM pj_user WHERE email = ?";
+  query(sql,[email],(err,result)=> {
+    if (err) throw  err;
+    if (result.length === 0) {
+      res.send({code:200,msg:"恭喜!用户名可以使用"})
+    } else res.send({code:201,msg:"用户名已被注册"})
+  })
+});
+
+// 用户登录接口
+app.get('/user/api/login',(req,res)=> {
+  let r = req.query;
+  let uname = r.uname;
+  let upwd = r.upwd;
+  let sql = 'SELECT uid FROM pj_user WHERE uname = ? AND upwd = ?';
+  query(sql,[uname,upwd],(err,result)=> {
+    if (err) throw err;
+    console.log(result);
+    if (result.length === 0){
+      res.send({code:200,msg:'登录失败'});
+    } else {
+      res.send({code:201,msg:'登录成功',result});
+    }
+  })
+});
+
+// 商品查询
+app.get('/product/api/querytype',(req,res)=> {
+  let r = req.query;
+  let ptype = r.product_type;
+  let sql = 'SELECT * FROM product WHERE product_type = ?';
+  
+});
+
+
+/*******************以下为后台接口****************/
+
 // 用户删除
 app.post('/admin/api/deluser',(req,res)=>{
   console.log('有删除用户请求');
@@ -108,22 +149,6 @@ app.get('/user/api/update',(req,res)=> {
   })
 });
 
-// 用户登录接口
-app.get('/user/api/login',(req,res)=> {
-  let r = req.body;
-  let uname = r.uname;
-  let upwd = r.upwd;
-  let sql = 'SELECT uid FROM pj_user WHERE uname = ? AND upwd = ?';
-  query(sql,[uname,upwd],(err,result)=> {
-    if (err) throw err;
-    console.log(result);
-    if (result.length === 0){
-      res.send({code:200,msg:'登录失败'});
-    } else {
-      res.send({code:201,msg:'登录成功',result});
-    }
-  })
-});
 
 
 // 查询所有用户
@@ -148,18 +173,6 @@ app.post('/admin/api/user',(req,res)=>{
 });
 
 
-// 查询邮箱是否注册过
-app.post('/admin/api/queremail',(req,res)=>{
-  console.log('有查询邮箱请求');
-  let email = req.query.email;
-  let sql = "SELECT email FROM pj_user WHERE email = ?";
-  query(sql,[email],(err,result)=> {
-    if (err) throw  err;
-    if (result.length === 0) {
-      res.send({code:200,msg:"恭喜!用户名可以使用"})
-    } else res.send({code:201,msg:"用户名已被注册"})
-  })
-});
 
 
 
