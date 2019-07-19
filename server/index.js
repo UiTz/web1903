@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const query = require('./plugins/db.js');
 // 引入json解析中间件
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 
 // 引入静态目录
@@ -16,20 +16,43 @@ var allowCors = function(req, res, next) {
   res.header('Access-Control-Allow-Credentials','true');
   next();
 };
-
 app.use(allowCors);
 // 添加json解析
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-require('./plugins/sqlquery');
+// 使用cookieParser
+// require('./plugins/sqlquery');
+
+// app.get('/test/api/',(req,res)=>{
+//   // let Base64 = require('js-base64').Base64;
+//   let r = req.cookies;
+//   if (Object.keys(r).length > 0) {
+//     // let i = Base64.decode(r.ucode);
+//     console.log(r.ucode);
+//     res.send(r.ucode);
+//   } else {
+//     res.cookie('ucode',"这个是ucode",{maxAge:60000,path:'/',httpOnly:true});
+//     res.send({code:203,msg:'重新设置cookie'})
+//   }
+// });
+//
+// app.get('/test/api/cookie',(req,res)=> {
+//   let B64 = require('js-base64').Base64;
+//   let ucode = B64.encode('user_name中文呢');
+//   console.log(req.cookies);
+//   res.cookie('ucode',ucode,{maxAge:50000,path:'/',httpOnly:true});
+//   res.send({code:200,msg:'cookies设置成功: '+ucode})
+// });
+
+
 
 /*
  * 查询用户名是否可用
  */
-app.get('/user/api/queryuser',(req,res)=>{
+app.post('/user/api/queryuser',(req,res)=>{
   console.log('有查询用户名请求');
   // console.log(req.query);
-  let uname = req.query.uname;
+  let uname = req.body.uname;
   let sql = "SELECT uname FROM pj_user WHERE uname = ?";
   query(sql,[uname],(err,result)=> {
     if (err) throw  err;
@@ -41,8 +64,8 @@ app.get('/user/api/queryuser',(req,res)=>{
 
 
 // 用户注册
-app.get('/user/api/register',(req,res)=> {
-  let r = req.query;
+app.post('/user/api/register',(req,res)=> {
+  let r = req.body;
   let uarr = [
     uname = r.uname,
     upwd  = r.upwd,
@@ -55,14 +78,13 @@ app.get('/user/api/register',(req,res)=> {
     if (result.affectedRows > 0){
       res.send({code:200,msg:'注册成功'});
     } else {
-      console.log(result);
       res.send({code:201,msg:'注册失败'});
     }
   })
 });
 
 // 查询邮箱是否注册过
-app.post('/admin/api/queremail',(req,res)=>{
+app.post('/user/api/queryemail',(req,res)=>{
   console.log('有查询邮箱请求');
   let email = req.query.email;
   let sql = "SELECT email FROM pj_user WHERE email = ?";
@@ -75,18 +97,17 @@ app.post('/admin/api/queremail',(req,res)=>{
 });
 
 // 用户登录接口
-app.get('/user/api/login',(req,res)=> {
-  let r = req.query;
+app.post('/user/api/login',(req,res)=> {
+  let r = req.body;
   let uname = r.uname;
   let upwd = r.upwd;
   let sql = 'SELECT uid FROM pj_user WHERE uname = ? AND upwd = ?';
   query(sql,[uname,upwd],(err,result)=> {
     if (err) throw err;
-    console.log(result);
     if (result.length === 0){
-      res.send({code:200,msg:'登录失败'});
+      res.send({code:201,msg:'登录失败'});
     } else {
-      res.send({code:201,msg:'登录成功',result});
+      res.send({code:200,msg:'登录成功',result});
     }
   })
 });
@@ -108,19 +129,51 @@ app.get('/product/api/querytype',(req,res)=> {
 });
 
 // 根据商品ID查询详情
-app.get('product/api/queryid',(req,res)=> {
-  let r = req.body;
-  let uid = r.uid;
+app.get('/product/api/queryid',(req,res)=> {
+  let r = req.query;
+  let id = r.id;
   let sql = 'SELECT * FROM product WHERE uid = ?';
-  query(sql,[uid],(err,result)=> {
+  query(sql,[id],(err,result)=> {
     if (err) throw err;
-    console.log(result);
-    res.send('1111');
+    // console.log(result);
+    res.send(result);
   })
 });
 
 // 用户留言板
-app.get('user/api/message_board');
+app.get('/user/api/message_board',(req,res)=> {
+  let r = req.query;
+  console.log(r);
+  let name = r.name;
+  let msg = r.msg;
+  if (msg.length === 0){
+    res.send({code:203,msg:'留言不能为空'});
+    return false;
+  }
+  let sql = 'INSERT INTO message_board (msg,name,date) VALUES (?,?,NOW())';
+  query(sql,[msg,name],(err,result)=> {
+    if (err) throw err;
+    if (result.affectedRows === 1) {
+      res.send({code:200,mgs:'留言成功'})
+    } else res.send({code:201,msg:'留言失败'});
+  })
+});
+
+// 查询用户留言板
+app.get('/user/api/loading_message',(req,res)=> {
+  console.log('收到请求');
+  let count = Number(req.query.count);
+  console.log(count);
+  let sql = 'SELECT * FROM message_board LIMIT 10';
+  query(sql,[count],(err,result)=> {
+    if (err) throw err;
+    console.log(result);
+    if (result.length > 0) {
+      res.send({code:200,result});
+    } else res.send({code:201,msg:'请求失败'})
+  });
+});
+
 
 /*******************以下为后台接口****************/
 

@@ -46,17 +46,13 @@ import CompanySix from './components/CompanySix.vue'
 //import mcompany from './views/moble/mcompany.vue'
 //import mmyheader from './components/moble/mmyheader.vue'
 import mproductdetails from './components/moble/mproductdetails.vue'
-
-
-
 import mproduct from './views/moble/mproduct.vue'
 import mindex from './views/moble/mindex.vue'
 import mcompany from './views/moble/mcompany.vue'
-Vue.use(Router)
+Vue.use(Router);
 export default new Router({
    mode: 'history',
   routes: [
-    
     {path: '/',component:index,},
     {path:'/product',component:Product},
     {path: '/join',component:Join},
