@@ -41,7 +41,9 @@ export default {
   data(){
       return{}
   },
-  
+  created:function () {
+            this.$emit('myfooter', false);
+        }
 }
 </script>
 <style>
@@ -81,7 +83,5 @@ line-height: 60px;
 border-radius:0 !important;
 border:0 !important;
 }
-.myfont{
-    
-}
+
 </style>

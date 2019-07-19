@@ -10,7 +10,9 @@
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item><router-link to="/mindex">首页</router-link></el-dropdown-item>
     <el-dropdown-item><router-link to="/mproduct">产品专区</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link to="/mjoin">加盟代理</router-link></el-dropdown-item>
     <el-dropdown-item><router-link to="/mcompany">企业加盟</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link to="/mabout">联系我们</router-link></el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
 </div>

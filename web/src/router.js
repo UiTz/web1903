@@ -46,13 +46,28 @@ import CompanySix from './components/CompanySix.vue'
 //import mcompany from './views/moble/mcompany.vue'
 //import mmyheader from './components/moble/mmyheader.vue'
 import mproductdetails from './components/moble/mproductdetails.vue'
+import mcompanyone from './components/moble/mcompanyone.vue'
+import mcompanytwo from './components/moble/mcompanytwo.vue'
+import mcompanythree from './components/moble/mcompanythree.vue'
+import mcompanyfour from './components/moble/mcompanyfour.vue'
+import mcompanyfive from './components/moble/mcompanyfive.vue'
+import mcompanysix from './components/moble/mcompanysix.vue'
+
+
+
+
 import mproduct from './views/moble/mproduct.vue'
 import mindex from './views/moble/mindex.vue'
 import mcompany from './views/moble/mcompany.vue'
-Vue.use(Router);
+import mjoin from './views/moble/mjoin.vue'
+import mabout from './views/moble/mabout.vue'
+
+
+Vue.use(Router)
 export default new Router({
-   mode: 'history',
+  mode:"hash",
   routes: [
+    
     {path: '/',component:index,},
     {path:'/product',component:Product},
     {path: '/join',component:Join},
@@ -86,6 +101,14 @@ export default new Router({
     {path:'/mcompany',component:mcompany},
     {path:'/mproduct',component:mproduct},
     {path:'/mproductdetails',component:mproductdetails},
-    {path:'/mproduct',component:mproduct}
+    {path:'/mproduct',component:mproduct},
+    {path:'/mjoin',component:mjoin},
+    {path:'/mcompanyone',component:mcompanyone},
+    {path:'/mcompanytwo',component:mcompanytwo},
+    {path:'/mcompanythree',component:mcompanythree},
+    {path:'/mcompanyfour',component:mcompanyfour},
+    {path:'/mcompanyfive',component:mcompanyfive},
+    {path:'/mcompanysix',component:mcompanysix},
+    {path:'/mabout',component:mabout},
   ],
 })
