@@ -1,29 +1,42 @@
 <template>
     <div class="container">
-        <div class="title">酸奶芝士蛋糕的做法 无油低热不腻</div>
+        <mmyheader></mmyheader> 
+        <div class="title p-3">艾草蒸蛋糕的做法 做一个有“艾”的蛋糕</div>
         <div class="center">
-            <span>2019-05-25 15:35:18</span>
+            <span class="p-2">2019-05-25 15:35:18</span>
             <span class="ml-4">来自</span>
             <span class="ml-4" style="color:blue;">杨楚</span>
         </div>
-        <div class="mt-5"><img src="../../public/img/company/company-2.png" alt=""></div>
+        <div class="mt-5"><img class="mpic" src="../../../public/img/company/company-7.png" alt=""></div>
         <!-- 文字说明 -->
-        <div class="bottom mt-5">   
-            <p>无油酸奶蛋糕，口感细腻柔滑的芝士蛋糕让人难以拒绝，每一口都含有浓郁的芝士香味，但是夏天吃芝士蛋糕，实在太腻了，而且它的高热量高脂肪让人感到压力。</p>
-            <p>不添加一滴油的酸奶蛋糕就是炎炎夏日的最佳选择，采用水浴法烤制的蛋糕，可以保持柔嫩，酸奶的加入令蛋糕的口感更加细腻香醇，入口即化，让人感觉在吃芝士蛋糕。</p>
-            <p>因为一滴油都没有加入，所以这个的热量很低，爽口不腻，做出来的蛋糕也不容易开裂，幸福感爆棚！</p>
-            <p class="mt-5"> <strong>材料:</strong> 酸奶200克，鸡蛋4个，低筋面粉50克，玉米淀粉25克，细砂糖70克，柠檬汁几滴</p>
+        <div class="bottom mt-5 p-3">   
+            <p>艾草蒸蛋糕</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;艾草做的美食，最常见就要数青团，青团的菜谱有很多，所以我就不发了。我想了一些用艾草可以做的美食，其中一个就是艾草蒸蛋糕，天气越来越热了，</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就想吃点“草”养养生。艾草好像是春天的植物吧，它可以祛湿散寒，一般适合雨水较多的春季，其实对于南方人来说，一年四季似乎没有那么泾渭分明，而且</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今年气候真的很奇怪，该冷的时候不冷，不该冷的时候又冷了，前段时间还经常下那种绵绵细雨，人都快长出蘑菇了，所以，现在祛湿是重中之重！恰逢520情人节到了，</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;做一个有“艾”的蛋糕，送给自己或送给最爱的人吧!</p>
+            
+            <p class="mt-5"> <strong>【食材】</strong> </p>
+            <p> <strong>【面团材料】</strong>（可做80g一个4个</p>
+            <p> &nbsp;&nbsp;鸡蛋 / 2个</p>
+            <p> &nbsp;&nbsp;低筋面粉 / 32g</p>
+            <p> &nbsp;&nbsp;艾草粉/3g</p>
+            <p> &nbsp;&nbsp;玉米油 / 22g</p>
+            <p> &nbsp;&nbsp;温水/ 25g</p>
+            <p> &nbsp;&nbsp;砂糖 / 30g</p>
+            <p> &nbsp;&nbsp;柠檬汁 / 几滴</p>
+            <p> &nbsp;&nbsp;黑芝麻、干桂花/适量点缀</p>
             <p class="copyright mt-5">资讯编号：ZN000004642</p>
         </div>
         <!-- 点赞-分享 -->
         <div class="handleBtnsLine d-flex">
-            <div class="handleBtns mr-5">
+            <div class="handleBtns mr-1">
                 <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" src="../../public/img/speak/good-1.png" alt=""></span> 
+                    <span class="pic0 mr-2"><img class="mb-2" src="../../../public/img/speak/good-1.png" alt=""></span> 
                     <span class="zan font-14">点赞</span>   
                 </a>  
             </div>
-            <div class="handleBtns mr-5">
+            <div class="handleBtns mr-1">
                 <!-- <span class="pic5"><img class="mb-2" src="../../public/img/speak/good-2.png" alt=""></span>  -->
                 <el-dropdown>
                 <el-button type="none">
@@ -38,15 +51,15 @@
                 </el-dropdown-menu>
                 </el-dropdown>
             </div>
-            <div class="handleBtns">
+            <div class="handleBtns mr-1">
                 <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" style="width:20px;height:20px;" src="../../public/img/speak/good-3.png" alt=""></span> 
+                    <span class="pic0 mr-2"><img class="mb-2" style="width:20px;height:20px;" src="../../../public/img/speak/good-3.png" alt=""></span> 
                     <span class="zan font-14">举报</span>   
                 </a>  
             </div>
         </div>
         <!-- 评论区 -->
-        <div class="discuss">
+        <div class="discuss p-3">
             <div>
                 <span><strong>| 评论</strong></span>
                 <span class="ml-3">共0条评论</span>
@@ -57,18 +70,22 @@
                     <input type="text" placeholder="我来说两句" class="speak">
                 </div>
                 <div class="mt-1 m-1"> 
-                    <img style="width:20px;height:20px;" src="../../public/img/speak/good-5.png" alt=""> 表情
+                    <img style="width:20px;height:20px;" src="../../../public/img/speak/good-5.png" alt=""> 表情
                     <button class="button">提交</button>
                 </div>
             </div>
-            <div class="kong mt-3"><img src="../../public/img/speak/good-4.png" alt=""></div>
+            <div class="kong mt-3"><img src="../../../public/img/speak/good-4.png" alt=""></div>
         </div> 
     </div>
 </template>
 <script>
+import mmyheader from '../../components/moble/mmyheader'
 export default {
     data(){
         return{}
+    },
+    components:{
+        mmyheader 
     }
 }
 </script>
@@ -76,6 +93,10 @@ export default {
 .container{
     margin:0;padding:0;
     margin:0 auto;
+}
+.mpic{
+    width:350px;height:260px;
+    margin-left:12px;
 }
 .title{
     font-weight: bold;
@@ -103,8 +124,8 @@ export default {
     width:100%;
     /* box-sizing: border-box; */
     text-align:center;
-    margin-left:30%;
-    margin-top:60px;
+    margin-left:9%;
+    margin-top:40px;
 }
 .handleBtns{
     margin-bottom:40px;
@@ -162,7 +183,7 @@ input::placeholder{
     margin-top:40px;
 } 
 .button{
-    margin-left:80%;
+    margin-left:70%;
     width:80px;height:30px;
 }
 .el-button{
@@ -180,4 +201,5 @@ input::placeholder{
     left: 10px;
     /* text-align: center; */
 }
+
 </style>

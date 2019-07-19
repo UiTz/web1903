@@ -1,30 +1,34 @@
 <template>
     <div class="container">
-        <div class="title">酸奶芝士蛋糕的做法 无油低热不腻</div>
+        <mmyheader></mmyheader> 
+        <div class="title p-3">榴莲千层蛋糕的做法 入口细腻香甜不油腻</div>
         <div class="center">
-            <span>2019-05-25 15:35:18</span>
+            <span class="ml-2">2019-05-25 15:35:18</span>
             <span class="ml-4">来自</span>
             <span class="ml-4" style="color:blue;">杨楚</span>
         </div>
-        <div class="mt-5"><img src="../../public/img/company/company-2.png" alt=""></div>
+        <div class="mt-4"><img class="mpic" src="../../../public/img/company/company-3.png" alt=""></div>
+        
         <!-- 文字说明 -->
-        <div class="bottom mt-5">   
-            <p>无油酸奶蛋糕，口感细腻柔滑的芝士蛋糕让人难以拒绝，每一口都含有浓郁的芝士香味，但是夏天吃芝士蛋糕，实在太腻了，而且它的高热量高脂肪让人感到压力。</p>
-            <p>不添加一滴油的酸奶蛋糕就是炎炎夏日的最佳选择，采用水浴法烤制的蛋糕，可以保持柔嫩，酸奶的加入令蛋糕的口感更加细腻香醇，入口即化，让人感觉在吃芝士蛋糕。</p>
-            <p>因为一滴油都没有加入，所以这个的热量很低，爽口不腻，做出来的蛋糕也不容易开裂，幸福感爆棚！</p>
+        <div class="bottom mt-4 p-3">   
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于我来说榴莲是闻着香，吃起来更香，超爱的榴莲肉泥和淡奶油一起做成千层榴莲蛋糕，不油腻，口感上层次分明，入口细腻香甜，吃一口就停不下来了。</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;做千层，相对麻烦些的是摊可丽饼，面糊混合好了，选对了工具，其实就成功了一半了，选用小点的不粘锅，特别好操作。厚薄度按自己喜好，我摊的比较薄,</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;约30张饼，做千层余下几张，放一点水果和奶油很好吃，瞬间被大宝消灭掉了。</p>
             <p class="mt-5"> <strong>材料:</strong> 酸奶200克，鸡蛋4个，低筋面粉50克，玉米淀粉25克，细砂糖70克，柠檬汁几滴</p>
+            <p> <strong>饼皮:</strong> 鸡蛋2个 面粉140克 牛奶460克 白糖40克 玉米油40克 </p>
+            <p> <strong>馅料:</strong> 淡奶油280克 白糖28克 榴莲适量</p>
             <p class="copyright mt-5">资讯编号：ZN000004642</p>
         </div>
         <!-- 点赞-分享 -->
         <div class="handleBtnsLine d-flex">
-            <div class="handleBtns mr-5">
+            <div class="handleBtns mr-1">
                 <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" src="../../public/img/speak/good-1.png" alt=""></span> 
+                    <span class="pic0 mr-2"><img class="mb-2" src="../../../public/img/speak/good-1.png" alt=""></span> 
                     <span class="zan font-14">点赞</span>   
                 </a>  
             </div>
-            <div class="handleBtns mr-5">
-                <!-- <span class="pic5"><img class="mb-2" src="../../public/img/speak/good-2.png" alt=""></span>  -->
+            <div class="handleBtns mr-1">
+                <!-- <span class="pic5 p-0"><img class="mb-2" src="../../public/img/speak/good-2.png" alt=""></span>  -->
                 <el-dropdown>
                 <el-button type="none">
                     分享
@@ -38,15 +42,15 @@
                 </el-dropdown-menu>
                 </el-dropdown>
             </div>
-            <div class="handleBtns">
+            <div class="handleBtns mr-1">
                 <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" style="width:20px;height:20px;" src="../../public/img/speak/good-3.png" alt=""></span> 
+                    <span class="pic0 mr-2"><img class="mb-2" style="width:20px;height:20px;" src="../../../public/img/speak/good-3.png" alt=""></span> 
                     <span class="zan font-14">举报</span>   
                 </a>  
             </div>
         </div>
         <!-- 评论区 -->
-        <div class="discuss">
+        <div class="discuss p-2">
             <div>
                 <span><strong>| 评论</strong></span>
                 <span class="ml-3">共0条评论</span>
@@ -57,18 +61,22 @@
                     <input type="text" placeholder="我来说两句" class="speak">
                 </div>
                 <div class="mt-1 m-1"> 
-                    <img style="width:20px;height:20px;" src="../../public/img/speak/good-5.png" alt=""> 表情
+                    <img style="width:20px;height:20px;" src="../../../public/img/speak/good-5.png" alt=""> 表情
                     <button class="button">提交</button>
                 </div>
             </div>
-            <div class="kong mt-3"><img src="../../public/img/speak/good-4.png" alt=""></div>
+            <div class="kong mt-3"><img src="../../../public/img/speak/good-4.png" alt=""></div>
         </div> 
     </div>
 </template>
 <script>
+import mmyheader from '../../components/moble/mmyheader'
 export default {
     data(){
         return{}
+    },
+    components:{
+        mmyheader 
     }
 }
 </script>
@@ -95,6 +103,10 @@ export default {
     text-align:right;
     font:12px;
 }
+.mpic{
+    width:350px;height:260px;
+    margin-left:12px;
+}
 /* 点赞等功能 */
 .pic5{
     margin-left:2px;
@@ -103,8 +115,8 @@ export default {
     width:100%;
     /* box-sizing: border-box; */
     text-align:center;
-    margin-left:30%;
-    margin-top:60px;
+    margin-left:9%;
+    margin-top:40px;
 }
 .handleBtns{
     margin-bottom:40px;
@@ -162,7 +174,7 @@ input::placeholder{
     margin-top:40px;
 } 
 .button{
-    margin-left:80%;
+    margin-left:70%;
     width:80px;height:30px;
 }
 .el-button{
@@ -180,4 +192,5 @@ input::placeholder{
     left: 10px;
     /* text-align: center; */
 }
+
 </style>

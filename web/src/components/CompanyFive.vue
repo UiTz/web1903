@@ -38,17 +38,19 @@
                 </a>  
             </div>
             <div class="handleBtns mr-5">
-                <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" src="../../public/img/speak/good-2.png" alt=""></span> 
-                    <span class="zan font-14">分享</span>   
-                </a>  
-                <ul>
-                    <li><a href="#">> 分享 </a></li><hr>
-                    <li><a href="#">QQ好友</a></li>
-                    <li><a href="#">微信/朋友圈</a></li>
-                    <li><a href="#">新浪微博</a></li>
-                    <li><a href="#">复制链接</a></li>
-                </ul>
+                <!-- <span class="pic5"><img class="mb-2" src="../../public/img/speak/good-2.png" alt=""></span>  -->
+                <el-dropdown>
+                <el-button type="none">
+                    分享
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>分享</el-dropdown-item>
+                    <el-dropdown-item>QQ好友</el-dropdown-item>
+                    <el-dropdown-item>微信/朋友圈</el-dropdown-item>
+                    <el-dropdown-item>新浪微博</el-dropdown-item>
+                    <el-dropdown-item>复制链接</el-dropdown-item>
+                </el-dropdown-menu>
+                </el-dropdown>
             </div>
             <div class="handleBtns">
                 <a href="javascript:;" style="text-decoration:none">
@@ -108,6 +110,9 @@ export default {
     font:12px;
 }
 /* 点赞等功能 */
+.pic5{
+    margin-left:2px;
+}
 .handleBtnsLine{
     width:100%;
     /* box-sizing: border-box; */
@@ -119,7 +124,7 @@ export default {
     margin-bottom:40px;
     position:relative;
     text-align:center;
-    width:100px;height:36px;
+    width:100px;height:34px;
     border:1px solid #A1A1A1;
     border-radius: 5px;
     /* background-color:#A1A1A1; */
@@ -171,8 +176,23 @@ input::placeholder{
     margin-top:40px;
 } 
 .button{
-    margin-left:920px;
+    margin-left:80%;
     width:80px;height:30px;
+}
+.el-button{
+    border: none;
+    height: 10px;
+    margin-top: 2px;
+    line-height: 9px;
+    /* opacity: 0; */
+}
+.el-button:focus, .el-button:hover{
+    background-color: #fff;
+    color: #606266;
+}
+.el-dropdown-menu{
+    left: 10px;
+    /* text-align: center; */
 }
 
 </style>
