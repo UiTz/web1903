@@ -5,17 +5,40 @@
             <div class="text-white my-font2">联系我们</div>
             <div class="w-100"></div>
             <div class="row m-0 d-flex">
-                <div class=" col-md-6 col-sm-12 p-0">
-                    <div class="aboutme mt-5">
-                        <input type="text" placeholder="姓名(必填)">
-                        <input type="text" placeholder="姓名(必填)">
-                        <input type="text" placeholder="姓名(必填)">
-                        <div class="btn">提交</div>
-                    </div>
+                <div class=" col-md-6 col-sm-12 mt-5 p-0">
+                    <h2>留言板</h2>
+                    <el-form :model="ruleForm"  ref="ruleForm"  class="demo-ruleForm">
+                        <el-form-item prop="name">
+                            <el-input v-model="ruleForm.name" placeholder="请输入昵称"></el-input>
+                        </el-form-item>
+                    <el-form-item prop="message">
+                        <el-input
+                        type="textarea"
+                        :autosize="{ minRows:8, maxRows: 15}"
+                        placeholder="留言"
+                        v-model="ruleForm.message">
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button @click="submitForm('ruleForm')">提交</el-button>
+                    </el-form-item>
+                    </el-form>
+                    <div class="infinite-list-wrapper">
+                    <ul
+                    
+                    class="list"
+                    v-infinite-scroll="loadmessage"
+                    infinite-scroll-disabled="disabled">
+                    <li v-for="item in list"  class="list-item">{{item}}</li>
+                    
+                    </ul>
+                    <p v-if="loading">加载中...</p>
+                    <p v-if="noMore">没有更多了</p>
+                </div>
                 </div>
                 <div class="about col-md-6 col-sm-12 p-0">
                     <div class="about-center">
-                        <p class="wu">Tasty bread</p>
+                        <h1 class="wu">Tasty bread</h1>
                         <p>XX烘焙坊 / XX餐饮管理有限公司</p>
                         <p>Add / 公司地址：上海市金山区亭林镇林盛路136号</p>
                         <p>Tel / 联系电话：400 - 000 - 0000</p>
@@ -30,8 +53,62 @@
 <script>
 export default {
     data(){
-        return {}
+        return {
+            list:[],
+        loading: false,
+            ruleForm:{
+                name:'',
+                message:''
+            }
+        }
     },
+     computed: {
+      noMore () {
+        return this.count >= 20
+      },
+      disabled () {
+        return this.loading || this.noMore
+      }
+    },
+     methods: {
+        loadmessage(){
+            this.loading = true;
+            var url="user/api/loading_message";
+            var count=this.list.length;
+            this.axios.get(url,{params:{count}}).then(result=>{
+           if(result.data.code===200){
+               console.log(result);
+               this.list=result.data.result;
+              this.loading = false;
+               console.log('success');
+            }else{
+                this.loading = false;
+                console.log("fail");
+            }
+       })
+        },
+      submitForm(formName) {
+       var url='user/api/message_board';
+       var msg=this.ruleForm.message;
+       var name=this.ruleForm.name;
+       if(name.length==0){
+           confirm("昵称不能为空");
+       }
+       if(msg.length<=5){
+            confirm("不能少于5个字符");return;
+       }
+       this.axios.get(url,{params:{msg,name}}).then(result=>{
+           if(result.data.code===200){
+               this.$alert('留言成功');
+               this.loadmessage();
+            }else{
+                this.$alert("留言失败",{confirmButtonText:'确定'});
+            }
+       })
+      },
+     mounted(){
+        this.loadmessage();
+     },
    /* methods:{
          //创建和初始化地图函数：
     initMap(){
@@ -129,6 +206,7 @@ export default {
     initMap()//创建和初始化地图
 }*/
 }
+}
 </script>
 <style scoped>
 .container{
@@ -149,6 +227,31 @@ export default {
     line-height: 60px;
     border-radius:80px 0;
     
+}
+h2{
+    color:rgb(177, 105, 57);
+    text-align: center;
+}
+.el-input{
+    width:100% !important;
+    
+}    
+.el-textarea__inner:hover{
+ border:1px solid rgb(177, 105, 57)!important;
+}
+
+.el-button{
+    width:150px;background:rgb(177, 105, 57);
+    color:#fff;
+    border-radius:5px;
+}
+.el-button:hover{
+    background:rgb(177, 105, 57);
+    color:#fff;
+}
+.el-button.is-active{
+    background:rgb(177, 105, 57);
+    color:#fff;
 }
 /*设置标题的下划线*/
 .my-font2+div{

@@ -54,7 +54,7 @@ import mindex from './views/moble/mindex.vue'
 import mcompany from './views/moble/mcompany.vue'
 Vue.use(Router)
 export default new Router({
-   mode: 'history',
+  mode:"hash",
   routes: [
     
     {path: '/',component:index,},

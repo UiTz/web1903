@@ -91,6 +91,7 @@ border:0;
 .my-font{
 font-size:14px;
 margin-top:5px;
+color:#fff;
 }
 </style>
 

@@ -1,19 +1,18 @@
 <template>
  <div class="main">
      <div class="d1 w-100"></div>
-<el-dialog title="用户登录" :before-close="handleclose" @click="cancel" :visible.sync="dialogFormVisible">
-  <el-form :model="form">
-    <el-form-item label="用户名" :label-width="formLabelWidth">
-      <el-input v-model="uname" autofocus :placeholder="unameHolder"></el-input>
+<el-dialog title="用户登录" :before-close="handleclose" :visible.sync="dialogFormVisible">
+  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+    <el-form-item label="用户名"  prop="uname">
+      <el-input type="text" v-model="ruleForm.uname" autofocus placeholder="请输入用户名"></el-input>
     </el-form-item>
-    <el-form-item label="密码" :label-width="formLabelWidth">
-      <el-input v-model="upwd" :placeholder="upwdHolder"></el-input>
+    <el-form-item label="密码"  prop="upwd">
+      <el-input type="password" v-model="ruleForm.upwd" placeholder="请输入密码"></el-input>
     </el-form-item>
-  </el-form>
-  <div slot="footer" class="dialog-footer">
-    <el-button  type="primary"  @click="login">登录</el-button>
-    <el-button @click="cancel">取 消</el-button>
-  </div>
+  <el-form-item >
+    <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+    </el-form-item>
+</el-form>
 </el-dialog>
 </div>
 </template>
@@ -21,36 +20,28 @@
   export default {
     data() {
        return{
-        unameHolder:"请输入用户名",
-       upwdHolder:"请输入密码",
-       uname:"",
-       upwd:"",
         dialogFormVisible: true,
-        form: {
-          name: '',
+        ruleForm: {
+          uname: '',
           upwd: '',
           delivery: false,
           type: [],
           resource: '',
           desc: ''
         },
-        formLabelWidth: '120px'
+        rules:{
+            uname:{required:true,message:"请输入用户名",trigger:'blur'},
+            upwd:{required:true,message:'请输入密码',trigger:'blur'}
+        }
        }
     },
     methods:{
-        login(){
-          var url="login";
-        var u=this.uname;
-        var p=this.upwd;
-        var reg=/^[a-z0-9A-Z_]{3,12}$/;
-        if(!reg.test(u)){
-            this.$toast("用户名格式不正确");return;
-        }
-        if(!reg.test(p)){
-            this.$toast("密码格式不正确");return;
-        }
+        submitForm(formName) {
+        var url="user/api/login";
+        var u=this.ruleForm.uname;
+        var p=this.ruleForm.upwd;
         var obj={uname:u,upwd:p};
-        this.axios.get(url,{params:obj}).then(result=>{
+        this.axios.post(url,obj).then(result=>{
             if(result.data.code===200){
                  this.$alert('登录成功',{callback:action=>{this.$router.push('/');}});
                 
@@ -59,9 +50,6 @@
             }
         })
         },
-    cancel(){
-        this.$router.push('/');
-    },
     handleclose(){
         this.$router.push('/');
   }
@@ -81,6 +69,15 @@
 }
 /*设置对话框宽度*/
 .el-input{
-    width:60%;margin-left:3%;
+    width:60% !important;
+    margin-right: 200px;
+}
+.el-form-item__error{
+    margin-left:8%;
+}
+.el-button{
+    margin-left:-20% !important;
+    border-radius: 5px !important;
+    width:150px;
 }
 </style>

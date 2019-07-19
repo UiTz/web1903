@@ -41,7 +41,9 @@ export default {
   data(){
       return{}
   },
-  
+  created:function () {
+            this.$emit('myfooter', false);
+        }
 }
 </script>
 <style>

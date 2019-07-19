@@ -1,25 +1,25 @@
 <template>
 <div>
     <div class="d1 w-100"></div>
-  <el-dialog :before-close="handleclose" title="用户注册" @click="cancel" :visible.sync="dialogFormVisible">
-  <el-form :model="form">
-    <el-form-item label="用户名" :label-width="formLabelWidth">
-      <el-input v-model="uname" autofocus placeholder="请输入用户名"></el-input>
+  <el-dialog :before-close="handleclose" title="用户注册" :visible.sync="dialogFormVisible">
+  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-form-item label="用户名"  prop="uname">
+      <el-input type="text" v-model="ruleForm.uname" autofocus placeholder="请输入用户名"></el-input>
     </el-form-item>
-    <el-form-item label="密码"  :label-width="formLabelWidth">
-      <el-input v-model="upwd" placeholder="请输入密码"></el-input>
+    <el-form-item label="密码"   prop="upwd">
+      <el-input type="password" v-model="ruleForm.upwd" placeholder="请输入密码"></el-input>
     </el-form-item>
-    <el-form-item label="邮箱"  :label-width="formLabelWidth">
-      <el-input v-model="email" placeholder="请输入邮箱"></el-input>
+    <el-form-item label="邮箱" prop="emails" >
+      <el-input v-model="ruleForm.emails" auto-complete="off" placeholder="请输入邮箱"></el-input>
     </el-form-item>
-    <el-form-item label="电话"  :label-width="formLabelWidth">
-      <el-input v-model="phone" placeholder="请输入电话"></el-input>
+    <el-form-item label="电话" prop="phone">
+      <el-input v-model="ruleForm.phone" auto-complete="off" placeholder="请输入电话"></el-input>
     </el-form-item>
-  </el-form>
-  <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="register">提交</el-button>
-    <el-button @click="cancel">取 消</el-button>
-  </div>
+   <el-form-item>
+    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+    <el-button @click="resetForm('ruleForm')">重置</el-button>
+     </el-form-item>
+     </el-form>
 </el-dialog>
 </div>
 </template>
@@ -27,65 +27,60 @@
 export default {
   data(){
       return{
-          activeIndex:1,
-        dialogFormVisible:true,
-        uname:'',
-          upwd: '',
-          email: '',
-         phone: '',
-        form:{
+          dialogFormVisible:true,
+        ruleForm:{
           uname: '',
           upwd: '',
-          email: '',
+          emails: '',
           phone: '',
           delivery: false,
           type: [],
           resource: '',
           desc: ''
         },
-        formLabelWidth: '120px'
-      }
-         
-  },
-methods:{
-    register(){
-        var url='register';
-        var u=this.uname;
-        var p=this.upwd;
-        var e=this.email;
-        var t=this.phone;
-        var reg=/^[a-z0-9_]{3,12}$/i;
-        var reg1=/^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
-        var reg2=/^[1][3456789]\d{9}$/;
-        if(!reg.test(u)){
-            confirm("用户名格式不正确");return;
+          rules:{
+            uname:[
+                {required:true,message:"用户名不能为空",trigger:'blur'},
+                {pattern:/^[a-zA-Z0-9_-]{4,16}$/,message:"长度在4到16个字符",trigger:'blur'}
+            ],
+            upwd:[
+                {required:true,message:'请输入密码',trigger:'blur'},
+                {min:6,max:20,message:'6~20位字符',trigger:'blur'}
+            ],
+            emails:[
+                {required:true,message:'请输入邮箱地址',trigger:'blur'},
+                {type:'email',message:'请输入正确的邮箱地址',trigger:'blur'}
+            ],
+            phone:[
+                {required:true,message:'请输入电话号码',trigger:'blur'},
+                {pattern:/^[1][3456789]\d{9}$/,message:'请输入正确的电话',trigger:'blur'}
+            ]
+          }
         }
-        if(!reg.test(p)){
-            confirm("密码格式不正确");return;
-        }
-        if(!reg1.test(e)){
-            confirm("邮箱格式不正确");return;
-        }
-        if(!(reg2.test(t))){
-            confirm("电话格式不正确");return;
-        }
-        var obj={uname:u,upwd:p,email:e,tel:t};
-        this.axios.get(url,{params:obj}).then(result=>{
-            if(result.data.code==200){
+      },        
+   methods:{
+    submitForm(formName) {
+        var url='user/api/register';
+        var u=this.ruleForm.uname;
+        var p=this.ruleForm.upwd;
+        var e=this.ruleForm.emails;
+        var t=this.ruleForm.phone;
+        var obj={uname:u,upwd:p,email:e,phone:t};
+        this.axios.post(url,obj).then(result=>{
+            if(result.data.code===200){
                this.$alert('提交成功',{callback:action=>{this.$router.push('/');}});
             }else{
                 this.$alert("提交失败",{confirmButtonText:'确定'});
             }
         })
     },
-    cancel(){
-        this.$router.push('/');
-    },
+   resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
     handleclose(){
         this.$router.push('/');
   }
-    }
-    
+    } 
 }
 </script>
 <style>
@@ -101,7 +96,13 @@ methods:{
 }
 .el-input{
     width:60% !important;
-    margin-right: 100px;
+    margin-right: 200px;
+}
+.el-form-item__error{
+    margin-left:8%;
+}
+.el-button{
+    border-radius: 5px !important;
 }
 </style>
 
