@@ -1,29 +1,33 @@
 <template>
     <div class="container">
-        <div class="title">酸奶芝士蛋糕的做法 无油低热不腻</div>
+        <mmyheader></mmyheader> 
+        <div class="title p-3">杨枝甘露蛋糕的做法 还会爆浆噢</div>
         <div class="center">
-            <span>2019-05-25 15:35:18</span>
+            <span class="p-2">2019-05-25 15:35:18</span>
             <span class="ml-4">来自</span>
             <span class="ml-4" style="color:blue;">杨楚</span>
         </div>
-        <div class="mt-5"><img src="../../public/img/company/company-2.png" alt=""></div>
+        <div class="mt-5"><img class="mpic" src="../../../public/img/company/company-4.png" alt=""></div>
         <!-- 文字说明 -->
-        <div class="bottom mt-5">   
-            <p>无油酸奶蛋糕，口感细腻柔滑的芝士蛋糕让人难以拒绝，每一口都含有浓郁的芝士香味，但是夏天吃芝士蛋糕，实在太腻了，而且它的高热量高脂肪让人感到压力。</p>
-            <p>不添加一滴油的酸奶蛋糕就是炎炎夏日的最佳选择，采用水浴法烤制的蛋糕，可以保持柔嫩，酸奶的加入令蛋糕的口感更加细腻香醇，入口即化，让人感觉在吃芝士蛋糕。</p>
-            <p>因为一滴油都没有加入，所以这个的热量很低，爽口不腻，做出来的蛋糕也不容易开裂，幸福感爆棚！</p>
-            <p class="mt-5"> <strong>材料:</strong> 酸奶200克，鸡蛋4个，低筋面粉50克，玉米淀粉25克，细砂糖70克，柠檬汁几滴</p>
+        <div class="bottom mt-5 p-3">   
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;吃过杨枝甘露的人大概都会爱上它的味道，满满的芒果味，还有Q弹的西米，一碗下肚，超级满足。</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;万万没想到，杨枝甘露也能与蛋糕结合，还会爆浆！</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轻轻切开蛋糕，内部的奶油酱和表面的芒果如“火山爆发”一样流出来，看着就很有食欲。</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用勺子尝一口，嘴里充满芒果的香甜，还有裹着香浓椰浆的软糯西米，口感丰富，甜而不腻，真的超级好吃！</p>
+            
+            <p class="mt-5"> <strong>戚风蛋糕材料:</strong> 鸡蛋4只，细砂糖80克，低筋面粉40克，色拉油40克, 牛奶40克</p>
+            <p> <strong>淋面材料:</strong> 淡奶油200克，糖粉20克，西米100克，椰浆100克，芒果2个，西柚少许</p>
             <p class="copyright mt-5">资讯编号：ZN000004642</p>
         </div>
         <!-- 点赞-分享 -->
         <div class="handleBtnsLine d-flex">
-            <div class="handleBtns mr-5">
+            <div class="handleBtns mr-1">
                 <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" src="../../public/img/speak/good-1.png" alt=""></span> 
+                    <span class="pic0 mr-2"><img class="mb-2" src="../../../public/img/speak/good-1.png" alt=""></span> 
                     <span class="zan font-14">点赞</span>   
                 </a>  
             </div>
-            <div class="handleBtns mr-5">
+            <div class="handleBtns mr-1">
                 <!-- <span class="pic5"><img class="mb-2" src="../../public/img/speak/good-2.png" alt=""></span>  -->
                 <el-dropdown>
                 <el-button type="none">
@@ -38,15 +42,15 @@
                 </el-dropdown-menu>
                 </el-dropdown>
             </div>
-            <div class="handleBtns">
+            <div class="handleBtns mr-1">
                 <a href="javascript:;" style="text-decoration:none">
-                    <span class="pic0 mr-2"><img class="mb-2" style="width:20px;height:20px;" src="../../public/img/speak/good-3.png" alt=""></span> 
+                    <span class="pic0 mr-2"><img class="mb-2" style="width:20px;height:20px;" src="../../../public/img/speak/good-3.png" alt=""></span> 
                     <span class="zan font-14">举报</span>   
                 </a>  
             </div>
         </div>
         <!-- 评论区 -->
-        <div class="discuss">
+        <div class="discuss p-3">
             <div>
                 <span><strong>| 评论</strong></span>
                 <span class="ml-3">共0条评论</span>
@@ -57,18 +61,22 @@
                     <input type="text" placeholder="我来说两句" class="speak">
                 </div>
                 <div class="mt-1 m-1"> 
-                    <img style="width:20px;height:20px;" src="../../public/img/speak/good-5.png" alt=""> 表情
+                    <img style="width:20px;height:20px;" src="../../../public/img/speak/good-5.png" alt=""> 表情
                     <button class="button">提交</button>
                 </div>
             </div>
-            <div class="kong mt-3"><img src="../../public/img/speak/good-4.png" alt=""></div>
+            <div class="kong mt-3"><img src="../../../public/img/speak/good-4.png" alt=""></div>
         </div> 
     </div>
 </template>
 <script>
+import mmyheader from '../../components/moble/mmyheader'
 export default {
     data(){
         return{}
+    },
+    components:{
+        mmyheader 
     }
 }
 </script>
@@ -76,6 +84,10 @@ export default {
 .container{
     margin:0;padding:0;
     margin:0 auto;
+}
+.mpic{
+    width:350px;height:260px;
+    margin-left:12px;
 }
 .title{
     font-weight: bold;
@@ -103,8 +115,8 @@ export default {
     width:100%;
     /* box-sizing: border-box; */
     text-align:center;
-    margin-left:30%;
-    margin-top:60px;
+    margin-left:9%;
+    margin-top:40px;
 }
 .handleBtns{
     margin-bottom:40px;
@@ -162,7 +174,7 @@ input::placeholder{
     margin-top:40px;
 } 
 .button{
-    margin-left:80%;
+    margin-left:70%;
     width:80px;height:30px;
 }
 .el-button{
@@ -180,4 +192,5 @@ input::placeholder{
     left: 10px;
     /* text-align: center; */
 }
+
 </style>

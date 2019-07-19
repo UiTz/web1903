@@ -83,7 +83,5 @@ line-height: 60px;
 border-radius:0 !important;
 border:0 !important;
 }
-.myfont{
-    
-}
+
 </style>
