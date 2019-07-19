@@ -162,10 +162,10 @@ app.get('/user/api/message_board',(req,res)=> {
 // 查询用户留言板
 app.get('/user/api/loading_message',(req,res)=> {
   console.log('收到请求');
-  let count = Number(req.query.count);
-  console.log(count);
-  let sql = 'SELECT * FROM message_board LIMIT 10';
-  query(sql,[count],(err,result)=> {
+  //let count = Number(req.query.count);
+  //console.log(count);
+  let sql = 'SELECT * FROM message_board ORDER BY date DESC';
+  query(sql,[],(err,result)=> {
     if (err) throw err;
     console.log(result);
     if (result.length > 0) {

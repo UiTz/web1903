@@ -13,7 +13,7 @@ export default {
     return {
       header_show:true,
       footer_show:true
-    } 
+    }
   },
   components:{
       "my-header":myheader,
@@ -43,4 +43,13 @@ export default {
 }
 </script>
 <style>
+  ul,p{
+    margin: 0;
+    padding: 0;
+  }
+  li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 </style>

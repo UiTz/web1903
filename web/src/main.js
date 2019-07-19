@@ -7,7 +7,8 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import axios from "axios"
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://176.30.9.188:3000/';
+//axios.defaults.baseURL = 'http://176.30.9.188:3000/';
+axios.defaults.baseURL = 'http://127.0.0.1:3000/';
 Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 /*import myheader from './components/myheader'
