@@ -16,11 +16,11 @@ import myfooter from './components/myfooter'*/
 import myheader from './components/myheader'
 import myfooter from './components/myfooter'
 import ElementUI from 'element-ui'
+Vue.use(ElementUI);
 import 'element-ui/lib/theme-chalk/index.css'
 import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
 Vue.use(Mint);
-
-Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 /*Vue.component("my-header",myheader);

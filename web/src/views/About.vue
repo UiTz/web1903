@@ -25,12 +25,10 @@
                     </el-form>
                     <div class="infinite-list-wrapper">
                     <ul
-                    
                     class="list"
                     v-infinite-scroll="loadmessage"
                     infinite-scroll-disabled="disabled">
-                    <li v-for="item in list"  class="list-item">{{item}}</li>
-                    
+                    <li v-for="item in list"  class="list-item">{{item.msg}}</li>
                     </ul>
                     <p v-if="loading">加载中...</p>
                     <p v-if="noMore">没有更多了</p>
@@ -92,10 +90,10 @@ export default {
        var msg=this.ruleForm.message;
        var name=this.ruleForm.name;
        if(name.length==0){
-           confirm("昵称不能为空");
+           this.$alert("昵称不能为空");return;
        }
        if(msg.length<=5){
-            confirm("不能少于5个字符");return;
+            this.$alert("不能少于5个字符");return;
        }
        this.axios.get(url,{params:{msg,name}}).then(result=>{
            if(result.data.code===200){
@@ -227,6 +225,9 @@ export default {
     line-height: 60px;
     border-radius:80px 0;
     
+}
+.list{
+    list-style-type: none;
 }
 h2{
     color:rgb(177, 105, 57);
