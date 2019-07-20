@@ -13,7 +13,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 h5{
     width:100%;height:50px;
     text-align: center;
