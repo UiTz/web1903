@@ -20,7 +20,7 @@
             <p>所有产品都在店内现做、现烘、现卖，提供新鲜即食的食品，大玻璃透视的作业空间，完全展现在顾客眼前，使店员、顾客、商品三者之间作最人性化的直接交流。</p>
             <p>所有产品都在店内现做、现烘、现卖，提供新鲜即食的食品，大玻璃透视的作业空间，完全展现在顾客眼前，使店员、顾客、商品三者之间作最人性化的直接交流。</p>
             <router-link class='router-link1' to='/mproduct'>了解更多</router-link>
-        </div> 
+        </div>
         <div class="item1 mt-5">
           <div class="my-style1">
             <h5 class="text-center" style="margin-top:20px">未漂白 · 面粉</h5>
@@ -81,7 +81,7 @@ export default {
       return{}
   },
   components:{
-      mmyheader
+    mmyheader
   }
 }
 </script>
