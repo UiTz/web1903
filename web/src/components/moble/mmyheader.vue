@@ -5,7 +5,7 @@
 		<h4 class="my-font mt-4">Tastybread</h4>
       <el-dropdown>
   <span class="el-dropdown-link">
-    <i class="el-icon-circle-plus-outline"></i>
+    <i class="el-icon-circle-plus-outline text-dark"></i>
   </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item><router-link class="text-dark" to="/mindex">首页</router-link></el-dropdown-item>

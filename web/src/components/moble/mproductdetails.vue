@@ -1,8 +1,12 @@
 <template>
 <div>
 <div class="top d-flex">
-<i class="el-icon-arrow-left"></i>
-<i class="el-icon-shopping-cart-full mt-3"></i>
+<router-link to="/mproduct" slot="left">
+<mt-button icon="back" class="mybtn"></mt-button>
+</router-link>
+<router-link to="/mlogin">
+<i class="el-icon-shopping-cart-full mt-3 text-dark"></i>
+</router-link>
  <el-col>
     <el-dropdown trigger="click">
       <span class="el-dropdown-link">
@@ -10,7 +14,7 @@
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item icon="el-icon-s-comment">消息</el-dropdown-item>
-        <el-dropdown-item icon="el-icon-s-home">首页</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-s-home"><router-link to="/mindex" class="text-dark">首页</router-link></el-dropdown-item>
         <el-dropdown-item icon="el-icon-share">分享</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -24,10 +28,40 @@
 <span class="float-right px-1 mr-1 bg-primary">联系我们</span></div>
 <p class="mt-1">奶酥核桃吐司</p >
 <mt-cell title="发货期：1天"></mt-cell >
-<mt-cell title="产品参数" is-link ></mt-cell>
+<mt-cell title="产品参数">
+  <i @click="popupVisible= true" class="el-icon-arrow-right mt-3"></i>
+<mt-popup
+  v-model="popupVisible"
+  position="bottom">
+  <mt-cell title="产品参数"></mt-cell>
+  <mt-cell title="单位：项"></mt-cell>
+  <mt-cell title="产品ID：M00000025550"></mt-cell>
+  <mt-cell title="产地：上海"></mt-cell>
+</mt-popup>
+</mt-cell>
 <mt-cell title="发货方式：虚拟产品"></mt-cell>
-<mt-cell title="产品评论(0)" is-link>
-<span style="color:red;">查看全部</span></mt-cell>
+<mt-cell title="产品评论(0)">
+  <span style="color:red;"  @click="popupVisible1= true">查看全部</span>
+</mt-cell>
+<mt-popup
+  v-model="popupVisible1"
+  position="right">
+  <mt-cell title="评价" class="mywrapper">
+  <router-link to="/mproductdetails" slot="left">
+    <mt-button icon="back"></mt-button>
+  </router-link>
+  </mt-cell>
+  <div style="border-bottom:1px solid #ddd">
+  <mt-button class="btn">全部(0)</mt-button>
+  <mt-button class="btn">最新(0)</mt-button>
+  <mt-button class="btn">有图(0)</mt-button>
+  <mt-button class="btn">好评(0)</mt-button>
+  <mt-button class="btn">中评(0)</mt-button>
+  <mt-button class="btn">差评(0)</mt-button>
+  <mt-button class="btn">追评(0)</mt-button>
+  </div>
+  <img  src="../../../public/img/header/view.png" alt="">
+</mt-popup>
 <mt-cell title="暂无评论"></mt-cell>
 <mt-cell title="详细描述"></mt-cell>
 <mt-cell title="奶酥核桃吐司"></mt-cell>
@@ -54,18 +88,39 @@
 </mt-tabbar>
 </div>
 </template>
-<script>
+<script scoped>
 export default {
 data(){
-return{ 
-
-}
-}
+return{popupVisible:false,
+popupVisible1:false}
+ }
 }
 </script>
 <style>
 footer {
 display:none !important;
+}
+.mint-button{
+  background:pink !important;
+}
+.mint-button::after{
+  background:red !important;
+  border:0 !important;
+}
+.mint-popup-right{
+  top:34% !important;
+}
+.mint-cell-wrapper{
+  width:100% !important;
+  
+}
+.mywrapper{
+background:#ddd !important;
+}
+.mint-button
+{
+  background:rgba(216,62,62,0.001) !important;
+  margin-top:5px;
 }
 .top{
 position:fixed;

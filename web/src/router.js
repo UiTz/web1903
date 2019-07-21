@@ -57,6 +57,7 @@ import mlogin from './components/moble/mlogin.vue'
 
 
 
+
 import mproduct from './views/moble/mproduct.vue'
 import mindex from './views/moble/mindex.vue'
 import mcompany from './views/moble/mcompany.vue'

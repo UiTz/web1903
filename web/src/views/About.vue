@@ -34,32 +34,32 @@
                     </div> 
                 </div>
             </div>
-            <div class="infinite-list-wrapper">
-                        <h2 class="text-center mb-5">留言墙</h2>
-                    <ul
-                    class="list" 
+            <div class="infinite-list-wrapper row">
+                <div class="col-md-9 col-sm-12">
+                    <h2 class="text-center mb-5">留言墙</h2>
+                    <ul class="list  myborder" 
                     v-infinite-scroll="loadmessage"
                     infinite-scroll-disabled="disabled">
-                    <li @click="randomColorOn" v-for="item in list" class="listitem mt-2">
-                        <a  href="javascript:;">
+                    <li v-for="item in list" class="mt-5 ml-4">
+                        <a style="text-decoration:none" href="javascript:;">
                         <div>
                         <h6>{{item.date}}</h6>
-                        <p>from{{item.name}}：</p>
+                        <p>来自{{item.name}}</p>
                         <p>{{item.msg}}</p>
                         </div>
                         </a>
                       </li>
                     </ul>
-                    <p v-if="loading"></p>
+                    <p v-if="loading">加载中...</p>
                     <p v-if="noMore">没有更多了</p>
                 </div>
+                <div class="col-md-3 col-sm-12"></div>
             <!--<div class="map" style="width:1030px;height:320px;border:#ccc solid 1px;" id="dituContent"></div>-->
+    </div>
     </div>
     </div>
 </template>
 <script> 
-var giveColor = document.getElementsByClassName('listitem');
-var color = ['#578fff', '#8c9ffd', '#ff7ea2', '#ffbf43', '#74dde3', 'red'];
 export default {
     data(){
         return {
@@ -86,7 +86,7 @@ export default {
             var count=this.list.length;
             this.axios.get(url,{params:{count}}).then(result=>{
            if(result.data.code===200){
-               console.log(result);
+              // console.log(result);
                this.list=result.data.result;
               this.loading = false;
                console.log('success');
@@ -115,22 +115,9 @@ export default {
             }
        })
       },
-     mounted(){
+     computed(){
         this.loadmessage();
-        randomColorOn(giveColor,color);
-     },
-     randomColorOn(giveColor,color){//参数1为获取的元素组，参数二为获取的颜色组
-	var arr2 = [];
-	for(var i = color.length; i > 0; i--) {
-		const num = Math.floor(Math.random() * color.length); //获取随机数
-		arr2.push(color[num]); //把随机数添加到数组中
-		color.splice(num, 1); //删除原有数组的颜色
-	}
-				 
-	for(var j = 0; j < giveColor.length; j++) {
-		giveColor[j].style.backgroundColor = arr2[j];
-		}
-	}
+     }
    /* methods:{
          //创建和初始化地图函数：
     initMap(){
@@ -235,6 +222,9 @@ export default {
     padding:0;
     margin:0 auto;
 }
+.layedit-tool-face{
+    font-size:18px;
+}
 .item{
     background:url("../../public/img/about/about-1.png") no-repeat;
     background-size:100% 100%;
@@ -243,9 +233,63 @@ export default {
 h5{
     color:rgb(177, 105, 57);
 }
+.myborder{
+    border:1px solid #FAC8C8;
+}
+ul{
+    float:left;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+ul a{
+        box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.4);
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+    text-decoration: none;
+    color: #000;
+    background-color: #ffc;
+    padding: 1em;
+    cursor: default;
+        font: 13px/1.3 "Microsoft Yahei", 宋体;
+        color:#000;
+}
+ul a:before{
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 35%;
+    width: 50px;
+    height: 30px;
+    background-color: rgba(255, 255, 204, 0.5);
+    border-left: 1px dashed rgba(0, 0, 0, 0.1);
+    border-right: 1px dashed rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+}
+ul li{
+    float: left;
+}
+ul li:nth-child(even) a {
+    position: relative;
+    top:50px; left:50px;
+    background-color: #cfc;
+}
+ul li:nth-child(3n) a {
+    position: relative;
+    background-color: #ccf;
+}
+ul li:nth-child(5n) a {
+    position: relative;
+    background-color: #FAC8C8;
+}
 li>a{
-    background-color:rgb();
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.4);
+    background-color:#ffffcc;
+    box-shadow:5px 5px 5px rgba(33, 33, 33, 0.4);
     position: relative;
     display: inline-block;
     font-size: 100%;

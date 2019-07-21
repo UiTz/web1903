@@ -7,8 +7,8 @@
             <div class="w-100 ml-3"></div>
                     <div class="aboutme mt-5">
                         <input type="text" placeholder="姓名(必填)">
-                        <input type="text" placeholder="姓名(必填)">
-                        <input type="text" placeholder="姓名(必填)">
+                        <input type="text" placeholder="手机(必填)">
+                        <input type="text" placeholder="留言(必填)">
                         <div class="btn">提交</div>
                     </div>
                     <div class="about-center">
