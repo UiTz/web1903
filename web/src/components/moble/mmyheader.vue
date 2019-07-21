@@ -5,14 +5,14 @@
 		<h4 class="my-font mt-4">Tastybread</h4>
       <el-dropdown>
   <span class="el-dropdown-link">
-    <i class="el-icon-circle-plus-outline"></i>
+    <i class="el-icon-circle-plus-outline text-dark"></i>
   </span>
   <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item><router-link to="/mindex">首页</router-link></el-dropdown-item>
-    <el-dropdown-item><router-link to="/mproduct">产品专区</router-link></el-dropdown-item>
-    <el-dropdown-item><router-link to="/mjoin">加盟代理</router-link></el-dropdown-item>
-    <el-dropdown-item><router-link to="/mcompany">企业加盟</router-link></el-dropdown-item>
-    <el-dropdown-item><router-link to="/mabout">联系我们</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link class="text-dark" to="/mindex">首页</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link class="text-dark" to="/mproduct">产品专区</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link class="text-dark" to="/mjoin">加盟代理</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link class="text-dark" to="/mcompany">企业加盟</router-link></el-dropdown-item>
+    <el-dropdown-item><router-link class="text-dark" to="/mabout">联系我们</router-link></el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
 </div>

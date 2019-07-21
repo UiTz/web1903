@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css'
 import axios from "axios"
 axios.defaults.withCredentials = true;
 //axios.defaults.baseURL = 'http://176.30.9.188:3000/';
-axios.defaults.baseURL = 'http://127.0.0.1:3000/';
+axios.defaults.baseURL = 'http://localhost:3000/';
 Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 /*import myheader from './components/myheader'
@@ -17,11 +17,11 @@ import myfooter from './components/myfooter'*/
 import myheader from './components/myheader'
 import myfooter from './components/myfooter'
 import ElementUI from 'element-ui'
+Vue.use(ElementUI);
 import 'element-ui/lib/theme-chalk/index.css'
 import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
 Vue.use(Mint);
-
-Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 /*Vue.component("my-header",myheader);

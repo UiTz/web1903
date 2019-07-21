@@ -39,6 +39,7 @@ import CompanyThree from './components/CompanyThree.vue'
 import CompanyFour from './components/CompanyFour.vue'
 import CompanyFive from './components/CompanyFive.vue'
 import CompanySix from './components/CompanySix.vue'
+
 //
 //import mproduct from './views/moble/mproduct.vue'
 //
@@ -52,6 +53,7 @@ import mcompanythree from './components/moble/mcompanythree.vue'
 import mcompanyfour from './components/moble/mcompanyfour.vue'
 import mcompanyfive from './components/moble/mcompanyfive.vue'
 import mcompanysix from './components/moble/mcompanysix.vue'
+import mlogin from './components/moble/mlogin.vue'
 
 
 
@@ -110,5 +112,6 @@ export default new Router({
     {path:'/mcompanyfive',component:mcompanyfive},
     {path:'/mcompanysix',component:mcompanysix},
     {path:'/mabout',component:mabout},
+    {path:'/mlogin',component:mlogin}
   ],
 })

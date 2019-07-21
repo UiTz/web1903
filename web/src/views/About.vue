@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="item"></div>
-        <div class="container">
+        <div class="container"> 
             <div class="text-white my-font2">联系我们</div>
             <div class="w-100"></div>
             <div class="row m-0 d-flex">
                 <div class=" col-md-6 col-sm-12 mt-5 p-0">
-                    <h2>留言板</h2>
+                    <h2>留言</h2>
                     <el-form :model="ruleForm"  ref="ruleForm"  class="demo-ruleForm">
                         <el-form-item prop="name">
                             <el-input v-model="ruleForm.name" placeholder="请输入昵称"></el-input>
@@ -20,7 +20,7 @@
                         </el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button @click="submitForm('ruleForm')">提交</el-button>
+                        <el-button @click="submitForm('ruleForm')">留言</el-button>
                     </el-form-item>
                     </el-form>
                 </div>
@@ -31,138 +31,93 @@
                         <p>Add / 公司地址：上海市金山区亭林镇林盛路136号</p>
                         <p>Tel / 联系电话：400 - 000 - 0000</p>
                         <p>Eml/电子邮件：jianzhan@zuma.com</p>
-                    </div>
+                    </div> 
                 </div>
             </div>
-            <div class="infinite-list-wrapper">
-                <ul  class="list"  v-infinite-scroll="loadpage"  infinite-scroll-disabled="disabled">
-                    <li v-for="item in messagelist"  class="list-item">
-                        <div class="messageusername">{{item.name}}</div>
-                        <div class="messagecontent">{{item.msg}}</div>
-                        <div class="messagetime">{{item.date}}</div>
-                    </li>
+            <div class="infinite-list-wrapper row">
+                <div class="col-md-9 col-sm-12">
+                    <h2 class="text-center mb-5">留言墙</h2>
+                    <ul class="list  myborder" 
+                    v-infinite-scroll="loadmessage"
+                    infinite-scroll-disabled="disabled">
+                    <li v-for="item in list" class="mt-5 ml-4">
+                        <a style="text-decoration:none" href="javascript:;">
+                        <div>
+                        <h6>{{item.date}}</h6>
+                        <p>来自{{item.name}}</p>
+                        <p>{{item.msg}}</p>
+                        </div>
+                        </a>
+                      </li>
+                    </ul>
                     <p v-if="loading">加载中...</p>
                     <p v-if="noMore">没有更多了</p>
-                </ul>
-                
-            </div>
-            
-            <div class="map" style="width:1030px;height:320px;border:#ccc solid 1px;" id="dituContent"></div>
-        </div>
+                </div>
+                <div class="col-md-3 col-sm-12"></div>
+            <!--<div class="map" style="width:1030px;height:320px;border:#ccc solid 1px;" id="dituContent"></div>-->
+    </div>
+    </div>
     </div>
 </template>
-<script>
-    export default {
+<script> 
+export default {
     data(){
         return {
-            list:[], // 存储的所有数据
-            messagelist: [
-            ], // 分页后展示页面的数据
-            loading: false,
+            list:[],
+        loading: false,
             ruleForm:{
                 name:'',
                 message:''
-            },
-            page: {
-                pageIndex: 1,
-                totalcount: 9999999,
-                pageSize: 15
             }
         }
     },
-    mounted(){
-        // this.loadmessage();
-    },
-    computed: {
+     computed: {
       noMore () {
-          return this.messagelist.length >= this.page.totalcount
+        return this.count >= 20
       },
       disabled () {
         return this.loading || this.noMore
       }
     },
      methods: {
-        loadpage () {
-            const that = this;
-            const list = this.list;
-            if(this.list.length === 0){
-                this.loadmessage()
-            } else {
-                let page = this.page;
-                console.log(this.list.length);
-                console.log(this.messagelist.length)
-                /*if(this.messagelist.length >= this.list.length){
-                    this.loading = false;
-                    this.noMore = true;
-                    return false
-                }*/
-                this.loading = true;
-                this.page.pageIndex ++
-                let start = (this.page.pageIndex-1) * page.pageSize;
-                let end = 0;
-                if(this.page.pageIndex *  page.pageSize < list.length){
-                    end = this.page.pageIndex *  page.pageSize;
-                }else{
-                    end = list.length;
-                }
-                console.log(end)
-                setTimeout(function () {
-                    that.messagelist = that.messagelist.concat(list.splice(start,end))
-                    that.loading = false
-                },1000)
-            }
-        },
         loadmessage(){
             this.loading = true;
             var url="user/api/loading_message";
             var count=this.list.length;
-            this.loading = false;
-            this.axios.get(url,{}).then(result=>{
-               if(result.data.code===200){
-                   let list=result.data.result;
-                   this.page.totalcount = list.length;
-                   if(list.length < this.page.pageSize){
-                       this.messagelist = list
-                       this.list = list;
-                       this.page.totalcount = list.length;
-                   }else{
-                       this.list = list;
-                       let componetlist = JSON.stringify(list);
-                       componetlist = JSON.parse(componetlist)
-                       this.messagelist = this.messagelist.concat(componetlist.splice(0,this.page.pageSize));
-                   }
-                   this.loading = false;
-               }else{
-                    this.loading = false;
-                    console.log("fail");
-                }
-            })
-            
+            this.axios.get(url,{params:{count}}).then(result=>{
+           if(result.data.code===200){
+              // console.log(result);
+               this.list=result.data.result;
+              this.loading = false;
+               console.log('success');
+            }else{
+                this.loading = false;
+                console.log("fail");
+            }
+       })
         },
       submitForm(formName) {
        var url='user/api/message_board';
        var msg=this.ruleForm.message;
        var name=this.ruleForm.name;
        if(name.length==0){
-           confirm("昵称不能为空");
+           this.$alert("昵称不能为空");return;
        }
        if(msg.length<=5){
-            confirm("不能少于5个字符");return;
+            this.$alert("不能少于5个字符");return;
        }
        this.axios.get(url,{params:{msg,name}}).then(result=>{
            if(result.data.code===200){
-               this.messagelist = [];
-               this.list = [];
-               this.page.pageIndex = 1;
-               this.page.totalcount = 99999;
-               this.loading = false;
-               // this.loadpage();
                this.$alert('留言成功');
+               this.loadmessage();
             }else{
                 this.$alert("留言失败",{confirmButtonText:'确定'});
             }
        })
       },
+     computed(){
+        this.loadmessage();
+     }
    /* methods:{
          //创建和初始化地图函数：
     initMap(){
@@ -262,16 +217,85 @@
 }
 }
 </script>
-<style scoped lang="scss">
-@import url("//unpkg.com/element-ui@2.10.0/lib/theme-chalk/index.css");
+<style scoped>
 .container{
     padding:0;
     margin:0 auto;
+}
+.layedit-tool-face{
+    font-size:18px;
 }
 .item{
     background:url("../../public/img/about/about-1.png") no-repeat;
     background-size:100% 100%;
     width:100%;height:400px;
+}
+h5{
+    color:rgb(177, 105, 57);
+}
+.myborder{
+    border:1px solid #FAC8C8;
+}
+ul{
+    float:left;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+ul a{
+        box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.4);
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+    text-decoration: none;
+    color: #000;
+    background-color: #ffc;
+    padding: 1em;
+    cursor: default;
+        font: 13px/1.3 "Microsoft Yahei", 宋体;
+        color:#000;
+}
+ul a:before{
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 35%;
+    width: 50px;
+    height: 30px;
+    background-color: rgba(255, 255, 204, 0.5);
+    border-left: 1px dashed rgba(0, 0, 0, 0.1);
+    border-right: 1px dashed rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+}
+ul li{
+    float: left;
+}
+ul li:nth-child(even) a {
+    position: relative;
+    top:50px; left:50px;
+    background-color: #cfc;
+}
+ul li:nth-child(3n) a {
+    position: relative;
+    background-color: #ccf;
+}
+ul li:nth-child(5n) a {
+    position: relative;
+    background-color: #FAC8C8;
+}
+li>a{
+    background-color:#ffffcc;
+    box-shadow:5px 5px 5px rgba(33, 33, 33, 0.4);
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+    padding: 1em;
+    cursor: default;
+    display: inline-block;
 }
 .my-font2{
     margin-top:50px;
@@ -283,6 +307,10 @@
     border-radius:80px 0;
     
 }
+.list{
+    list-style-type: none;
+    position:absolute;
+}
 h2{
     color:rgb(177, 105, 57);
     text-align: center;
@@ -290,7 +318,7 @@ h2{
 .el-input{
     width:100% !important;
     
-}
+}    
 .el-textarea__inner:hover{
  border:1px solid rgb(177, 105, 57)!important;
 }
@@ -317,7 +345,7 @@ h2{
     width:100%;
     height:40px;
     font-size: 14px;
-    font:14px 黑体;
+    font:14px 黑体;   
     border: 1px solid rgb(177, 105, 57);
     display: inline-block;
     min-width: 120px;
@@ -353,69 +381,15 @@ h2{
 } */
 .wu{
    font-size:48px;
-    font-family:"Peaches Cream";
-}
+    font-family:"Peaches Cream"; 
+} 
 .myfont{
     text-indent: 0.01px;
     color: rgb(177, 105, 57);
     white-space: pre;
     box-sizing: border-box;
     font-family:60px "Peaches Cream";
-}
-/***留言样式**/
-.infinite-list-wrapper{
-    width:950px;
-    margin: auto;
-    height:400px;
-    overflow: hidden;
-    background: #b16939;
-    border-radius: 12px;
-    color: #ffffff;
-    font-size:14px;
-    ul{
-        height:400px;
-        width:946px;
-        margin: auto;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-    .list-item{
-        width: 90%;
-        margin: auto;
-        border-bottom: 1px solid #eeeeee;
-        padding: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        .messageusername{
-            width:150px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        .messagecontent{
-            width:450px;
-            word-break: break-all;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        .messagetime{
-            width:150px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-    }
-    p{
-        height:60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
+} 
 /*百度地图*/
 .map{
      margin-top:60px;

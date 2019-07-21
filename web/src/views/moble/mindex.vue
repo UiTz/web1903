@@ -5,7 +5,7 @@
         <div class="my-item">
             <h5 class="my-font">Tasty bread</h5>
             <p class="text-muted mb-3 my-font1">口感深香有回味,吃在口中香软诱人</p>
-            <router-link to='product' class="my-font1">立刻订购？</router-link>
+            <router-link to='/mproduct' class="my-font1">立刻订购？</router-link>
         </div>
         </div>
         <div class="container">
@@ -19,7 +19,7 @@
         <div class=" my-font3 text-center">
             <p>所有产品都在店内现做、现烘、现卖，提供新鲜即食的食品，大玻璃透视的作业空间，完全展现在顾客眼前，使店员、顾客、商品三者之间作最人性化的直接交流。</p>
             <p>所有产品都在店内现做、现烘、现卖，提供新鲜即食的食品，大玻璃透视的作业空间，完全展现在顾客眼前，使店员、顾客、商品三者之间作最人性化的直接交流。</p>
-            <router-link class='router-link1' to='product'>了解更多</router-link>
+            <router-link class='router-link1' to='/mproduct'>了解更多</router-link>
         </div> 
         <div class="item1 mt-5">
           <div class="my-style1">
@@ -47,7 +47,7 @@
           <h2>BREAD</h2>
           <h5>面包系列</h5>
           <p class="px-5">甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-          <router-link class='router-link2' to='product'>了解更多</router-link>
+          <router-link class='router-link2' to='/mproduct'>了解更多</router-link>
         </div>
     </div>
     <div>
@@ -58,7 +58,7 @@
           <h2>BREAD</h2>
           <h5>面包系列</h5>
           <p class="px-5">甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-          <router-link class='router-link3' to='product'>了解更多</router-link>
+          <router-link class='router-link3' to='/mproduct'>了解更多</router-link>
         </div>
     </div>
     <div class="my-t mb-5">
@@ -69,7 +69,7 @@
             <h2 class="mt-2">BREAD</h2>
             <h5>面包系列</h5>
             <p class="px-5">甄选小麦粉，纯天然自制酵母发酵面团 使用牛奶代替纯净水揉面</p>
-            <router-link class='router-link2' to='product'>了解更多</router-link>
+            <router-link class='router-link2' to='/mproduct'>了解更多</router-link>
           </div>
     </div>
   </div>
