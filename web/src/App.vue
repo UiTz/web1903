@@ -1,17 +1,28 @@
 <template>
   <div id="app">
-    <my-header v-if="header_show"></my-header>
-    <router-view v-on:header="header" v-on:footer="footer"></router-view>
-    <my-footer v-if="footer_show"></my-footer>
+    <my-header v-if="header_show && isRouterAlive"></my-header>
+    <router-view v-on:header="header" v-on:footer="footer" v-if="isRouterAlive"></router-view>
+    <my-footer v-if="footer_show && isRouterAlive"></my-footer>
   </div>
 </template>
 <script>
   export default {
+    provide () {
+      return {
+        reload: this.reload
+      }
+    },
     data() {
       return {
         header_show: true,
-        footer_show: true
+        footer_show: true,
+        isRouterAlive: true
       }
+    },
+    created() {
+      let uin = this.$store.state.userInfo;
+      console.dir(uin);
+      console.log(uin.user_name);
     },
     mounted() {
       if (this._isMobile()) {
@@ -23,6 +34,12 @@
       }
     },
     methods: {
+      reload () {
+        this.isRouterAlive = false;
+        this.$nextTick(function () {
+          this.isRouterAlive = true;
+        })
+      },
       _isMobile() {
         return navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
       },

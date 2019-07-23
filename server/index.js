@@ -2,17 +2,12 @@ const express = require('express');
 const app = express();
 const query = require('./plugins/db.js');
 const session = require('express-session');
-const FileStore = require('session-file-store')(session);
 // 引入json解析中间件
 const bodyParser = require('body-parser');
-const identityKey = 'app_Cake';
-const users = require('plugins/user').items;
-const findUser = require('./plugins/sessionCheck');
 
 app.use(session({
-  name: identityKey,
-  secret: 'Cake',  // 用来对session id相关的cookie进行签名
-  store: new FileStore(),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
+  name: 'CakeShop',
+  secret: 'KTFjF7j75zoklZgZd9mVgibDkmMcvsMGQmqMvinzou5bMn42gPSkUEoAWzehMr07CdC5ko7OewfdKu4MB0rulVdGWy5CJOBdxsrrPZGv0qp5o1qw9lwH0s33peBYPg42',  // 用来对session id相关的cookie进行签名
   saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
   resave: false,  // 是否每次都重新保存会话，建议false
   cookie: {
@@ -90,8 +85,6 @@ app.post('/user/api/queryemail',(req,res)=>{
 
 // 用户登录接口
 app.post('/user/api/login',(req,res)=> {
-  let sess = req.session;
-  let user = findUser(req.body.uname, req.body.upwd);
   let r = req.body;
   let uname = r.uname;
   let upwd = r.upwd;
@@ -99,12 +92,14 @@ app.post('/user/api/login',(req,res)=> {
     res.json({code:204,msg:'用户名和密码不能为空'});
     return;
   }
-  let sql = 'SELECT uid,username FROM pj_user WHERE uname = ? AND upwd = ?';
+  let sql = 'SELECT uid,user_name FROM pj_user WHERE uname = ? AND upwd = ?';
   query(sql,[uname,upwd],(err,result)=> {
     if (err) throw err;
     if (result.length === 0){
       res.send({code:201,msg:'登录失败'});
     } else {
+      req.session.uid = result[0].uid;
+      req.session.user_name = result[0].user_name;
       res.send({code:200,msg:'登录成功',result});
     }
   })
@@ -140,6 +135,8 @@ app.get('/product/api/queryid',(req,res)=> {
 
 // 用户留言板
 app.get('/user/api/message_board',(req,res)=> {
+  console.log(111111111);
+  console.log(req.session.uid);
   let r = req.query;
   console.log(r);
   let name = r.name;

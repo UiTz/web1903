@@ -31,8 +31,6 @@ import productDetails13 from './components/productDetails13.vue'
 import productDetails14 from './components/productDetails14.vue'
 import productDetails15 from './components/productDetails15.vue'
 import About from './views/About.vue'
-import elflex from './views/elflex.vue'
-import Carousel from './views/Carousel.vue';
 import CompanyOne from './components/CompanyOne.vue'
 import CompanyTwo from './components/CompanyTwo.vue'
 import CompanyThree from './components/CompanyThree.vue'
@@ -40,12 +38,6 @@ import CompanyFour from './components/CompanyFour.vue'
 import CompanyFive from './components/CompanyFive.vue'
 import CompanySix from './components/CompanySix.vue'
 
-//
-//import mproduct from './views/moble/mproduct.vue'
-//
-//import mindex from './views/moble/mindex.vue'
-//import mcompany from './views/moble/mcompany.vue'
-//import mmyheader from './components/moble/mmyheader.vue'
 import mproductdetails from './components/moble/mproductdetails.vue'
 import mcompanyone from './components/moble/mcompanyone.vue'
 import mcompanytwo from './components/moble/mcompanytwo.vue'
@@ -74,7 +66,7 @@ export default new Router({
     {path:'/product',component:Product},
     {path: '/join',component:Join},
     {path: '/company',component:company},
-    {path: '/login',component:login},
+    //{path: '/login',component:login},
     {path: '/register',component:register},
     {path:'/productdetails',component:productDetails},
     {path:'/productdetails2',component:productDetails2},

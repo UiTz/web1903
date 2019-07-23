@@ -9,7 +9,7 @@
           <h2>留言</h2>
           <el-form :model="ruleForm" ref="ruleForm" class="demo-ruleForm">
             <el-form-item prop="name">
-              <el-input v-model="ruleForm.name" placeholder="请输入昵称"></el-input>
+              <el-input v-model="ruleForm.name"placeholder="请输入要使用的昵称"></el-input>
             </el-form-item>
             <el-form-item prop="message">
               <el-input
@@ -37,9 +37,7 @@
       <div class="infinite-list-wrapper row">
         <div class="col-md-12 col-sm-12">
           <h2 class="text-center mb-5">留言墙</h2>
-          <ul class="list"
-              v-infinite-scroll="loadmessage"
-              infinite-scroll-disabled="disabled">
+          <ul class="list">
             <li v-for="item in list" class="mt-5 ml-4">
               <a style="text-decoration:none" href="javascript:">
                 <div>
@@ -73,16 +71,15 @@
       }
     },
     computed: {
-      noMore() {
-        return this.count >= 20
+      user_name() {
+        return this.$store.state.user_name
       },
-      disabled() {
-        return this.loading || this.noMore
+      isDis () {
+        return !!this.$store.state.user_name
       }
     },
     methods: {
       loadmessage() {
-        this.loading = true;
         var url = "user/api/loading_message";
         var count = this.list.length;
         this.axios.get(url, {params: {count}}).then(result => {
@@ -101,6 +98,7 @@
         var url = 'user/api/message_board';
         var msg = this.ruleForm.message;
         var name = this.ruleForm.name;
+        console.log(name);
         if (name.length === 0) {
           this.$alert("昵称不能为空");
           return;
@@ -109,18 +107,19 @@
           this.$alert("不能少于5个字符");
           return;
         }
-        this.axios.get(url, {params: {msg, name}}).then(result => {
-          if (result.data.code === 200) {
-            this.$alert('留言成功');
-            this.loadmessage();
-          } else {
-            this.$alert("留言失败", {confirmButtonText: '确定'});
-          }
-        })
-      },
-      computed() {
-        //this.loadmessage();
+        //this.axios.get(url, {params: {msg, name}}).then(result => {
+        //  if (result.data.code === 200) {
+        //    this.$alert('留言成功');
+        //    this.loadmessage();
+        //  } else {
+        //    this.$alert("留言失败", {confirmButtonText: '确定'});
+        //  }
+        //})
       }
+    },
+    created () {
+        this.loadmessage()
+    }
       /* methods:{
             //创建和初始化地图函数：
        initMap(){
@@ -217,7 +216,6 @@
        },
        initMap()//创建和初始化地图
    }*/
-    }
   }
 </script>
 <style scoped>
