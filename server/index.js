@@ -1,10 +1,25 @@
 const express = require('express');
 const app = express();
 const query = require('./plugins/db.js');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 // 引入json解析中间件
 const bodyParser = require('body-parser');
+const identityKey = 'app_Cake';
+const users = require('plugins/user').items;
+const findUser = require('./plugins/sessionCheck');
 
-
+app.use(session({
+  name: identityKey,
+  secret: 'Cake',  // 用来对session id相关的cookie进行签名
+  store: new FileStore(),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
+  saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
+  resave: false,  // 是否每次都重新保存会话，建议false
+  cookie: {
+    maxAge: 100 * 1000
+        // * 2592 // 有效期，单位是毫秒
+  }
+}));
 // 引入静态目录
 app.use(express.static('public'));
 
@@ -20,29 +35,6 @@ app.use(allowCors);
 // 添加json解析
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-// 使用cookieParser
-// require('./plugins/sqlquery');
-
-// app.get('/test/api/',(req,res)=>{
-//   // let Base64 = require('js-base64').Base64;
-//   let r = req.cookies;
-//   if (Object.keys(r).length > 0) {
-//     // let i = Base64.decode(r.ucode);
-//     console.log(r.ucode);
-//     res.send(r.ucode);
-//   } else {
-//     res.cookie('ucode',"这个是ucode",{maxAge:60000,path:'/',httpOnly:true});
-//     res.send({code:203,msg:'重新设置cookie'})
-//   }
-// });
-//
-// app.get('/test/api/cookie',(req,res)=> {
-//   let B64 = require('js-base64').Base64;
-//   let ucode = B64.encode('user_name中文呢');
-//   console.log(req.cookies);
-//   res.cookie('ucode',ucode,{maxAge:50000,path:'/',httpOnly:true});
-//   res.send({code:200,msg:'cookies设置成功: '+ucode})
-// });
 
 
 
@@ -98,10 +90,16 @@ app.post('/user/api/queryemail',(req,res)=>{
 
 // 用户登录接口
 app.post('/user/api/login',(req,res)=> {
+  let sess = req.session;
+  let user = findUser(req.body.uname, req.body.upwd);
   let r = req.body;
   let uname = r.uname;
   let upwd = r.upwd;
-  let sql = 'SELECT uid FROM pj_user WHERE uname = ? AND upwd = ?';
+  if(uname === ''|| upwd === ''){
+    res.json({code:204,msg:'用户名和密码不能为空'});
+    return;
+  }
+  let sql = 'SELECT uid,username FROM pj_user WHERE uname = ? AND upwd = ?';
   query(sql,[uname,upwd],(err,result)=> {
     if (err) throw err;
     if (result.length === 0){
