@@ -41,6 +41,8 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 });
+
+
 //没有用在注释 不用理会
 new Vue({
   router,

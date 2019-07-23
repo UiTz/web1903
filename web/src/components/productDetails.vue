@@ -6,7 +6,7 @@
     <div class="move" @mouseover="over()" @mouseout="out()" @mousemove="move($event)"> 
         <div id="small"> 
         <div id="float"></div>  
-        <img src="../../public/img/productDetails/product-details-1.png" id="smallimg"></div>  
+        <img src="../../public/img/productDetails/product-details-2.png" id="smallimg"></div>  
     </div>
       <div id="big"><img src="../../public/img/productDetails/product-details-1.png"></div>    
   </div>
@@ -14,19 +14,19 @@
             </div>
         <div class="col-md-6 col-sm-12 p-0 mt-5">
             <h5>奶酥核桃吐司</h5>
-            <ul class="stars p-0">
-                <li><img class="my-img2" src="../../public/img/productDetails/star.png" alt=""></li>
-                <li><img class="my-img2" src="../../public/img/productDetails/star.png" alt=""></li>
-                <li><img class="my-img2" src="../../public/img/productDetails/star.png" alt=""></li>
-                <li><img class="my-img2" src="../../public/img/productDetails/star.png" alt=""></li>
-                <li><img class="my-img2" src="../../public/img/productDetails/star.png" alt=""></li>
-            </ul>
+            <el-rate
+            v-model="value"
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+            </el-rate>
             <p class="bg-light mt-3 mb-3">价格：
                 <span>￥15.00/项</span>
                 <span class="border border-danger p-1 ml-2">新品</span>
             </p>
             <p>运输：<span>虚拟产品</span></p>
-            <p>数量：
+            <p class="mt-3">数量：
                 <el-button class="count" type="light">{{i}}</el-button>
                 <el-button @click="add" class="icon1" type="light" icon="el-icon-arrow-up"></el-button>
                 <el-button @click="min" class="icon2" type="light" icon="el-icon-arrow-down"></el-button>
@@ -34,8 +34,8 @@
                 <span>剩余库存：</span>
                 <span>9999项</span>
             </p>
-            <el-button class="bg-danger text-white" icon="el-icon-shopping-cart-2">加入购物车</el-button>
-            <el-button class="bg-info text-white">立刻购买</el-button>
+            <el-button class="bg-danger text-white mt-3" icon="el-icon-shopping-cart-2">加入购物车</el-button>
+            <el-button class="bg-info text-white mt-3">立刻购买</el-button>
             <p class="mt-3">发货期：<span>1天交货</span></p>
         </div>
     </div>
@@ -105,7 +105,8 @@ export default {
   data(){
       return{
           activeName:'first',
-          i:1
+          i:1,
+           value:4.5
       }
   },
     mounted(){
@@ -128,8 +129,8 @@ export default {
       var smallImgH = smallimg.offsetHeight;
 
       //左侧遮罩层的宽高
-      float.style.width =  bigW/bigImgW * smallImgW + "px";   //175
-      float.style.height = bigH/bigImgH * smallImgH/3*2 + "px";     
+      float.style.width =  bigW/bigImgW * smallImgW/2 + "px";   //175
+      float.style.height = bigH/bigImgH * smallImgH/3 + "px";     
 
       //遮罩层运动的最大距离
       float_maxJL_l = smallimg.clientWidth -float.offsetWidth;
@@ -224,14 +225,14 @@ export default {
     z-index: 1;
   }
  #small img{
-      width: 340px;
+      width:340px;
       height:320px;
       border:1px solid #ddd;
     }
   #big img{
     position: absolute;   
     z-index: 5;
-    width:500px;
+    width:400px;
     height:500px;
   }
 /*设置左边图片的样式*/
@@ -245,12 +246,7 @@ export default {
     width:15%;height:50px;
     border:1px solid red;
 }
-/*设置右边星星的样式*/
-.stars{
-    width:5%;
-    display:flex;
-    list-style: none;
-}
+
 .my-img2{
     width:20px;height:20px;
 }
