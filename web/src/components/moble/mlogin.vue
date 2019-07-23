@@ -8,7 +8,7 @@
       <mt-button class="mt-3 mybtn text-white" size="large" @click="login">登录</mt-button>
   </div>
 </template>
-<script>
+<script >
 import { MessageBox } from 'mint-ui';
 export default {
   data(){

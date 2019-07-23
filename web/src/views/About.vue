@@ -37,16 +37,16 @@
       <div class="infinite-list-wrapper row">
         <div class="col-md-12 col-sm-12">
           <h2 class="text-center mb-5">留言墙</h2>
-          <ul class="list  myborder"
+          <ul class="list"
               v-infinite-scroll="loadmessage"
               infinite-scroll-disabled="disabled">
             <li v-for="item in list" class="mt-5 ml-4">
               <a style="text-decoration:none" href="javascript:">
                 <div>
                   <h6>{{item.date}}</h6>
-                  <p>来自: {{item.name}}</p>
-                  <br>
                   <p>{{item.msg}}</p>
+                  <br>
+                  <p class="float-right">来自: {{item.name}}</p>
                 </div>
               </a>
             </li>
@@ -241,9 +241,9 @@
     color: rgb(177, 105, 57);
   }
   
-  .myborder {
-    /*border: 1px solid #FAC8C8;*/
-  }
+ /* .myborder {
+    border: 1px solid #FAC8C8;
+  }*/
   
   ul {
     float: left;

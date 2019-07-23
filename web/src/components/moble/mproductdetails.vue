@@ -104,9 +104,9 @@
   .productImg{
     margin-top: 50px;
   }
-  footer {
-    /*display: none !important;*/
-  }
+  /*footer {
+    display: none !important;
+  }*/
   
   .mint-button {
     background: pink !important;

@@ -6,19 +6,12 @@
   </div>
 </template>
 <script>
-  import myheader from './components/myheader'
-  import myfooter from './components/myfooter'
-  
   export default {
     data() {
       return {
         header_show: true,
         footer_show: true
       }
-    },
-    components: {
-      "my-header": myheader,
-      "my-footer": myfooter,
     },
     mounted() {
       if (this._isMobile()) {
@@ -43,7 +36,7 @@
     watch: {
       $route: function(newVal) {
         //里面有路由的信息，根据路由信息做相关处理
-        this.footer_show = newVal.path !== '/mproductdetails';
+        this.footer_show = newVal.path !== '/mproductdetails'&'/mlogin';
       },
     }
   }
