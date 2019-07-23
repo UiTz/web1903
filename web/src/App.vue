@@ -36,7 +36,7 @@
     watch: {
       $route: function(newVal) {
         //里面有路由的信息，根据路由信息做相关处理
-        this.footer_show = newVal.path !== '/mproductdetails'&'/mlogin';
+        this.footer_show = newVal.path !== '/mproductdetails';
       },
     }
   }
