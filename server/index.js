@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({extended: false}));
  * 查询用户名是否可用
  */
 app.post('/user/api/queryuser',(req,res)=>{
-  console.log('有查询用户名请求');
+  // console.log('有查询用户名请求');
   // console.log(req.query);
   let uname = req.body.uname;
   let sql = "SELECT uname FROM pj_user WHERE uname = ?";
@@ -72,7 +72,7 @@ app.post('/user/api/register',(req,res)=> {
 
 // 查询邮箱是否注册过
 app.post('/user/api/queryemail',(req,res)=>{
-  console.log('有查询邮箱请求');
+  // console.log('有查询邮箱请求');
   let email = req.query.email;
   let sql = "SELECT email FROM pj_user WHERE email = ?";
   query(sql,[email],(err,result)=> {
@@ -133,12 +133,42 @@ app.get('/product/api/queryid',(req,res)=> {
   })
 });
 
+// 资讯查询
+app.get('/information/api/queryall',(req,res)=> {
+  let sql = 'SELECT * FROM information ORDER BY id DESC';
+  query(sql,[],(err,result)=> {
+    if (err) throw err;
+    // console.log(result);
+    if (result.length === 0) {
+      res.send({code:201,msg:'请求失败'})
+    } else {
+      res.send({code:200,result})
+    }
+  })
+});
+
+
+// 资讯详情查询
+app.get('/information/api/querydetails',(req,res)=> {
+  let id = req.query.id;
+  let sql = 'SELECT * FROM information WHERE id = ?';
+  query(sql,[id],(err,result)=> {
+    if (err) throw err;
+    // console.log(result);
+    if (result.length === 0) {
+      res.send({code:201,msg:'请求失败'})
+    } else {
+      res.send({code:200,result})
+    }
+  })
+});
+
 // 用户留言板
 app.get('/user/api/message_board',(req,res)=> {
-  console.log(111111111);
-  console.log(req.session.uid);
+  // console.log(111111111);
+  // console.log(req.session.uid);
   let r = req.query;
-  console.log(r);
+  // console.log(r);
   let name = r.name;
   let msg = r.msg;
   if (msg.length === 0){
@@ -156,7 +186,7 @@ app.get('/user/api/message_board',(req,res)=> {
 
 // 查询用户留言板
 app.get('/user/api/loading_message',(req,res)=> {
-  console.log('收到留言板查询请求');
+  // console.log('收到留言板查询请求');
   //let count = Number(req.query.count);
   //console.log(count);
   let sql = 'SELECT * FROM message_board ORDER BY date DESC';
@@ -174,8 +204,8 @@ app.get('/user/api/loading_message',(req,res)=> {
 
 // 用户删除
 app.post('/admin/api/deluser',(req,res)=>{
-  console.log('有删除用户请求');
-  console.log(req.body.uid);
+  // console.log('有删除用户请求');
+  // console.log(req.body.uid);
   let admin_uname = req.body.admin_uname;
   let admin_upwd = req.body.admin_upwd;
   let sql = "SELECT admin_uname,admin_upwd FROM admin_user WHERE admin_uname = ? AND admin_upwd = ?";
@@ -209,11 +239,11 @@ app.get('/user/api/update',(req,res)=> {
   let sql = 'SELECT uname,upwd FROM pj_user WHERE uname = ? AND upwd = ?';
   query(sql,[uname,upwd],(err,result)=> {
     if (err) throw err;
-    console.log(result);
+    // console.log(result);
     if (result.length > 0){
       res.send({code:200,msg:'登录成功'});
     } else {
-      console.log('登录失败');
+      // console.log('登录失败');
       res.send({code:201,msg:'登录失败'});
     }
   })
@@ -247,7 +277,7 @@ app.post('/admin/api/user',(req,res)=>{
 
 
 // 开启端口监听
-app.listen(3000,() => {
-  console.log("服务器开启成功: http://localhost:3000");
+app.listen(5050,() => {
+   console.log("服务器开启成功: http://localhost:3000");
 });
 

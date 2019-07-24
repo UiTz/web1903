@@ -4,15 +4,15 @@
       <div class="col-md-6 text-white p-0 col-sm-12">
         <div class="item  text-center mt-3">
           <h1>Tasty bread</h1>
-          <p class="mt-4">Add / 公司地址：上海市金山区亭林镇林盛路136号</p>
+          <p class="mt-4">Add / 公司地址：福建厦门湖里区软件园18号-404</p>
           <p>Tel / 电话：400 - 000 - 0000</p></div>
         <ul class="items">
-          <li class="item1">上海</li>
-          <li class="item2">苏州</li>
-          <li class="item3">无锡</li>
-          <li class="item4">常州</li>
-          <li class="item5">南通</li>
-          <li class="item6">徐州</li>
+          <li class="item1">福建</li>
+          <li class="item2">厦门</li>
+          <li class="item3">河北</li>
+          <li class="item4">石家庄</li>
+          <li class="item5">漳州</li>
+          <li class="item6">泉州</li>
         </ul>
       </div>
       <div class="col-md-6 col-sm-12 p-0 item2">

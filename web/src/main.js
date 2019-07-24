@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css'
 import axios from "axios"
 axios.defaults.withCredentials = true;
 //axios.defaults.baseURL = 'http://176.30.9.188:3000/';
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'http://localhost:5050/';
 Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader'
@@ -19,7 +19,6 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 Vue.config.productionTip = false;
 
-
 Vue.use(Mint);
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
@@ -28,6 +27,10 @@ Vue.component("my-footer",myfooter);
 // 配置NProgress进度条选项  —— 动画效果
 NProgress.configure({ ease: 'ease', speed: 500 });
 router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
   NProgress.start();
   next()
 });

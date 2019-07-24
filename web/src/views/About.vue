@@ -27,10 +27,10 @@
         <div class="about col-md-6 col-sm-12 p-0">
           <div class="about-center">
             <h1 class="wu">Tasty bread</h1>
-            <p>XX烘焙坊 / XX餐饮管理有限公司</p>
-            <p>Add / 公司地址：上海市金山区亭林镇林盛路136号</p>
+            <p>烘焙坊 / XX餐饮管理有限公司</p>
+            <p>Add / 公司地址：福建厦门湖里区软件园18号-404</p>
             <p>Tel / 联系电话：400 - 000 - 0000</p>
-            <p>Eml/电子邮件：jianzhan@zuma.com</p>
+            <p>Eml/电子邮件：1043083945@qq.com</p>
           </div>
         </div>
       </div>
@@ -107,14 +107,14 @@
           this.$alert("不能少于5个字符");
           return;
         }
-        //this.axios.get(url, {params: {msg, name}}).then(result => {
-        //  if (result.data.code === 200) {
-        //    this.$alert('留言成功');
-        //    this.loadmessage();
-        //  } else {
-        //    this.$alert("留言失败", {confirmButtonText: '确定'});
-        //  }
-        //})
+        this.axios.get(url, {params: {msg, name}}).then(result => {
+          if (result.data.code === 200) {
+            this.$alert('留言成功');
+            this.loadmessage();
+          } else {
+            this.$alert("留言失败", {confirmButtonText: '确定'});
+          }
+        })
       }
     },
     created () {
@@ -218,7 +218,7 @@
    }*/
   }
 </script>
-<style scoped>
+<style scoped lang="scss">
   .container {
     padding: 0;
     margin: 0 auto;
@@ -409,6 +409,9 @@
     color: rgb(177, 105, 57);
     margin-top: 80px;
     margin-left: 80px;
+    p{
+      line-height: 50px;
+    }
   }
   
   /* .about-center :first-child{
@@ -425,7 +428,6 @@
     color: rgb(177, 105, 57);
     white-space: pre;
     box-sizing: border-box;
-    font-family: 60px "Peaches Cream";
   }
   
   /*百度地图*/

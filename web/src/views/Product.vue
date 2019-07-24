@@ -284,8 +284,8 @@ export default {
                         }else{
                             cakearr.push(item)
                         }
-                    })
-                    console.log(cakearr)
+                    });
+                    //console.log(cakearr);
                     that.cakearr = cakearr;
                     that.dessertarr = dessertarr;
                     that.breadarr = breadarr;
@@ -795,12 +795,12 @@ export default {
         justify-content:space-between;
         margin-top:100px;
     }
-    .carousel-div-2{
-        width:1020px;
-        height:212px;
-        margin:0 auto;
-        overflow-x: scroll;
-    }
+    /*.carousel-div-2{*/
+    /*    width:1020px;*/
+    /*    height:212px;*/
+    /*    margin:0 auto;*/
+    /*    !*overflow-x: scroll;*!*/
+    /*}*/
     .carousel-div-2::-webkit-scrollbar{
         display: none;
     }

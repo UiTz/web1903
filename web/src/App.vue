@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <my-header v-if="header_show && isRouterAlive"></my-header>
-    <router-view v-on:header="header" v-on:footer="footer" v-if="isRouterAlive"></router-view>
+    <my-header v-if="header_show && isRouterAlive" id="my-header" :class="headerFixed === true ? 'isFixed' :''"></my-header>
+    <router-view v-on:header="header" v-on:footer="footer" v-if="isRouterAlive" class="scrollfix"></router-view>
     <my-footer v-if="footer_show && isRouterAlive"></my-footer>
   </div>
 </template>
@@ -16,22 +16,24 @@
       return {
         header_show: true,
         footer_show: true,
-        isRouterAlive: true
+        isRouterAlive: true,
+        headerFixed: false
       }
     },
     created() {
-      this.$store.commit('getSession')
+      this.$store.commit('getSession');
+      this._isMobile();
       // let uin = this.$store.state.userInfo;
       // console.dir(uin);
       // console.log(uin.user_name);
     },
     mounted() {
-      if (this._isMobile()) {
-        this.$router.push('/mindex');
-        this.header_show = false;
-      } else {
-        this.$router.push('/');
-      }
+      //if (this._isMobile()) {
+      //  this.$router.replace({path:'/mindex'});
+      //  this.header_show = false;
+      //} else {
+      //  this.$router.replace({path:'/index'});
+      //}
     },
     methods: {
       reload () {
@@ -41,7 +43,9 @@
         })
       },
       _isMobile() {
-        return navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+        let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+        localStorage.setItem('ismobile',flag ? 1 : 0);
+        return flag;
       },
       header: function (bool) {
         this.header_show = bool;
@@ -58,7 +62,7 @@
     }
   }
 </script>
-<style>
+<style >
   ul, p {
     margin: 0;
     padding: 0;
@@ -68,5 +72,9 @@
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+  
+  .scrollfix{
+    position: relative;
   }
 </style>
