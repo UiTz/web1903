@@ -20,15 +20,15 @@
       }
     },
     created() {
-      let uin = this.$store.state.userInfo;
-      console.dir(uin);
-      console.log(uin.user_name);
+      this.$store.commit('getSession')
+      // let uin = this.$store.state.userInfo;
+      // console.dir(uin);
+      // console.log(uin.user_name);
     },
     mounted() {
       if (this._isMobile()) {
         this.$router.push('/mindex');
         this.header_show = false;
-        
       } else {
         this.$router.push('/');
       }
@@ -36,7 +36,7 @@
     methods: {
       reload () {
         this.isRouterAlive = false;
-        this.$nextTick(function () {
+        this.$nextTick( ()=> {
           this.isRouterAlive = true;
         })
       },

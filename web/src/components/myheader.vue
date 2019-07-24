@@ -9,8 +9,7 @@
       <el-menu-item v-for="(item,i) of navList" :key="i" :index="item.path">
         {{item.navItem}}
       </el-menu-item>
-      <div v-if="!user_name">
-        <div>{{ user_name }}</div>
+      <div v-if="!isLogin">
         <el-button type="text" class="myrouter ml-3 pr-5" @click="dialogFormVisible = true">登录</el-button>
         <el-button type="text" class="myrouter">
           <router-link to='/register'>注册</router-link>
@@ -41,6 +40,7 @@
 </template>
 <script>
   export default {
+    inject: ['reload'],
     data() {
       return {
         navList: [
@@ -65,36 +65,44 @@
         }
       }
     },
+    computed: {
+      isLogin () {
+        return this.$store.getters.getIsLogin;
+      },
+      user_info () {
+        let userInfo = this.$store.getters.getUserInfo;
+        // console.log(str.user_name);
+        return this.$store.getters.getUserInfo;
+      },
+      user_name () {
+        return this.$store.getters.getUserInfo.user_name;
+      }
+    },
     //created() {
     //  let uinfo = this.$store.state.userInfo;
     //  this.user_name = uinfo.user_name;
     //},
-    computed: {
-      user_name () {
-        //let str = this.$store.state.userInfo
-        //console.log(JSON.parse(str));
-        //return JSON.parse(str).user_name;
-      }
-    },
     methods: {
-      submitForm(formName) {
+      submitForm() {
+        let that = this;
         var url = "user/api/login";
         var u = this.ruleForm.uname;
         var p = this.ruleForm.upwd;
         var obj = {uname: u, upwd: p};
         this.axios.post(url, obj).then(result => {
           if (result.data.code === 200) {
-            //console.log(info);
-            this.$store.commit('setUserInfo',JSON.stringify(result.data.result[0]));
+            let uinfo = JSON.stringify(result.data.result[0]);
+            this.$store.commit('setUserInfo',uinfo);
             this.$message({
               message: '登录成功',
               type: 'success'
             });
             this.dialogFormVisible = false;
+            this.$router.go(0);
           } else {
             this.$alert("用户名或者密码不正确", {confirmButtonText: '确定'});
           }
-        })
+        });
       },
       handleclose() {
         this.$router.push('/');
@@ -103,13 +111,13 @@
         console.log(key, keyPath);
       },
       logout: function () {
-        this.$store.state.user_name = '';
+        this.$store.commit('userLogout');
         this.$message({
           message: '退出成功',
           type: 'success'
         })
       }
-    }
+    },
   }
 </script>
 <style scoped lang="less">
