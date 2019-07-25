@@ -47,8 +47,21 @@ import Error from './components/Error'
 
 Vue.use(Router);
 export default new Router({
-  mode:"history",
   routes: [
+    {
+      path: '',
+      component:index,
+      meta: {
+        title: '码农练习生蛋糕屋'
+      }
+    },
+    {
+      path: '/',
+      component:index,
+      meta: {
+        title: '码农练习生蛋糕屋'
+      }
+    },
     {
       path: '/index',
       component:index,

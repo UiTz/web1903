@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="app_container">
     <div class="bread-img1"></div>
     <div class="container">
             <div class="footer1-div">
@@ -244,7 +244,6 @@
 </div>
 </template>
 <script>
-import iconfont from "../../public/css/font_gyt5hrnasow/iconfont.css"
 
 export default {
     data(){
@@ -306,6 +305,10 @@ export default {
         /*媒体查询大屏*/
 @media screen and (min-width:1200px){
 /*轮播*/
+    .app_container {
+        width: 100%;
+        overflow: hidden;
+    }
 .el-carousel__item h3{
     color:#475669;
     font-size:14px;
@@ -349,7 +352,7 @@ export default {
         margin:0 auto;
         }
     .bread{
-        width:1448px;
+        width: 100%;
         height:400px;
     }
     .bread-img1{
@@ -562,7 +565,7 @@ export default {
     .cake{
         width:100%;
         margin-top:245px;
-        margin-left:297px;
+        /*margin-left:297px;*/
         display:flex;
         display:-webkit-flex;
         -webkit-flex-flow:row wrap;
