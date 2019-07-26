@@ -31,16 +31,16 @@
       <p class="mt-1">奶酥核桃吐司</p>
       <mt-cell title="发货期：1天"></mt-cell>
       <mt-cell title="产品参数">
-        <i @click="popupVisible= true" class="el-icon-arrow-right mt-3"></i>
+        <i @click="popupVisible= true" class="el-icon-arrow-right mt-3"></i></mt-cell>
         <mt-popup
                 v-model="popupVisible"
-                position="bottom">
-          <mt-cell title="产品参数"></mt-cell>
-          <mt-cell title="单位：项"></mt-cell>
-          <mt-cell title="产品ID：M00000025550"></mt-cell>
-          <mt-cell title="产地：上海"></mt-cell>
+                position="bottom"
+                style="height:400px;">
+          <mt-cell style="width:380px;height:50px;" title="产品参数"></mt-cell>
+          <mt-cell style="width:380px;height:50px;" title="单位：项"></mt-cell>
+          <mt-cell style="width:380px;height:50px;" title="产品ID：M00000025550"></mt-cell>
+          <mt-cell style="width:380px;height:50px;" title="产地：上海"></mt-cell>
         </mt-popup>
-      </mt-cell>
       <mt-cell title="发货方式：虚拟产品"></mt-cell>
       <mt-cell title="产品评论(0)">
         <span style="color:red;" @click="popupVisible1= true">查看全部</span>
