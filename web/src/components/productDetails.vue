@@ -5,10 +5,10 @@
  <div>
     <div class="move" @mouseover="over()" @mouseout="out()" @mousemove="move($event)"> 
         <div id="small"> 
-        <div id="float"></div>  
+        <span id="float"></span>  
         <img src="../../public/img/productDetails/product-details-2.png" id="smallimg"></div>  
     </div>
-      <div id="big"><img src="../../public/img/productDetails/product-details-1.png"></div>    
+      <div id="big"><img  src="../../public/img/productDetails/product-details-2.png"></div>    
   </div>
             <div><img class="my-img1" src="../../public/img/productDetails/product-details-2.png" /></div>
             </div>
@@ -100,46 +100,20 @@
   </div>
 </template>
 <script>
-  var i, float,smallimg,big,bigImg,small,float_maxJL_t,float_maxJL_l,bigImg_maxJL_t,bigImg_maxJL_l;
+  var i, float,smallimg,big,bigImg;
 export default {
   data(){
       return{
           activeName:'first',
           i:1,
-           value:4.5
+          value:4.5
       }
   },
     mounted(){
-      float = document.getElementById("float"); //左侧遮罩层
-      smallimg = document.getElementById("smallimg"); //左边的小图
+       float = document.getElementById("float"); //左侧遮罩层
       big = document.getElementById("big"); //右侧可视区域
       bigImg = big.getElementsByTagName("img")[0]; //右侧大图
-      small = document.getElementById("small");// 左侧的容器
-       
-      //得到右侧可视区的宽高
-      var bigW = big.clientWidth;
-      var bigH = big.clientHeight;
-
-      //右侧大图的宽高
-      var bigImgW = bigImg.offsetWidth;
-      var bigImgH = bigImg.offsetHeight;
-
-      //左侧的小图的宽高
-      var smallImgW = smallimg.offsetWidth;
-      var smallImgH = smallimg.offsetHeight;
-
-      //左侧遮罩层的宽高
-      float.style.width =  bigW/bigImgW * smallImgW/2 + "px";   //175
-      float.style.height = bigH/bigImgH * smallImgH/3 + "px";     
-
-      //遮罩层运动的最大距离
-      float_maxJL_l = smallimg.clientWidth -float.offsetWidth;
-      float_maxJL_t = smallimg.clientHeight - float.offsetHeight;
-
-      //右侧图片运动的最大距离
-      bigImg_maxJL_l = bigImg.clientWidth - big.offsetWidth;
-      bigImg_maxJL_t = bigImg.clientHeight - big.offsetHeight;
-
+    
       big.style.display = "none";
       float.style.visibility ="hidden"; //鼠标未移入左侧区域使遮罩层以及右侧大图均不可见
     },
@@ -168,26 +142,30 @@ export default {
 
       //鼠标移动时遮罩层随鼠标的移动而移动
       move: function (e) {
-        var l = e.clientX-smallimg.offsetWidth-float.offsetWidth/2;
-        var t = e.clientY-smallimg.offsetHeight-float.offsetHeight/2;
+        var MSIZE=250;//记录小mask的大小
+        var SMSIZE=300;
+        var l =e.offsetX-MSIZE/2;
+        var t =e.offsetY-MSIZE/2;
         
-        if( l < 0 ) l = 0;     // 超出左边界赋值为0
-        if( t < 0 ) t = 0;     // 超出上边界赋值为0
-
-        if( l > float_maxJL_l ) l = float_maxJL_l;  //限制其运动范围在容器之内
-        if( t > float_maxJL_t ) t = float_maxJL_t;
+        if( l < 0 ){ l = 0; }
+        else if( l > SMSIZE-MSIZE ){
+             l = SMSIZE-MSIZE; 
+        }    
+        if( t < 0 ) {t = 0;}
+        else if(t > SMSIZE-MSIZE) {
+            t = SMSIZE-MSIZE;
+        }    
 
         //求出来一个比例
-        var scaleL = l/float_maxJL_l;
-        var scaleT = t/float_maxJL_t;
+        var scale = 450/300;
 
          //遮罩层运动位置
         float.style.left = l + "px";
         float.style.top = t + "px"; 
 
          //右侧大图运动位置
-        bigImg.style.left = -scaleL * bigImg_maxJL_l + "px";
-        bigImg.style.top = -scaleT * bigImg_maxJL_t + "px";
+       bigImg.style.left=-scale*l+'px';
+       bigImg.style.top =-scale*t + "px";
       }
     }
     }
@@ -200,39 +178,40 @@ export default {
 }
 /*放大镜*/
 #float {
-    width: 120px;
-    height: 120px;
+    width:250px;
+    height:250px;
     position: absolute;     
-    background: rgb(255,255,255,0.5);
+    background:rgb(255,255,255,0.8);
     border: 1px solid #ccc;
-    opacity: 0.5;
-    cursor:move ;
+    opacity: 0.75;
+    cursor:move;
   }
       #big {
     position: absolute;  
-    top: 0px;
-    left: 70%;
-    width: 340px;
+    top:0;
+    left: 55%;
+    width: 400px;
     height: 400px;
     overflow: hidden;
+    background-size:cover;
     border: 1px solid #ccc;
     background: #ffffff;
     z-index: 1;
-    visibility: hidden;
+    /*visibility: hidden;*/
   }
   #small {
     position: relative;  
     z-index: 1;
   }
- #small img{
-      width:340px;
-      height:320px;
+ #smallimg{
+      width:300px;
+      height:300px;
       border:1px solid #ddd;
     }
   #big img{
     position: absolute;   
-    z-index: 5;
-    width:400px;
+    z-index:2;
+    width:500px;
     height:500px;
   }
 /*设置左边图片的样式*/
