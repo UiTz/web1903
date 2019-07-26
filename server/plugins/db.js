@@ -2,7 +2,7 @@ var mysql=require("mysql");
 
 // 创建连接池
 var pool = mysql.createPool({
-  host      : 'rm-wz9w3j3gv70r5e60i7o.mysql.rds.aliyuncs.com',
+  host      : '',
   user      : 'web1903',
   password  : 'app_cake1903',
   database  : 'app_cake',

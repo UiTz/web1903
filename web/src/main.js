@@ -8,9 +8,9 @@ import 'nprogress/nprogress.css'
 import axios from "axios"
 axios.defaults.withCredentials = true;
 // 本地测试地址
-axios.defaults.baseURL = 'http://localhost:5050/';
+//axios.defaults.baseURL = 'http://localhost:5050/';
 // 实际部署的时候使用域名请求
-// axios.defaults.baseURL = 'http://cake.applinzi.com:80/';
+ axios.defaults.baseURL = 'http://139.224.116.134:9808';
 Vue.prototype.axios=axios;
 import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader'
