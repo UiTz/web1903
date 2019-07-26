@@ -1,18 +1,19 @@
 <template>
-  <div class="container">
-    <div class="row m-0">
-        <div class="col-md-6 col-sm-12 p-0 mt-5">
+  <div>
+    <div class="d-flex justify-content-center container">
+        <div class="p-0 mt-5">
  <div>
     <div class="move" @mouseover="over()" @mouseout="out()" @mousemove="move($event)"> 
         <div id="small"> 
         <span id="float"></span>  
-        <img src="../../public/img/productDetails/product-details-2.png" id="smallimg"></div>  
+        <img src="../../public/img/productDetails/product-details-2.png" id="smallimg">
+        </div>  
     </div>
       <div id="big"><img  src="../../public/img/productDetails/product-details-2.png"></div>    
-  </div>
-            <div><img class="my-img1" src="../../public/img/productDetails/product-details-2.png" /></div>
+      <img class="my-img1" src="../../public/img/productDetails/product-details-2.png" />
             </div>
-        <div class="col-md-6 col-sm-12 p-0 mt-5">
+  </div>     
+        <div class=" p-0 mt-5 mycontent">
             <h5>奶酥核桃吐司</h5>
             <el-rate
             v-model="value"
@@ -39,6 +40,7 @@
             <p class="mt-3">发货期：<span>1天交货</span></p>
         </div>
     </div>
+    <div class=" mycontent1">
     <div class="mt-3">
     <el-dropdown>
   <span class="el-dropdown-link">
@@ -98,6 +100,7 @@
 </el-tab-pane>
   </el-tabs>
   </div>
+  </div>
 </template>
 <script>
   var i, float,smallimg,big,bigImg;
@@ -110,7 +113,7 @@ export default {
       }
   },
     mounted(){
-       float = document.getElementById("float"); //左侧遮罩层
+      float = document.getElementById("float"); //左侧遮罩层
       big = document.getElementById("big"); //右侧可视区域
       bigImg = big.getElementsByTagName("img")[0]; //右侧大图
     
@@ -130,7 +133,7 @@ export default {
     //鼠标移入左侧区域使遮罩层以及右侧大图可见
       over: function () {
         float.style.visibility ="visible";
-        big.style.visibility ="visible";
+        //big.style.visibility ="visible";
         big.style.display = "block";
       }, 
 
@@ -142,8 +145,8 @@ export default {
 
       //鼠标移动时遮罩层随鼠标的移动而移动
       move: function (e) {
-        var MSIZE=250;//记录小mask的大小
-        var SMSIZE=300;
+        var MSIZE=330;//记录小mask的大小
+        var SMSIZE=400;
         var l =e.offsetX-MSIZE/2;
         var t =e.offsetY-MSIZE/2;
         
@@ -157,7 +160,7 @@ export default {
         }    
 
         //求出来一个比例
-        var scale = 450/300;
+        var scale = 500/400;
 
          //遮罩层运动位置
         float.style.left = l + "px";
@@ -178,18 +181,19 @@ export default {
 }
 /*放大镜*/
 #float {
-    width:250px;
-    height:250px;
+    width:330px;
+    height:330px;
     position: absolute;     
-    background:rgb(255,255,255,0.8);
+    background:url("../../public/img/productDetails/selector.png");
+    background-size:cover;
     border: 1px solid #ccc;
-    opacity: 0.75;
+    opacity: 0.5;
     cursor:move;
   }
       #big {
     position: absolute;  
-    top:0;
-    left: 55%;
+    top:320px;
+    left:50%;
     width: 400px;
     height: 400px;
     overflow: hidden;
@@ -204,13 +208,14 @@ export default {
     z-index: 1;
   }
  #smallimg{
-      width:300px;
-      height:300px;
+      width:400px;
+      height:400px;
       border:1px solid #ddd;
     }
   #big img{
-    position: absolute;   
-    z-index:2;
+    position: absolute;  
+    top:50%; 
+    z-index:3;
     width:500px;
     height:500px;
   }
@@ -225,9 +230,24 @@ export default {
     width:15%;height:50px;
     border:1px solid red;
 }
-
+@media screen and (min-width:992px){
+    .mycontent1{
+    margin-left:25%;
+    width:75%;
+   }
+}
+@media screen and (max-width:992px) and (min-width:678px) {
+    .mycontent1{margin-left:-20%;
+    width:100%;}
+}
+@media screen and (max-width:678px) {
+    .mycontent1{width:100%;}
+}
 .my-img2{
     width:20px;height:20px;
+}
+.mycontent{
+    margin-left:200px;
 }
 .item{
     display:flex;
@@ -255,7 +275,8 @@ div>.el-button:hover{
     color:#000 !important;
 }
 .el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
-    background:red !important;color:#fff !important;
+    background:red !important;
+    color:#fff !important;
     border-bottom-color:red !important;
 }
 /*全部评价的字体样式*/
