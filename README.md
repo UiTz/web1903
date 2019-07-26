@@ -50,7 +50,7 @@
 | product/api/queryid | 根据商品ID查询商品详情 |
 | information/api/queryall | 查询所有文章 |
 | information/api/querydetails | 查询文章详情 |
-| /user/api/message_board | 提交留言接口 |
+| user/api/message_board | 提交留言接口 |
 | user/api/loading_message | 查询留言接口 |
 
   

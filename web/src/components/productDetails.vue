@@ -232,7 +232,7 @@ export default {
 }
 @media screen and (min-width:992px){
     .mycontent1{
-    margin-left:25%;
+    margin-left:13%;
     width:75%;
    }
 }

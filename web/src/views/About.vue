@@ -27,10 +27,10 @@
         <div class="about col-md-6 col-sm-12 p-0">
           <div class="about-center">
             <h1 class="wu">Tasty bread</h1>
-            <p>烘焙坊 / XX餐饮管理有限公司</p>
+            <p>码 农 练 习 生 蛋 糕 屋</p>
             <p>Add / 公司地址：福建厦门湖里区软件园18号-404</p>
             <p>Tel / 联系电话：400 - 000 - 0000</p>
-            <p>Eml/电子邮件：1043083945@qq.com</p>
+            <p>Email/电子邮件：1043083945@qq.com</p>
           </div>
         </div>
       </div>
