@@ -4,6 +4,7 @@ const query = require('./plugins/db.js');
 const session = require('express-session');
 // 引入json解析中间件
 const bodyParser = require('body-parser');
+const Core = require('@alicloud/pop-core');
 
 app.use(session({
   name: 'CakeShop',
@@ -71,17 +72,18 @@ app.post('/user/api/register',(req,res)=> {
 });
 
 // 查询邮箱是否注册过
-app.post('/user/api/queryemail',(req,res)=>{
+app.post('/user/api/queryphone',(req,res)=>{
   // console.log('有查询邮箱请求');
-  let email = req.query.email;
-  let sql = "SELECT email FROM pj_user WHERE email = ?";
+  let phone = req.query.phone;
+  let sql = "SELECT phone FROM pj_user WHERE phone = ?";
   query(sql,[email],(err,result)=> {
     if (err) throw  err;
     if (result.length === 0) {
-      res.send({code:200,msg:"恭喜!用户名可以使用"})
-    } else res.send({code:201,msg:"用户名已被注册"})
+      res.send({code:200,msg:"恭喜!可以使用"})
+    } else res.send({code:201,msg:"该手机号已被注册"})
   })
 });
+
 
 // 用户登录接口
 app.post('/user/api/login',(req,res)=> {

@@ -28,12 +28,12 @@
       // console.log(uin.user_name);
     },
     mounted() {
-      //if (this._isMobile()) {
-      //  this.$router.replace({path:'/mindex'});
-      //  this.header_show = false;
-      //} else {
-      //  this.$router.replace({path:'/index'});
-      //}
+      if (this._isMobile()) {
+       this.$router.replace({path:'/mindex'});
+       this.header_show = false;
+      } else {
+       this.$router.replace({path:'/index'});
+      }
     },
     methods: {
       reload () {

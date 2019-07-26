@@ -26,6 +26,20 @@
 <script>
 export default {
   data(){
+      var checkuname = (rule,value,callback)=> {
+          let uname = value;
+          setTimeout(() => {
+              this.axios.post('user/api/queryuser',{uname}).then(res=> {
+                  console.log(res);
+                  let code = res.data.code;
+                  if (code === 201) {
+                      callback(new Error('该用户名已被注册'));
+                  } else {
+                      callback();
+                  }
+              });
+          }, 500);
+      };
       return{
           dialogFormVisible:true,
         ruleForm:{
@@ -41,7 +55,8 @@ export default {
           rules:{
             uname:[
                 {required:true,message:"用户名不能为空",trigger:'blur'},
-                {pattern:/^[a-zA-Z0-9_-]{4,16}$/,message:"长度在4到16个字符",trigger:'blur'}
+                {pattern:/^[a-zA-Z0-9_-]{4,16}$/,message:"长度在4到16个字符",trigger:'blur'},
+                {validator: checkuname,trigger: 'blur'}
             ],
             upwd:[
                 {required:true,message:'请输入密码',trigger:'blur'},
@@ -106,4 +121,3 @@ export default {
 }
 </style>
 
-    
