@@ -1,19 +1,14 @@
 <template>
   <div>
-    <div class="d-flex justify-content-center container">
-        <div class="p-0 mt-5">
- <div>
-    <div class="move" @mouseover="over()" @mouseout="out()" @mousemove="move($event)"> 
-        <div id="small"> 
-        <span id="float"></span>  
-        <img src="../../public/img/productDetails/product-details-2.png" id="smallimg">
-        </div>  
-    </div>
-      <div id="big"><img  src="../../public/img/productDetails/product-details-2.png"></div>    
-      <img class="my-img1" src="../../public/img/productDetails/product-details-2.png" />
-            </div>
-  </div>     
-        <div class=" p-0 mt-5 mycontent">
+    <div class="row container">
+      <div class="col-lg-6 col-md-12 mycake">
+       <div id="smallimg" >
+       <div id="super-mask" @mouseover="over" @mouseout="out" @mousemove="move($event)"></div>
+       <div id="float" ></div>
+       </div>
+        <div id="big"><img  id="divlg" src="../../public/img/productDetails/product-details-2.png"></div>
+        </div>
+        <div class="col-lg-6 col-md-12 p-0 mt-5">
             <h5>奶酥核桃吐司</h5>
             <el-rate
             v-model="value"
@@ -40,7 +35,7 @@
             <p class="mt-3">发货期：<span>1天交货</span></p>
         </div>
     </div>
-    <div class=" mycontent1">
+    <div class=" mycontent1 mt-5 container">
     <div class="mt-3">
     <el-dropdown>
   <span class="el-dropdown-link">
@@ -103,7 +98,6 @@
   </div>
 </template>
 <script>
-  var i, float,smallimg,big,bigImg;
 export default {
   data(){
       return{
@@ -112,15 +106,11 @@ export default {
           value:4.5
       }
   },
-    mounted(){
-      float = document.getElementById("float"); //左侧遮罩层
-      big = document.getElementById("big"); //右侧可视区域
-      bigImg = big.getElementsByTagName("img")[0]; //右侧大图
-    
-      big.style.display = "none";
-      float.style.visibility ="hidden"; //鼠标未移入左侧区域使遮罩层以及右侧大图均不可见
-    },
-
+  mounted(){
+    var float = document.getElementById("mask"); //左侧遮罩层
+    var big=document.getElementById("big");
+    var bigImg = document.getElementById("divlg"); //右侧可视区域
+  },
     methods: {
         handleClick(tab,event){
        console.log(tab,event)},
@@ -131,44 +121,44 @@ export default {
            this.i<=1 ? 1:this.i--;
        },
     //鼠标移入左侧区域使遮罩层以及右侧大图可见
-      over: function () {
-        float.style.visibility ="visible";
-        //big.style.visibility ="visible";
-        big.style.display = "block";
+      over(){
+        float.style.visibility="visible";
+        big.style.display ="block";
       }, 
 
       //鼠标移出左侧区域使遮罩层以及右侧大图不可见
-      out: function () {
-        float.style.visibility ="hidden";
-        big.style.display = "none";
+      out(){
+        float.style.visibility="hidden";
+        big.style.display= "none";
       }, 
 
       //鼠标移动时遮罩层随鼠标的移动而移动
-      move: function (e) {
-        var MSIZE=330;//记录小mask的大小
+      move(e){
+        var bigImg = document.getElementById("divlg"); //右侧可视区域
+        var MSIZE=200;//记录小mask的大小
         var SMSIZE=400;
         var l =e.offsetX-MSIZE/2;
         var t =e.offsetY-MSIZE/2;
         
-        if( l < 0 ){ l = 0; }
-        else if( l > SMSIZE-MSIZE ){
+        if(l < 0){l = 0;}
+        else if(l> SMSIZE-MSIZE){
              l = SMSIZE-MSIZE; 
         }    
-        if( t < 0 ) {t = 0;}
+        if(t < 0) {t = 0;}
         else if(t > SMSIZE-MSIZE) {
             t = SMSIZE-MSIZE;
         }    
 
         //求出来一个比例
-        var scale = 500/400;
+        var scale = 450/400;
 
          //遮罩层运动位置
         float.style.left = l + "px";
         float.style.top = t + "px"; 
 
          //右侧大图运动位置
-       bigImg.style.left=-scale*l+'px';
-       bigImg.style.top =-scale*t + "px";
+        bigImg.style.left=-scale*l+'px';
+        bigImg.style.top =-scale*t+'px';
       }
     }
     }
@@ -180,44 +170,52 @@ export default {
     margin:0 auto;
 }
 /*放大镜*/
-#float {
-    width:330px;
-    height:330px;
-    position: absolute;     
+#float{
+    width:200px;
+    height:200px;
+    position: absolute;    
     background:url("../../public/img/productDetails/selector.png");
     background-size:cover;
     border: 1px solid #ccc;
-    opacity: 0.5;
+    opacity:.5;
+    z-index:2;
     cursor:move;
+    visibility:hidden;
+    top:0;left:0;
   }
-      #big {
+    #super-mask{
     position: absolute;  
-    top:320px;
-    left:50%;
+    /*left:460px;*/
     width: 400px;
     height: 400px;
-    overflow: hidden;
-    background-size:cover;
-    border: 1px solid #ccc;
-    background: #ffffff;
-    z-index: 1;
-    /*visibility: hidden;*/
-  }
-  #small {
-    position: relative;  
-    z-index: 1;
+    z-index:3;
+    top:0;left:0;
   }
  #smallimg{
+      position: relative;
       width:400px;
       height:400px;
+      top:30px;
       border:1px solid #ddd;
+      z-index:1;
+      background:url("../../public/img/productDetails/product-details-1.png") no-repeat;
+      display:block;
     }
-  #big img{
+#big{
+        width:450px;
+        height:450px;
+        position: absolute;
+        left:430px;
+        top:30px;
+        overflow: hidden;
+         /*z-index:1;*/
+         display:none;
+    }
+  #divlg{
     position: absolute;  
-    top:50%; 
-    z-index:3;
-    width:500px;
-    height:500px;
+    z-index:1000;
+    width:800px;
+    height:800px;
   }
 /*设置左边图片的样式*/
 .my-img{
@@ -230,24 +228,11 @@ export default {
     width:15%;height:50px;
     border:1px solid red;
 }
-@media screen and (min-width:992px){
-    .mycontent1{
-    margin-left:13%;
-    width:75%;
-   }
-}
-@media screen and (max-width:992px) and (min-width:678px) {
-    .mycontent1{margin-left:-20%;
-    width:100%;}
-}
-@media screen and (max-width:678px) {
-    .mycontent1{width:100%;}
-}
 .my-img2{
     width:20px;height:20px;
 }
 .mycontent{
-    margin-left:200px;
+    margin-left:30px;
 }
 .item{
     display:flex;
@@ -287,4 +272,6 @@ color:red !important;
 color:red !important;
 }
 </style>
+
+
 
