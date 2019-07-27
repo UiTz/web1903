@@ -4,9 +4,9 @@
       <div class="col-lg-6 col-md-12 mycake">
        <div id="smallimg" >
        <div id="super-mask" @mouseover="over" @mouseout="out" @mousemove="move($event)"></div>
-       <div id="float" ></div>
+       <div id="float"></div>
        </div>
-        <div id="big"><img  id="divlg" src="../../public/img/productDetails/product-details-2.png"></div>
+        <div id="big"><img  id="divlg" src="../../public/img/productDetails/product-details-1.png"></div>
         </div>
         <div class="col-lg-6 col-md-12 p-0 mt-5">
             <h5>奶酥核桃吐司</h5>
@@ -208,14 +208,14 @@ export default {
         left:430px;
         top:30px;
         overflow: hidden;
-         /*z-index:1;*/
+         z-index:1;
          display:none;
     }
   #divlg{
-    position: absolute;  
-    z-index:1000;
-    width:800px;
-    height:800px;
+    position: absolute;
+    z-index:2;
+    width:700px;
+    height:700px;
   }
 /*设置左边图片的样式*/
 .my-img{
@@ -272,6 +272,7 @@ color:red !important;
 color:red !important;
 }
 </style>
+
 
 
 
