@@ -1,23 +1,22 @@
 <template>
 <div>
-    <div class="d1 w-100"></div>
-  <el-dialog :before-close="handleclose" title="用户注册" :visible.sync="dialogFormVisible">
-  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-button type="text" style="color:rgb(177, 105, 57);margin-top:15px;" @click="dialogFormVisible = true">注册</el-button>
+  <el-dialog :modal-append-to-body='false' id="myclass1" :before-close="handleclose" title="用户注册"  :visible.sync="dialogFormVisible">
+  <el-form  :model="form" status-icon :rules="rules" ref="form" label-width="80px" class="demo-ruleForm">
     <el-form-item label="用户名"  prop="uname">
-      <el-input type="text" v-model="ruleForm.uname" autofocus placeholder="请输入用户名"></el-input>
+      <el-input type="text" v-model="form.uname" autofocus placeholder="请输入用户名"></el-input>
     </el-form-item>
     <el-form-item label="密码"   prop="upwd">
-      <el-input type="password" v-model="ruleForm.upwd" placeholder="请输入密码"></el-input>
+      <el-input type="password" v-model="form.upwd" placeholder="请输入密码"></el-input>
     </el-form-item>
     <el-form-item label="邮箱" prop="emails" >
-      <el-input v-model="ruleForm.emails" auto-complete="off" placeholder="请输入邮箱"></el-input>
+      <el-input v-model="form.emails" auto-complete="off" placeholder="请输入邮箱"></el-input>
     </el-form-item>
     <el-form-item label="电话" prop="phone">
-      <el-input v-model="ruleForm.phone" auto-complete="off" placeholder="请输入电话"></el-input>
+      <el-input v-model="form.phone" auto-complete="off" placeholder="请输入电话"></el-input>
     </el-form-item>
    <el-form-item>
-    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-    <el-button @click="resetForm('ruleForm')">重置</el-button>
+    <el-button style="width:250px;"type="primary" @click="submitForm('form')">提交</el-button>
      </el-form-item>
      </el-form>
 </el-dialog>
@@ -41,8 +40,8 @@ export default {
           }, 500);
       };
       return{
-          dialogFormVisible:true,
-        ruleForm:{
+          dialogFormVisible:false,
+        form:{
           uname: '',
           upwd: '',
           emails: '',
@@ -76,10 +75,22 @@ export default {
    methods:{
     submitForm(formName) {
         var url='user/api/register';
-        var u=this.ruleForm.uname;
-        var p=this.ruleForm.upwd;
-        var e=this.ruleForm.emails;
-        var t=this.ruleForm.phone;
+        var u=this.form.uname;
+        var p=this.form.upwd;
+        var e=this.form.emails;
+        var t=this.form.phone;
+        if(u===''){
+            console.log("用户名不能为空");return;
+        }
+        if(p===''){
+            console.log("密码不能为空");return;
+        }
+        if(e===''){
+            console.log("邮箱不能为空");return;
+        }
+        if(t===''){
+            console.log("电话不能为空");return;
+        }
         var obj={uname:u,upwd:p,email:e,phone:t};
         this.axios.post(url,obj).then(result=>{
             if(result.data.code===200){
@@ -88,17 +99,25 @@ export default {
                 this.$alert("提交失败",{confirmButtonText:'确定'});
             }
         })
+        this.$emit('formData',this.form);
     },
-   resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
     handleclose(){
-        this.$router.push('/');
-  }
+       this.dialogFormVisible = false;
+  },
     } 
 }
 </script>
 <style>
+#myclass1{
+position: absolute;
+top:270%;
+left:50%;
+width:800px;
+height:700px;
+margin-top:-350px;
+margin-left:-400px;
+overflow: hidden;
+}
 /*设置图片样式*/
 .d1{
     background:url("../../public/img/index/index-1.png") no-repeat;
@@ -110,8 +129,7 @@ export default {
     text-align: center;
 }
 .el-input{
-    width:60% !important;
-    margin-right: 200px;
+    width:250px !important;
 }
 .el-form-item__error{
     margin-left:8%;

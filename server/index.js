@@ -54,14 +54,24 @@ app.post('/user/api/queryuser',(req,res)=>{
 // 用户注册
 app.post('/user/api/register',(req,res)=> {
   let r = req.body;
-  let uarr = [
-    uname = r.uname,
-    upwd  = r.upwd,
-    email = r.email,
-    phone = r.phone
-  ];
+  let uname = r.uname;
+  let upwd  = r.upwd;
+  let email = r.email;
+  let phone = r.phone;
+  if(uname===''){
+    res.json("用户名不能为空");return;
+  }
+  if(upwd===''){
+    res.json("密码不能为空");return;
+  }
+  if(email===''){
+    res.json("邮箱不能为空");return;
+  }
+  if(phone===''){
+    res.json("电话不能为空");return;
+  }
   let sql = 'INSERT INTO pj_user (uname,upwd,email,phone,regster_date) VALUES (?,to_base64(?),?,?,NOW())';
-  query(sql,uarr,(err,result)=> {
+  query(sql,[uname,upwd,email,phone],(err,result)=> {
     if (err) throw err;
     if (result.affectedRows > 0){
       res.send({code:200,msg:'注册成功'});

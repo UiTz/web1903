@@ -131,7 +131,7 @@
                 <i class="iconfont icon-zuofanye-xue"></i>
                 </div>
                 <div class="carousel-div-2">
-                    <ul class="carouse-ul-2" :style="">
+                    <ul class="carouse-ul-2">
                         <li class="carouse-ul-li1-2" v-for="(item,index) in cakearr" :key="index" @click="gotodetail(item)" >
                             <div class="carouse-ul-li1-div11-2">
                                 <img :src="item.img_url">
@@ -409,7 +409,7 @@ export default {
     .breadSeries3div{
         /*弹性布局不设置高*/
         width:300px;
-        margin:0 0 0 225px;
+        margin-left:225px;
     }
     /*面包系列包含图片div的div*/
     .breadSeries1div{
@@ -570,7 +570,7 @@ export default {
         display:-webkit-flex;
         -webkit-flex-flow:row wrap;
         flex-flow:row wrap;
-        /*justify-content:space-between;*/
+        justify-content:center;
     }
     .cake1div{
         width:240px;

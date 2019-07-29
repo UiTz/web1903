@@ -11,20 +11,18 @@
           {{item.navItem}}
         </el-menu-item>
         <div v-if="!isLogin">
-          <el-button type="text" class="myrouter ml-3 pr-5" @click="dialogFormVisible = true">登录</el-button>
-          <el-button type="text" class="myrouter">
-            <router-link to='/register'>注册</router-link>
-          </el-button>
+          <!--<el-button type="text" class="myrouter ml-3 pr-5" @click="dialogFormVisible = true">登录</el-button>-->
+          <myLogin class="myrouter ml-3 pr-5" v-on:ruleFormData="handleRuleFormData"></myLogin>
+          <myRegister class="myrouter ml-3 pr-5" v-on:formData="handleFormData"></myRegister>
         </div>
         <div v-else>
           <el-button type="text" class="myrouter uname ml-3 pr-5">{{ user_name }}</el-button>
-          <el-button type="text" class="myrouter logout" @click="logout">退出</el-button>
+          <el-button  type="text" class="myrouter logout" @click="logout">退出</el-button>
         </div>
       </el-menu>
-      <div class="main">
-        <div class="w-100"></div>
-        <el-dialog title="用户登录" :visible.sync="dialogFormVisible">
-          <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+      <!--<div class="main">
+        <el-dialog id="myclass" title="用户登录" :visible.sync="dialogFormVisible">
+          <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="70px">
             <el-form-item label="用户名" prop="uname">
               <el-input type="text" v-model="ruleForm.uname" autofocus placeholder="请输入用户名"></el-input>
             </el-form-item>
@@ -32,17 +30,23 @@
               <el-input type="password" v-model="ruleForm.upwd" placeholder="请输入密码"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+              <el-button style="width:250px;" type="primary" @click="submitForm('ruleForm')">登录</el-button>
             </el-form-item>
           </el-form>
         </el-dialog>
-      </div>
+      </div>-->
     </div>
   </header>
 </template>
 <script>
+import register from './register';
+import login from './login'
   export default {
     inject: ['reload'],
+    components:{
+          "myRegister":register,
+          "myLogin":login
+      },
     data() {
       return {
         isShow: true,
@@ -53,21 +57,22 @@
           {path: '/company', navItem: "企业资讯"},
           {path: '/About', navItem: "留言专区"}
         ],
-        dialogFormVisible: false,
-        ruleForm: {
-          uname: '',
-          upwd: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        rules: {
-          uname: {required: true, message: "请输入用户名", trigger: 'blur'},
-          upwd: {required: true, message: '请输入密码', trigger: 'blur'}
-        }
+        // dialogFormVisible: false,
+        dialogFormVisible1: false,
+    //     ruleForm: {
+    //       uname: '',
+    //       upwd: '',
+    //       delivery: false,
+    //       type: [],
+    //       resource: '',
+    //       desc: ''
+    //     },
+    //     rules: {
+    //       uname: {required: true, message: "请输入用户名", trigger: 'blur'},
+    //       upwd: {required: true, message: '请输入密码', trigger: 'blur'}
+    //     }
       }
-    },
+     },
     computed: {
       isLogin () {
         return this.$store.getters.getIsLogin;
@@ -101,45 +106,48 @@
           document.querySelector(".el-menu").style.opacity = '1';
         }
       },
-      submitForm() {
-        let that = this;
-        var url = "user/api/login";
-        var u = this.ruleForm.uname;
-        var p = this.ruleForm.upwd;
-        var obj = {uname: u, upwd: p};
-        this.axios.post(url, obj).then(result => {
-          if (result.data.code === 200) {
-            let uinfo = JSON.stringify(result.data.result[0]);
-            this.$store.commit('setUserInfo',uinfo);
-            this.$message({
-              message: '登录成功',
-              type: 'success'
-            });
-            this.dialogFormVisible = false;
-            this.$router.go(0);
-          } else {
-            this.$alert("用户名或者密码不正确", {confirmButtonText: '确定'});
-          }
-        });
-      },
-      handleclose() {
-        this.$router.push('/');
-      },
+      // submitForm() {
+      //   let that = this;
+      //   var url = "user/api/login";
+      //   var u = this.ruleForm.uname;
+      //   var p = this.ruleForm.upwd;
+      //   var obj = {uname: u, upwd: p};
+      //   this.axios.post(url, obj).then(result => {
+      //     if (result.data.code === 200) {
+      //       let uinfo = JSON.stringify(result.data.result[0]);
+      //       this.$store.commit('setUserInfo',uinfo);
+      //       this.$message({
+      //         message: '登录成功',
+      //         type: 'success'
+      //       });
+      //       this.dialogFormVisible = false;
+      //       this.$router.go(0);
+      //     } else {
+      //       this.$alert("用户名或者密码不正确", {confirmButtonText: '确定'});
+      //     }
+      //   });
+      // },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
-      },
+       },
       logout: function () {
         this.$store.commit('userLogout');
         this.$message({
           message: '退出成功',
           type: 'success'
         })
-      }
+      },
+       handleFormData(data){
+            console.log(data);
+        },
+        handleRuleFormData(Data){
+          console.log(Data);
+        }
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll)
-    },
-  }
+    }
+    }
 </script>
 <style scoped lang="less">
   .el-menu{
@@ -177,7 +185,17 @@
     margin-bottom: 30px;
     font: 32px solid orange;
   }
-  
+  #myclass{
+position: absolute;
+top:50%;
+left:50%;
+margin-top:-350px;
+margin-left:-400px;
+overflow: hidden;
+width:800px;
+height:700px;
+border-radius: 5px;
+}
   /*导航栏的样式*/
   .el-menu-demo {
     width: 100%;

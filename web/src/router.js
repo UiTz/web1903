@@ -90,14 +90,14 @@ export default new Router({
         title: '企业资讯 - 码农练习生蛋糕屋'
       }
     },
-    //{path: '/login',component:login},
-    {
-      path: '/register',
-      component:register,
-      meta: {
-        title: '注册 - 码农练习生蛋糕屋'
-      }
-    },
+    {path: '/login',component:login},
+    // {
+    //   path: '/register',
+    //   component:register,
+    //   meta: {
+    //     title: '注册 - 码农练习生蛋糕屋'
+    //   }
+    // },
     {path:'/productdetails',component:productDetails,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/productdetails2',component:productDetails2,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/productdetails3',component:productDetails3,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
@@ -109,8 +109,8 @@ export default new Router({
     {path:'/productdetails9',component:productDetails9,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/productdetails10',component:productDetails10,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/productdetails11',component:productDetails11,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
-    {path:'/productdetails13',component:productDetails12,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
-    {path:'/productdetails14',component:productDetails13,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
+    {path:'/productdetails12',component:productDetails12,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
+    {path:'/productdetails13',component:productDetails13,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/productdetails14',component:productDetails14,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/productdetails15',component:productDetails15,meta:{title: '商品详情 - 码农练习生蛋糕屋'}},
     {path:'/About',component:About,meta:{title: '留言专区 - 码农练习生蛋糕屋'}},
