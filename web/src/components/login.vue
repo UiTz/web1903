@@ -39,7 +39,7 @@
      methods: {
     submitForm() {
         let that = this;
-        var url = "user/api/login";
+        var url = "/user/api/login";
         var u = this.ruleForm.uname;
         var p = this.ruleForm.upwd;
         if(u==''){

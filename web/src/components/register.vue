@@ -28,7 +28,7 @@ export default {
       var checkuname = (rule,value,callback)=> {
           let uname = value;
           setTimeout(() => {
-              this.axios.post('user/api/queryuser',{uname}).then(res=> {
+              this.axios.post('/user/api/queryuser',{uname}).then(res=> {
                   console.log(res);
                   let code = res.data.code;
                   if (code === 201) {
@@ -74,7 +74,7 @@ export default {
       },        
    methods:{
     submitForm(formName) {
-        var url='user/api/register';
+        var url='/user/api/register';
         var u=this.form.uname;
         var p=this.form.upwd;
         var e=this.form.emails;
@@ -94,7 +94,14 @@ export default {
         var obj={uname:u,upwd:p,email:e,phone:t};
         this.axios.post(url,obj).then(result=>{
             if(result.data.code===200){
-               this.$alert('提交成功',{callback:action=>{this.$router.push('/');}});
+            //   let uinfo = JSON.stringify(result.data.result[0]);
+            // this.$store.commit('setUserInfo',uinfo);
+            this.$message({
+              message: '注册成功',
+              type: 'success'
+            });
+            this.dialogFormVisible = false;
+            this.$router.go(0);
             }else{
                 this.$alert("提交失败",{confirmButtonText:'确定'});
             }
