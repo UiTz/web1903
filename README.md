@@ -3,7 +3,7 @@
 ###  选定命题——美丽家蛋糕
 
 -  GitHub地址：https://github.com/UiTz/web1903.git
-- 项目部署地址：http://cake.applinzi.com
+- 项目部署地址：http://liujiaxin.co:5050
 
 
 ### 小组成员以及职责划分 - (4人)
@@ -32,6 +32,7 @@
     - MySQL
     - NodeJS
     - Express
+    - PM2
 
 ## 二、后端接口
 
