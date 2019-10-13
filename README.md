@@ -58,8 +58,8 @@
 
 | 接口              | 接口功能     |
 | ----------------- | ------------ |
-| admin/api/deluser | 删除用户     |
-| admin/api/user    | 查询所有用户 |
+| */api/deluser | 删除用户     |
+| */api/user    | 查询所有用户 |
 
   
 
